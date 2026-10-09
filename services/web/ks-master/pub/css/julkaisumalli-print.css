@@ -1,0 +1,53 @@
+/* Tulostettaessa näytetään vain pääsisältö.
+ * Piilotetaan navigaatio, sivupalkki, näkymävalinta, jakonapit ja kivijalka.
+ * 
+ * 18.2.2020 OL
+ */
+
+@media print {
+    .ylapalkki {
+	display: none;
+    }
+    aside.sivupalkki {
+	display: none;
+    }
+    .article-viewtype {
+	display: none;
+    }
+    .jaalinkit {
+	display: none;
+    }
+    footer.kivijalka {
+	display: none;
+    }
+    /* Firefoxin sivutusbugin takia: flex => block */
+    div.palstat {
+        display: block !important;
+    }
+
+    /* VKS:n aikajanat */
+    table.aikajana {
+	empty-cells: show;
+    }
+    table.aikajana tr {
+	background-color: transparent;
+    }
+    td.aj-leksikko {
+	height: 0;
+	background-color: transparent;
+	border-top: 3px solid #8e8e8e;
+    }
+    td.aj-esimerkki {
+	height: 0;
+	background-color: transparent;
+	border-top: 3px solid #6a253b;
+    }
+    tr.aj-viiva td {
+	height: 0;
+	background-color: transparent;
+	border-top: 3px solid #e3e3e3;
+    }
+
+}
+
+

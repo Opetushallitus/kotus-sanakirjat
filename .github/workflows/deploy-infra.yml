@@ -1,0 +1,62 @@
+name: Deploy infra
+
+# Manual only for now - most stacks are still WIP (see infra/README.md "Before
+# the first real deploy"). Revisit triggers once the app/CI pipeline exists.
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        type: choice
+        options: [dev, qa, prod, utility]
+      web_revision:
+        description: sanakirja-web image tag to deploy (e.g. ga-42)
+        required: false
+        type: string
+      existdb_revision:
+        description: sanakirja-existdb image tag to deploy (e.g. ga-42)
+        required: false
+        type: string
+
+permissions:
+  id-token: write # required for OIDC -> AssumeRoleWithWebIdentity
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # Selects the matching GitHub Environment (Settings > Environments), which is
+    # what actually resolves ${{ secrets.AWS_DEPLOY_ROLE_ARN }} below - each
+    # environment holds its own value for that secret name. See infra/README.md
+    # "Account IDs" for what needs to be set up there.
+    environment: ${{ inputs.environment }}
+    defaults:
+      run:
+        working-directory: infra
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: eu-west-1
+
+      - run: >
+          npx cdk deploy
+          -c environment=${{ inputs.environment }}
+          -c webRevision=${{ inputs.web_revision }}
+          -c existdbRevision=${{ inputs.existdb_revision }}
+          -c utilityAccountId=${{ secrets.AWS_UTILITY_ACCOUNT_ID }}
+          -c projectOu=${{ secrets.AWS_SANAKIRJA_PROJECT_OU }}
+          -c parentZoneId=${{ secrets.AWS_SANAKIRJA_PARENT_ZONE_ID }}
+          -c orgId=${{ secrets.AWS_SANAKIRJA_ORG_ID }}
+          -c vpcCidr=${{ secrets.AWS_SANAKIRJA_VPC_CIDR }}
+          -c domain=${{ secrets.AWS_SANAKIRJA_DOMAIN }}
+          --all --require-approval never

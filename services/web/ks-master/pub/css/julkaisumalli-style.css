@@ -1,0 +1,1177 @@
+/**
+* Style sheet for publications at Kotimaisten kielten keskus
+* authors Sonja Holopainen, Outi Lehtinen, Jari Vihtari
+* 2019 - 2020
+* version 1.7.2020
+
+
+SISÄLTÖ
+
+HTML5-ELEMENTIT
+RESETS
+YLEISET MÄÄRITYKSET
+	Otsikkotasot
+	Linkit
+	Hyppylinkki
+	Vanha autocomplete?
+YLÄPALKKI - header
+	Kielinavigointi
+	Yläpalkin ikonit
+PÄÄNAVIGAATIO - nav
+	Ylimääräinen tausta peittämään muut elementit
+SISÄLTÖOSA - div
+	Etusivu
+	Palstat
+PÄÄSISÄLTÖ - main
+	Etusivun pääsisältö
+	Palstanäkymän pääsisältö
+SIVUPALKKI - aside
+KIRJANMERKKI julkaisun mukaan
+LOGO
+HAKURUUTU
+	Hakuruudun yleiset määritykset
+	Etusivun hakuruutu
+	Sivupalkin hakuruutu
+	Hakuehdotus-funktion tarvitsemat tyylit
+TARKENNETUN HAUN LOMAKE
+HAKUSANALISTA
+	Hakusanalistan aakkoslinkit
+	Aakkosnappulat
+JAA-LINKIT
+KIVIJALKA - footer
+SANAKIRJA-ARTIKKELIN (HUOM! TILAPÄISET) TYYLIT
+KAPEA LAYOUT (DESKTOP)
+KAPEA LAYOUT (MOBIILI)
+
+*/
+
+
+
+/* === HTML5-ELEMENTIT === */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section { 
+	display: block;
+}
+[hidden] {
+   display: none;
+}
+
+
+/* === RESETS === */
+
+html, body {
+	margin: 0;
+	padding: 0;
+}
+
+
+/* === YLEISET MÄÄRITYKSET === */
+
+html {
+	background-color: #ffffff;
+	color: #000000;
+	font-size: 1em; /* = 16px oletuksena yleensä selaimissa */
+	 /* Google-fontti olisi mahdollista importoida fontti samassa CSS-tiedostossa,
+	    mutta link-elementti HTML-koodissa ilmeisesti nopeampi ja parempi. */
+	font-family: 'Open Sans', sans-serif;
+}
+
+body {
+	max-width: 80rem;
+	margin: 0 auto;
+}
+
+
+/* Otsikkotasot */
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Noto Serif", serif;
+	/*font-stretch: semi-condensed;*/
+	font-weight: normal;
+}
+
+/* Linkit */
+a:link {
+	color: #007faa;
+	text-decoration: none;
+	font-weight: normal;
+}
+a:visited {
+	color: #007faa;
+	font-weight: normal;
+}
+a:hover {
+	color: #007faa;
+	text-decoration: underline;
+}
+a:focus {
+	color: #007faa;
+	text-decoration: underline;
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+a:active {
+	color: #007faa;
+	text-decoration: underline;
+}
+
+*:focus {
+	/*border: 1px solid rgba(255, 211, 0, .5);*/
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+
+/* Hyppylinkki */
+ .hyppylinkki a {
+	position: absolute; 
+	left: -100000px; 
+	top: auto; 
+	width: 1px; 
+	height: 1px; 
+	overflow: hidden;
+}
+.hyppylinkki a:focus  {
+	position: static; 
+	width: auto; 
+	height: auto; 
+}
+
+
+/* Vanha autocomplete? */
+.ui-autocomplete {
+	background-color: #ccddff;
+	list-style-type: none;
+	padding-left: 1rem;
+	margin-left: 0;
+	border: 1px solid #cccccc;
+}
+
+
+/* === YLÄPALKKI - header === */
+
+.ylapalkki {
+	/* background-color: #ffffff; on sama kuin bodyn, ei tarvitse antaa */
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* vanha padding: 3.25rem 0;  (9.5rem - 2.5rem - 2x0.25rem) / 2 = 3.25rem */
+	padding: 1rem 1.25rem 1rem 1.25rem;  /* uusi (4.5rem - 2.0rem - 2x0.25rem) / 2 = 1rem */
+	margin: 0 auto;
+}
+/* Kielinavigointi */
+.kielinavigointi {
+	font-family: 'Open Sans', sans-serif;
+	/*font-weight: lighter;*/
+	/*font-size: 1.5rem;*/
+	font-size: 1.125rem;
+}
+.kielinavigointi a {
+	display: inline-block;
+	padding: 0.25rem;
+	margin-right: 1.5rem;
+	border-radius: 0.625rem;
+}
+.kielinavigointi a:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	outline: 2px dotted rgba(0, 122, 124, 1);
+	text-decoration: none;
+}
+.kielinavigointi a:focus {
+	/* background-color: rgba(0, 0, 0, 0.1); */
+}
+/* Yläpalkin ikonit */
+.buttonimg {
+	width: 2.0rem;
+	height: 2.0rem;
+	padding: 0.25rem;
+	margin-left: 1.5rem; /* 2em - 2x0.25em */
+	border-radius: 0.625rem;
+}
+.buttonimg:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+.buttonimg:focus {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+}
+ a.buttonimg {
+	display: block;
+}
+.buttonimg img {
+	width: 2.0rem;
+	height: 2.0rem;
+}
+
+/* Uudet tekstilliset menubuttonit */
+.tekstimenubutton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #FFFFFF;
+	color: #007FAA;
+	/*border: 2px solid #007FAA;*/
+	border: none;
+	/*height: 2.0rem;*/
+	padding: 0.25rem;
+	margin-left: 1.5rem; /* 2em - 2x0.25em */
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.125rem;
+	text-transform: uppercase;
+}
+.tekstimenubutton:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	outline: 2px dotted rgba(0, 122, 124, 1);
+	cursor: pointer;
+	text-decoration: none;
+}
+.tekstimenubutton svg, .tekstimenubutton img {
+	padding-right: 0.25rem;
+}
+.navivalikko .tekstimenubutton {
+	background-color: #007FAA;
+	color: #FFFFFF;
+	margin: 0 0 0 auto;
+	/*border: 2px solid #FFFFFF;*/
+	border: none;
+}
+.navivalikko .tekstimenubutton:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	outline: 2px dotted rgba(255, 255, 255, 1);
+	cursor: pointer;
+}
+
+
+/* === PÄÄNAVIGAATIO - nav === */
+
+.valikot {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	text-align: right;
+	background-color: #ffffff;
+}
+
+nav.navigointi  {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+nav.navigointi ul {
+	list-style-type: none;
+	padding: 1rem 0rem 0rem 0rem;
+	margin: 0;
+}
+nav.navigointi li {
+	padding: 0;
+}
+nav.navigointi li a {
+	white-space: nowrap;
+}
+
+.navivalikko {
+	position: absolute;
+	display: none;
+	z-index: 100;
+	right: -1rem;
+	top: -1rem;
+	text-align: right;
+	background-color: rgb(0, 127, 170); /* #007faa; */
+	color: #ffffff;
+	font-family: "Noto Serif", serif;
+	font-size: 1.125rem;
+	padding: 1rem;
+}
+.navivalikko a {
+	color: #ffffff; 
+}
+.navivalikko *:focus {
+	outline: 2px dotted rgba(255, 255, 255, 1);
+}
+#paanavigaatio1 {
+	display: none;
+}
+#paanavigaatio2 {
+	display: flex;
+}
+/* Ylimääräinen tausta peittämään muut elementit [tarpeeton, poistetaan, koodi siirretty javascriptiin] */
+#harmaa_tausta {
+	display: none;
+	position: fixed;
+	z-index: 99;
+	top: 0px;
+	bottom: 0px;	
+	right: 0px;	
+	left: 0px;
+	background-color: rgba(0, 127, 170, 0.5); /* väliaikaisesti läpinäkyvä testausta varten */
+}
+
+
+/* === SISÄLTÖOSA - div === */
+
+/* --- Etusivu --- */
+div.etusivu {
+	max-width: 80rem;
+	background-color: #f7f7f7;
+	min-height: 35rem;
+}
+
+/* --- Palstat --- */
+div.palstat {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	max-width: 80rem;
+	margin: 0 auto;
+	min-height: 35rem;
+}
+
+/* === PÄÄSISÄLTÖ - main === */
+
+/* --- Tekstisisällön otsikkotasot --- */
+
+main .teksti h1 {
+	font-size: 1.875rem;
+	padding-bottom: 1.125rem;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+main .teksti h1:first-child {
+    margin-top: 0;
+}
+main .teksti h2 {
+	font-size: 1.25rem;
+	text-transform: uppercase;
+}
+main .teksti h3 {
+	font-size: 1.25rem;
+	font-weight: bold;
+}
+main .teksti  h4 {
+	font-size: 1.25rem;
+}
+main .teksti  h5 {
+	font-size: 1.125rem;
+	font-style: italic;
+}
+
+/* --- Kuvat --- */
+.teksti section > img {
+	margin-left: 1.2rem;
+}
+
+
+/* --- Etusivun pääsisältö --- */
+.etusivu main {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: center;
+	max-width: 50rem;
+	margin: 0 auto;
+	padding-top: 3rem; /* mobiilissa eri */
+	padding-bottom: 3rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+	/* border: 1px solid #00ff00; */
+	text-align: center;
+	font-size: 1.125rem;
+	font-family: 'Open Sans', sans-serif;
+	/*font-weight: lighter;*/
+}
+.etusivu main hr {
+	display: block;
+	margin-top: 1.5rem;
+	margin-bottom: 1.5rem;
+	/*margin-left: auto;
+	margin-right: auto;*/
+	height: 1px;
+	background-color: #888888;
+	border-style: none;
+	width: 10rem;
+}
+.etusivu main div.infobox { /* what is this? */
+	max-width: 20rem;
+	margin: 0 auto;
+	background-color: #007a7c;
+	color: #ffffff;
+	padding: 2rem 1rem;
+}
+.etusivu main p {
+	max-width: inherit;
+}
+
+/* --- Normaalisivu eli yleinen yksipalstainen sivu  --- */
+.normaalisivu main {
+	display: flex;
+	flex-flow: column wrap;
+	align-items: left;
+	max-width: 50rem;
+	margin: 0 auto;
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+	text-align: left;
+	background-color: #ffffff;
+}
+.normaalisivu main p {
+	max-width: inherit;
+}
+
+
+/* --- Nimijulkaisun tulossivu --- */
+.nimilistaus {
+	/*background-color: #ffffff;
+	padding: 2rem 1.5rem 0rem 2.5rem;
+	flex-grow: 1;*/
+	padding-top: 2rem;
+	padding-bottom: 1rem;
+	padding-right: 1.5rem;
+	padding-left: 1.5rem;
+}
+.nimilistaus main {
+	background-color: #ffffff;
+}
+.nimilistaus .tietue {
+	border-top: 1px solid #888888;
+}
+
+/* --- Palstanäkymän pääsisältö --- */
+.palstat main {
+	background-color: #ffffff;
+	padding: 2rem 1.5rem 0rem 2.5rem;
+	flex-grow: 1;
+	flex-shrink: 1;
+}
+
+/* === SIVUPALKKI - aside === */
+
+.palstat aside.sivupalkki {
+	background-color: #f7f7f7;
+	max-width: 25rem; /* flex-basis should overrun this */
+	flex-basis: 25rem; /* 28 - (2 * 1.5) */
+	flex-grow: 0;
+    flex-shrink: 0;
+	padding: 2rem 1.5rem 0rem 1.5rem;
+	text-align: center;
+}
+
+
+/* === KIRJANMERKKI julkaisun mukaan */
+
+.kirjanmerkki {
+	background-image: url(../img/kirjanmerkki.svg);
+	background-repeat: no-repeat;
+	background-position: 1.5rem 0rem;
+}
+aside.kirjanmerkki {
+	background-size: 2.8rem;
+}
+
+
+/* === LOGO === */
+
+.logo {
+	width: 100%;
+}
+.logo img {
+	max-width: 360px;
+	height: auto;
+}
+/* etusivun logonalinen julkaisun nimi */
+.etusivu .logo h1 {
+	margin-top: 2rem; /* mobiilissa eri */
+	margin-bottom: 1.75rem;
+	margin-left: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	margin-right: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	/*max-width: 40.5rem;  mobiilissa eri */
+	font-size: 2.0rem;
+	font-weight: normal;
+}
+/* etusivun logonalinen alaotsikko */ 
+.etusivu .logo p {
+	margin-top: 1.75rem; /* mobiilissa eri */
+	font-size: 1.5rem;
+	font-weight: normal;
+	font-style: italic;
+}
+
+/* palstanäkymän logo */
+.palstat .logo {
+	width: 100%;
+	margin-bottom: 2rem;
+}
+.palstat .logo img {
+	width: 200px;
+	height: auto;
+}
+
+.nimeke1, .nimeke2 {
+	font-family: "Noto Serif", serif;
+}
+
+/* palstanäkymän logonalinen julkaisun nimi */
+.logo .nimeke1 {
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	margin-left: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	margin-right: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	/* max-width: 24.3rem; mobiilissa eri */
+	font-size: 1.5rem;
+	font-weight: normal;
+
+}
+/* palstanäkymän logonalinen alaotsikko */
+.logo p.nimeke2 {
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	font-size: 1.125rem;
+	font-weight: normal;
+	font-style: italic;
+}
+
+/* nimilistausnäkymän logo */ 
+.nimilistaus.logo {
+	background-color: #f7f7f7;
+}
+.nimilistaus.logo img {
+	width: 200px;
+	height: auto;
+}
+.nimilistaus.logo .nimeke {
+	margin-top: 1.25rem;
+	margin-bottom: 1.25rem;
+	margin-left: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	margin-right: auto; /* tarvitaan koska eri maxleveys kuin containerilla */
+	/* max-width: 24.3rem; mobiilissa eri */
+	font-size: 1.5rem;
+	font-weight: normal;
+}
+
+
+/* === HAKURUUTU === */
+
+/* Hakuruudun yleiset määritykset */
+form.hakuruutu {
+	width: 100%;
+	margin-top: 2rem;
+	margin-bottom: 1.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/*form.hakuruutu .hakuehdotus {
+	display: inline-flex;
+	width: 100%;
+	max-width: 30rem;
+}*/
+form.hakuruutu div:focus-within {
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+form.hakuruutu input, form.hakuruutu button {
+	font-family: 'Open Sans', sans-serif;
+	/*font-weight: lighter;*/
+	font-size: 1.125rem;
+}
+form.hakuruutu input[type=text] {
+	box-sizing: border-box;
+	/*width: 50vw; /*§*/
+	padding: 0.5rem 1.250rem;
+	border-top: 1px solid #000000;
+	border-right: none;
+	border-bottom: 1px solid #000000;
+	border-left: 1px solid #000000;
+	border-top-left-radius: 1rem;
+	border-bottom-left-radius: 1rem;
+	margin: 0;
+	text-align: left;
+}
+form.hakuruutu input[type=text]:focus {
+	outline: none;
+}
+form.hakuruutu input[type=submit], form.hakuruutu button[type=submit] {
+	background-color: #ffffff;
+	background-image: url("/img/suurennuslasi.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto 70%;
+	box-sizing: border-box;
+	/*max-width: 40px;*/
+	/* § min-width: 40px; */
+	height: 100%;
+	padding: 0.5rem 1.250rem;
+	border-top: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	border-top-right-radius: 1rem;
+	border-bottom-right-radius: 1rem;
+	margin: 0;
+	text-align: left;
+	cursor:pointer;
+}
+form.hakuruutu input[type=submit]:focus, form.hakuruutu button[type=submit]:focus {
+	/*outline: none;*/
+}
+form.hakuruutu input[type=reset], form.hakuruutu button[type=reset] {
+	background-color: #ffffff;
+	background-image: url("/img/rasti.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto 40%;
+	box-sizing: border-box;
+	/*max-width: 40px;*/
+	/* § min-width: 40px; */
+	height: 100%;
+	padding: 0.5rem 1.250rem;
+	border-top: 1px solid #000000;
+	border-right: none;
+	border-bottom: 1px solid #000000;
+	border-left: none;
+	margin: 0;
+	text-align: left;
+	cursor: pointer;
+}
+form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
+	/*outline: none;*/
+}
+
+/* Etusivun hakuruutu */
+.etusivu main form.hakuruutu input[type=text] {
+	width: 25rem;
+}
+
+/* Sivupalkin hakuruutu */
+.hakuosa form.hakuruutu input[type=text] {
+	/* § max-width: 60vw; */
+}
+.hakuosa form.hakuruutu input[type=submit], .hakuosa form.hakuruutu button[type=submit] {
+	/* $ max-width: 20vw;  */
+}
+.hakuosa form.hakuruutu input[type=reset], .hakuosa form.hakuruutu button[type=reset] {
+	/* $ max-width: 20vw; */
+}
+
+/* Hakuehdotus-funktion tarvitsemat tyylit (julkaisumalli.js-tiedostossa) */
+.hakuehdotus {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+}
+.hakuehdotus-lista {
+	position: absolute;
+	background-color: #fff;
+	border: 1px solid #d4d4d4;
+	/*border-bottom: none;
+	border-top: none;*/
+	z-index: 99;
+	/* position the autocomplete items to be the same width as the container: */
+	top: 100%;
+	left: 0;
+	right: 0;
+	font-size: 1rem;
+}
+.hakuehdotus-lista ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.hakuehdotus-lista div, .hakuehdotus-lista li  {
+	padding: 2px 10px;
+	cursor: pointer;
+	background-color: #fff; 
+	/* border-bottom: 1px solid #d4d4d4; */
+	text-align: left;
+}
+/* when navigating through the items using the arrow keys: */
+.hakuehdotus-aktiivinen {
+	background-color: #007faa !important; 
+	color: #ffffff; 
+}
+.hakuehdotus-piilotettu {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	left: -10000px;
+	top: auto;
+}
+
+/* === TARKENNETUN HAUN LOMAKE === */
+
+#search-form {
+	text-align: left;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1rem;
+	margin-bottom: 3rem;
+}
+
+.search-form-grid {
+	display: grid;
+	grid-template-columns: auto auto;
+	align-items: start;
+	justify-items: start;
+	grid-column-gap: 1rem;
+	grid-row-gap: 1rem;
+}
+.search-form-grid fieldset {
+	grid-column-start: span 2;
+	justify-self: stretch;
+}
+
+#search-form input[type=text] {
+	font-size: 1rem;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	border: 1px solid #cccccc;
+}
+#search-form select {
+	font-size: 1rem;
+	border: 1px solid #cccccc;
+}
+#search-form option {
+	font-size: 1rem;
+}
+
+#search-form input[type=submit], #search-form input[type=reset] {
+	font-family: "Noto Serif", serif;
+	font-size: 1rem;
+	color: #ffffff;
+	background-color: #007faa;
+	padding: 0.3rem 1rem;
+	border: 1px solid #007faa;
+	border-radius: 1.3rem;
+}
+
+.search-form-box {
+	padding: 0.8rem;
+	border: 1px solid #007faa;
+	border-radius: 0.8em;
+	display: grid;
+	grid-template-columns: auto auto;
+	align-items: start;
+	justify-items: start;
+	grid-column-gap:  0.8rem;
+	grid-row-gap:  0.8rem;
+}
+
+/* MERKKIPALETTI */
+.search-form-grid-span {
+	grid-column: 1 / span 2;
+}
+div#search-form-charlist, div.merkkipaletti {
+	background-color: #ffffff;
+	/*position: absolute;*/
+}
+div#search-form-charlist div, div.merkkipaletti div {
+	display: inline;
+	float: left;
+	height: 25px;
+	width: 25px;
+	cursor: pointer;
+	border: 1px solid silver;
+	text-align: center;
+	padding-top: 4px;
+	margin: 2px;
+}
+div#search-form-charlist div:hover, div.merkkipaletti div:hover {
+	background: #f0f0f0;
+	font-weight: bold;
+}
+div#search-form-charlist button, div.merkkipaletti button {
+	height: 25px;
+	width: 25px;
+	border: 1px solid silver;
+	text-align: center;
+	padding-top: 4px;
+	margin: 2px;
+	background-color: #ffffff;
+}
+div#search-form-charlist button:hover, div.merkkipaletti button:hover {
+	background-color: #f0f0f0;
+	font-weight: bold;
+}
+
+
+
+.iconimg {
+	vertical-align: bottom;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+
+/* === HAKUSANALISTA === */
+
+#hlista{
+	font-family: 'Open Sans', sans-serif;
+	/*font-weight: lighter;*/
+	/* font-size: 1.25rem; */
+	font-size: 1rem;
+	margin-bottom: 1.5rem;
+	text-align: left;
+	width: 100%;
+	max-height: 28.8rem;
+	overflow-y: auto;
+}
+#hlista div {
+	/*height: 1.4rem;*/
+	height: 1.6rem;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* Kwic-hakutulkset */
+.kwiccontainer #hlista {
+	max-height: 100%;
+	overflow-y: visible;
+}
+.kwicsivutusnappi {
+	border: 1px solid #007faa;
+	display: inline-block;
+	padding: 0.2rem 0.2rem;
+	min-width: 1.5rem;
+	vertical-align: middle;
+	overflow: hidden;
+	color: inherit;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+}
+
+/* Hakusanalistan aakkoslinkit */
+.aakkoslinkit {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: space-between;
+	padding-bottom: 1.125rem;
+	color: #cccccc;
+	text-align: center;
+	font-family: Noto Serif, serif;
+	/* font-size: 1.563rem; */
+	font-size: 1.125rem;
+}
+.aakkoslinkit a {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+	color: #007FAA;
+}
+.aakkoslinkit span {
+	margin-left: 0.1rem;
+	margin-right: 0.1rem;
+}
+
+/* === Aakkosnappulat === */
+.aakkonen {
+	background-color: #f7f7f7;
+	color: #007faa;
+	/*border: 1px solid #f7f7f7;*/
+	border: none;
+	font-family: Noto Serif, serif;
+    font-size: 1.125rem;
+	text-align: center;
+	margin: 0.2rem 0.2rem 0.2rem 0.2rem;
+	padding-left: 0.2rem;
+	padding-right: 0.2rem;
+	cursor: pointer;
+}
+.aakkonen:hover,
+.aakkonen:focus {
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+.aakkoslinkit .disabled {
+	color: #cccccc;
+	cursor: not-allowed;
+}
+
+
+
+
+.avausnuoli {
+	margin-bottom: 0.5rem;
+}
+.avausnuoli button {
+	background-color: #f7f7f7;
+	background-image: url("/img/avaa_ylos_levea.png");
+	background-position: center bottom;
+	background-repeat: no-repeat;
+	/*background-size: 80% 80%;*/
+	/*box-sizing: border-box;*/
+	/*width: 50px;
+	height: 19px;*/
+	padding: 0.4rem 1rem 20px 1rem;
+	border: none;
+	border-radius: 0.300rem;
+	margin: 0;
+	text-align: center;
+	cursor:pointer;
+}
+.avausnuoli button:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+.avausnuoli button:focus {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+}
+#hakutuloslista {
+	display: block;
+	margin-bottom: 1rem;
+}
+
+
+/* Details-summary */
+/*
+details {
+}
+details summary {
+  list-style-image: url("/img/avaa_ylos_levea.png");
+}
+details summary::-webkit-details-marker {
+  background: url("/img/avaa_ylos_levea.png");
+}
+details[open] summary {
+  list-style-image: url("/img/avaa_alas_levea.png");
+}
+details[open] summary::-webkit-details-marker {
+  background: url("/img/avaa_alas_levea.png");
+}
+*/
+
+summary {
+	cursor: pointer;
+}
+summary:hover {
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+
+
+
+
+/* === JAA-LINKIT === */
+
+.jaalinkit {
+	max-width: 60rem;
+	margin: 0 auto;
+	padding: 1.5rem 1.5rem;
+	text-align: left; /* täytyy yliajaa pääsisällön keskitys etusivulla */
+}
+.jaalinkit a:hover {
+	text-decoration: none;
+	outline: 2px dotted rgba(0, 122, 124, 1);
+}
+.jaalinkit img {
+	max-width: 2rem;
+	max-height: 2rem;
+	vertical-align: middle;
+}
+.jaalinkit svg {
+	border: none;
+	border-radius: 0.300rem;
+}
+.jaalinkit svg:hover {
+	/*background-color: rgba(0, 0, 0, 0.1);*/
+	
+}
+
+
+
+/* === KIVIJALKA - footer === */
+
+footer.kivijalka {
+	display: flex;
+	flex-direction: row;
+	max-width: 80rem;
+	margin: 0 auto;
+	padding-top: 4rem; /* mobiilissa sama */
+	padding-bottom: 4rem; /* mobiilissa sama */
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	color: #ffffff;
+	background-color: #00416f;
+	/* simuloidaan varjolla footerin venyminen ikkunan alareunaan asti */
+	box-shadow: 0 1000vh 0 1000vh #00416f;
+	font-family: 'Open Sans', sans-serif;
+	/*font-weight: lighter;*/
+	/* font-size: 1.25rem; */
+	font-size: 1rem;
+}
+
+footer.kivijalka strong {
+	font-weight: bold; /* vähän tarpeeton määritelmä, mutta olkoon toistaiseksi ainakin */
+}
+
+footer.kivijalka > div {
+	flex-basis: 100%; /* pitaa flex-itemit samanleveyksisina */
+	/* border: 1px solid #00ff00; */
+}
+footer.kivijalka > div:nth-child(odd) {
+	margin-right: 1.5rem; /* yhteensä seuraavan kanssa 3rem, mobiilissa eri */
+}
+footer.kivijalka > div:nth-child(even) {
+	margin-left: 1.5rem;  /* mobiilissa eri */
+}
+/* poistetaan ylim. marginaalia kivijalan divien lapsielementeiltä */
+footer.kivijalka > div > :first-child {
+	margin-top: 0 !important;
+}
+footer.kivijalka > div > :last-child {
+	margin-bottom: 0 !important;
+}
+
+
+footer.kivijalka a {
+	color: #ffffff;
+	text-decoration: underline;
+}
+footer.kivijalka a:focus {
+	outline: 2px dotted rgba(255, 255, 255, 1);
+}
+
+
+
+
+/* === SANAKIRJA-ARTIKKELIN (HUOM! TILAPÄISET) TYYLIT === */
+/*
+.hakusanadiv {
+	font-family: Noto Serif, serif;
+	font-size: 2.188rem;
+	font-size: 1.5rem;
+}
+.hakusana {
+	font-family: Noto Serif, serif;
+	font-size: 2.188rem;
+	font-size: 1.5rem;
+}
+.display-para {
+	display: block;
+	border-bottom: 0.031rem solid #cccccc;
+}
+.article-viewtype {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.125rem;
+	color: #cccccc;
+	margin-bottom: 1rem;  Vai mikä p.o.? 
+}
+*/
+
+/* === SANAKIRJOJEN YHTEISET TYYLIT === */
+
+
+
+
+/* === KAPEA LAYOUT (DESKTOP) === */
+
+@media screen and (max-width: 1000px) and (min-width: 800px) {
+	.palstat aside.sivupalkki {
+		flex-basis: 18.5rem;
+	}
+}
+
+
+/* === KAPEA LAYOUT (MOBIILI) === */
+
+@media screen and (max-width: 800px) {
+	body {
+	}
+
+	.navivalikko {
+		font-size: 1.0625rem;
+	}
+
+	.etusivu main {
+		padding-top: 4rem; /* HAKUSANALISTA padding-top: 8rem; */
+		font-size: 1.125rem;
+	}
+
+	.etusivu .logo img {
+		width: 200px;
+		height: auto;
+	}
+	.etusivu .logo h1 {
+		margin-top: 1.25rem;
+		margin-bottom: 1.25rem;
+		font-size: 1.5rem;
+	}
+	.etusivu .logo h2 {
+		margin-top: 1.25rem;
+		margin-bottom: 1.25rem;
+		font-size: 1.125rem;
+	}
+
+	.search-form-grid {
+		display: block;
+		grid-template-columns: auto;
+		grid-row-gap: 0.5rem;
+	}
+	.search-form-box {
+		grid-template-columns: auto;
+		grid-row-gap:  0.5rem;
+	}
+
+	.jaalinkit {
+		padding: 1.2rem 1.5rem;
+	}
+	
+	div.palstat {
+		display: flex;
+		flex-direction: column;
+		/*max-width: 37.5rem;*/
+		margin: 0;
+	}
+	.palstat aside.sivupalkki {
+		max-width: 100%;
+		flex-basis: 100%;
+		padding: 3rem 1.5rem 0rem 1.5rem;
+		text-align: center;
+	}
+	.palstat main {
+		padding-top: 2rem;
+		padding-left: 1.5rem;
+		padding-right: 1.5rem;
+	}
+
+	#hlista {
+		width: 80%;
+		margin: 0 auto 1.5rem auto;
+		max-width: 35rem;
+	}
+
+	.avausnuoli button {
+		background-image: url("/img/avaa_alas_levea.png");
+	}
+
+	form.hakuruutu input[type=text] {
+		max-width: 60vw;
+	}
+	form.hakuruutu input[type=submit], .etusivu main form.hakuruutu button[type=submit] {
+		max-width: 20vw;
+	}
+	form.hakuruutu input[type=reset], .etusivu main form.hakuruutu button[type=reset] {
+		max-width: 20vw;
+	}
+
+	/* --- Kuvat tekstissä --- */
+	.teksti section > img {
+		max-width: 100%;
+	}
+
+	footer.kivijalka {
+		flex-wrap: wrap;
+		padding-top: 4rem;
+		padding-bottom: 4rem;
+	}
+	footer.kivijalka > div:nth-child(odd) {
+		margin-right: 0;
+	}
+	footer.kivijalka > div:nth-child(even) {
+		margin-left: 0;
+	}
+	footer.kivijalka > div:not(:first-child) {
+		margin-top: 2.4rem;
+	}
+}
+
+/* === EKSTRAKAPEA LAYOUT (MOBIILI) === */
+
+@media screen and (max-width: 400px) {
+	/*form.hakuruutu input[type=text] {
+		max-width: 60vw;
+	}*/
+}

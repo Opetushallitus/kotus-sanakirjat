@@ -1,0 +1,40 @@
+{
+    "aws": {
+        "availability_zones": 2,
+        "delegatedNameServers": [
+            "ns-161.awsdns-20.com",
+            "ns-815.awsdns-37.net",
+            "ns-1377.awsdns-44.org",
+            "ns-1800.awsdns-33.co.uk"
+        ]
+    },
+    "services": {
+        "web": {
+            "cpu_limit": "512",
+            "memory_limit": "1024",
+            "min_count": 1,
+            "max_count": 1,
+            "allow_ecs_exec": true,
+            "env_vars": {}
+        },
+        "existdb": {
+            "cpu_limit": "1024",
+            "memory_limit": "5120",
+            "min_count": 1,
+            "max_count": 1,
+            "allow_ecs_exec": true,
+            "env_vars": {}
+        }
+    },
+    "aurora_databases": {
+        "search_index": {
+            "version": "16.15",
+            "min_size_acu": 0.5,
+            "max_size_acu": 2,
+            "performance_insights": false
+        }
+    },
+    "EFS": {
+        "throughputMode": "bursting"
+    }
+}

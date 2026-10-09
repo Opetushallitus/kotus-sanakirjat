@@ -1,0 +1,1453 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Verkkosanakirja\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-17 11:38+0300\n"
+"PO-Revision-Date: 2026-07-17 11:42+0300\n"
+"Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
+"Language-Team: \n"
+"Language: fi_FI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Generator: Poedit 3.9\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: .git\n"
+"X-Poedit-SearchPathExcluded-1: .vs\n"
+
+#: app/controllers/ArticleController.php:56
+#: app/controllers/ArticleController.php:146
+#: app/controllers/ArticleController.php:213
+#: app/controllers/ArticleController.php:268 app/pages/WordArticle.php:52
+#: app/pages/WordArticle.php:54
+msgid "Article_Viewtype_Inflection"
+msgstr "Taivutus"
+
+#: app/controllers/ArticleController.php:58
+#: app/controllers/ArticleController.php:148
+#: app/controllers/ArticleController.php:215
+#: app/controllers/ArticleController.php:270 app/pages/WordArticle.php:44
+#: app/pages/WordArticle.php:46
+msgid "Article_Viewtype_Examples"
+msgstr "Tiivis näkymä"
+
+#: app/controllers/ArticleController.php:60
+#: app/controllers/ArticleController.php:150
+#: app/controllers/ArticleController.php:217
+#: app/controllers/ArticleController.php:272 app/pages/WordArticle.php:36
+#: app/pages/WordArticle.php:38
+msgid "Article_Viewtype_Full"
+msgstr "Perusnäkymä"
+
+#: app/controllers/Controller.php:37
+msgid "Requested action is not currently implemented."
+msgstr "Haettua toimintoa ei ole vielä toteutettu."
+
+#: app/controllers/Controller.php:58
+msgid "Cannot use set(), view must be initialized first."
+msgstr ""
+"Sisäinen virhe. Ei voida käyttää set():iä, näkymä tulee olla alustettu ensin."
+
+#: app/controllers/Controller.php:109
+msgid "Requested model class could not found."
+msgstr "Haettua mallin luokkaa ei löytynyt."
+
+#: app/controllers/Controller.php:146
+msgid "Requested view class could not found."
+msgstr "Haettua näkymän luokkaa ei löytynyt."
+
+#: app/controllers/PageController.php:82
+msgid "Background_HTML_Title"
+msgstr "Taustatietoa"
+
+#: app/controllers/PageController.php:147
+msgid "ReadInstructions_HTML_Title"
+msgstr "Lukuohjeet"
+
+#: app/controllers/PageController.php:152
+msgid "SearchInstructions_HTML_Title"
+msgstr "Hakuohjeet"
+
+#: app/controllers/PageController.php:175
+msgid "QuickHelp_HTML_Title"
+msgstr "Ohjeet"
+
+#: app/controllers/PageController.php:203
+msgid "Abbreviations_HTML_Title"
+msgstr "Lyhenteet"
+
+#: app/controllers/PageController.php:256
+msgid "References_HTML_Title"
+msgstr "Lähteet"
+
+#: app/controllers/SearchController.php:32 app/pages/BrowseHeadwords.php:14
+msgid "Browse_headwords"
+msgstr "Selaa hakusanoja aakkosjärjestyksessä"
+
+#: app/controllers/SearchController.php:79
+msgid "Search results"
+msgstr "Hakutulos"
+
+#: app/controllers/SearchController.php:93
+msgid "QuickSearchResults_NoResults_Caption"
+msgstr "Haku ei tuottanut tuloksia"
+
+#: app/controllers/SearchController.php:94
+msgid "QuickSearchResults_NoResults_Message_Begin"
+msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
+
+#: app/controllers/SearchController.php:96
+msgid "QuickSearchResults_NoResults_Message_End"
+msgstr ""
+"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
+"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
+"-hakua. Lisäksi kannattaa tutustua"
+
+#: app/controllers/SearchController.php:97
+#: app/controllers/SearchController.php:233
+#: app/controllers/SearchController.php:328
+msgid "FAQ"
+msgstr "usein kysyttyihin kysymyksiin"
+
+#: app/controllers/SearchController.php:126
+msgid "Advanced search and browse"
+msgstr "Haku ja selaus"
+
+#: app/controllers/SearchController.php:230
+#: app/controllers/SearchController.php:325
+msgid "AdvancedSearchResults_NoResults_Caption"
+msgstr "Haku ei tuottanut tuloksia"
+
+#: app/controllers/SearchController.php:230
+#: app/controllers/SearchController.php:326
+msgid "AdvancedSearchResults_NoResults_Message_Begin"
+msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
+
+#: app/controllers/SearchController.php:232
+#: app/controllers/SearchController.php:327
+msgid "AdvancedSearchResults_NoResults_Message_End"
+msgstr ""
+"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
+"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
+"-hakua. Lisäksi kannattaa tutustua"
+
+#: app/controllers/SearchController.php:244
+#: app/controllers/SearchController.php:339
+msgid "Advanced search results"
+msgstr "Tarkennetun haun tulokset"
+
+#: app/models/ArticleModel.php:76 app/models/ArticleModel.php:164
+msgid "ArticleNotFound_Caption"
+msgstr "Sana-artikkelia ei löytynyt"
+
+#: app/models/ArticleModel.php:77 app/models/ArticleModel.php:165
+msgid "ArticleNotFound_Message_Begin"
+msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit aakkosväliltä"
+
+#: app/models/ArticleModel.php:78 app/models/ArticleModel.php:166
+msgid "ArticleNotFound_Message_End"
+msgstr ""
+"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
+"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
+"-hakua. Lisäksi kannattaa tutustua "
+
+#: app/pages/Abbreviations.php:16
+msgid "Abbreviations_Caption"
+msgstr "Lyhenteet"
+
+#: app/pages/AdvancedSearchForm.php:19
+msgid "AdvancedSearch_Page"
+msgstr "Tarkennettu haku Kielitoimiston sanakirjasta"
+
+#: app/pages/AdvancedSearchForm.php:30 app/pages/AdvancedSearchForm.php:68
+#: app/pages/AdvancedSearchForm.php:69 app/pages/AdvancedSearchForm.php:133
+#: app/pages/AdvancedSearchForm.php:134 app/pages/AdvancedSearchForm.php:141
+#: app/pages/AdvancedSearchForm.php:142 app/pages/Background.php:25
+#: app/pages/WordArticle.php:77 app/pages/WordArticle.php:78 pub/Footer.php:21
+#: pub/Footer.php:25 pub/Footer.php:26 pub/Footer.php:28 pub/Footer.php:29
+#: pub/Footer.php:42 pub/Footer.php:43 pub/Footer.php:47 pub/Footer.php:48
+#: pub/Navi.php:68
+msgid "Link_OpenNewWin"
+msgstr "avautuu uuteen ikkunaan"
+
+#: app/pages/AdvancedSearchForm.php:35
+msgid "AdvancedSearchForm_Caption"
+msgstr "Tarkennettu haku"
+
+#: app/pages/AdvancedSearchForm.php:50
+msgid "AdvancedSearchForm_Keyword_Legend"
+msgstr "Hakusanat"
+
+#: app/pages/AdvancedSearchForm.php:56
+msgid "AdvancedSearchForm_Keyword"
+msgstr "Hae hakusanoista"
+
+#: app/pages/AdvancedSearchForm.php:60
+msgid "AdvancedSearchForm_Keyword_Required"
+msgstr "Kenttää ei voi jättää tyhjäksi."
+
+#: app/pages/AdvancedSearchForm.php:62
+msgid "AdvancedSearchForm_FromAllWords"
+msgstr "kaikista"
+
+#: app/pages/AdvancedSearchForm.php:63
+msgid "AdvancedSearchForm_FromCompoundParts"
+msgstr "vain yhdyssanojen osista"
+
+#: app/pages/AdvancedSearchForm.php:64
+msgid "AdvancedSearchForm_FromCompounds"
+msgstr "vain yhdyssanoista"
+
+#: app/pages/AdvancedSearchForm.php:65
+msgid "AdvancedSearchForm_FromNotCompounds"
+msgstr "vain ei-yhdyssanoista"
+
+#: app/pages/AdvancedSearchForm.php:68 app/pages/AdvancedSearchForm.php:69
+#: app/pages/AdvancedSearchForm.php:70 app/pages/AdvancedSearchForm.php:133
+#: app/pages/AdvancedSearchForm.php:134 app/pages/AdvancedSearchForm.php:135
+#: app/pages/AdvancedSearchForm.php:141 app/pages/AdvancedSearchForm.php:142
+msgid "AdvancedSearchForm_Help"
+msgstr "Ohje"
+
+#: app/pages/AdvancedSearchForm.php:73
+msgid "AdvancedSearchForm_TIndex"
+msgstr "Valitse taivutusindeksi"
+
+#: app/pages/AdvancedSearchForm.php:81
+msgid "AdvancedSearchForm_AVIndex"
+msgstr "Valitse astevaihtelu"
+
+#: app/pages/AdvancedSearchForm.php:89
+msgid "AdvancedSearchForm_WordGroup"
+msgstr "Valitse sanaluokka"
+
+#: app/pages/AdvancedSearchForm.php:98
+msgid "AdvancedSearchForm_UsageScope"
+msgstr "Valitse käyttöala"
+
+#: app/pages/AdvancedSearchForm.php:110 app/pages/AdvancedSearchForm.php:149
+#: app/pages/AdvancedSearchForm.php:158
+msgid "AdvancedSearchForm_SearchButton"
+msgstr "Hae"
+
+#: app/pages/AdvancedSearchForm.php:111 app/pages/AdvancedSearchForm.php:150
+#: app/pages/AdvancedSearchForm.php:159
+msgid "AdvancedSearchForm_ResetButton"
+msgstr "Tyhjennä"
+
+#: app/pages/AdvancedSearchForm.php:119
+msgid "AdvancedSearchForm_FullText_Legend"
+msgstr "Koko teksti"
+
+#: app/pages/AdvancedSearchForm.php:124
+msgid "AdvancedSearchForm_FullText"
+msgstr "Hae koko tekstistä"
+
+#: app/pages/AdvancedSearchForm.php:127
+msgid "AdvancedSearchForm_FullFromAll"
+msgstr "koko tekstistä"
+
+#: app/pages/AdvancedSearchForm.php:128
+msgid "AdvancedSearchForm_FullFromDefinitions"
+msgstr "vain selitteistä"
+
+#: app/pages/AdvancedSearchForm.php:129
+msgid "AdvancedSearchForm_FullFromExamples"
+msgstr "vain esimerkeistä"
+
+#: app/pages/AdvancedSearchForm.php:140
+msgid "AdvancedSearchForm_Lemma"
+msgstr "Hae myös taipuneita muotoja"
+
+#: app/pages/AdvancedSearchResults.php:16 pub/AdvSearchLeftBar.php:40
+#: pub/AdvSearchLeftBar.php:50
+msgid "AdvancedSearchResults_Caption"
+msgstr "Tarkennetun hakusanahaun tulokset"
+
+#: app/pages/Background.php:16
+msgid "Background_Caption"
+msgstr "Taustatietoa"
+
+#: app/pages/Instructions.php:15
+msgid "Instructions_Search_Caption"
+msgstr "Hakuohjeet"
+
+#: app/pages/Instructions2.php:15
+msgid "Instructions_Read_Caption"
+msgstr "Lukuohjeet"
+
+#: app/pages/MainPage.php:21 app/views/View.php:316 pub/AdvSearchLeftBar.php:19
+#: pub/KwicSearchLeftBar.php:19 pub/LeftBar.php:19 pub/SearchLeftBar.php:19
+msgid "DICT_Title"
+msgstr "Kielitoimiston sanakirja"
+
+#: app/pages/MainPage.php:27 pub/AdvSearchLeftBar.php:26
+#: pub/KwicSearchLeftBar.php:26 pub/LeftBar.php:25 pub/SearchLeftBar.php:26
+msgid "search headword"
+msgstr "Kirjoita hakusana"
+
+#: app/pages/SysException.php:16
+msgid "SysException_Caption"
+msgstr "Virhe (SysException)"
+
+#: app/pages/WordArticle.php:32
+msgid "Article_Viewtype"
+msgstr "Näytä:"
+
+#: app/pages/WordArticle.php:46
+msgid "Article_Viewtype_Examples_Info"
+msgstr "Tiivis näkymä, vain ensimmäiset esimerkit"
+
+#: app/pages/WordArticle.php:54
+msgid "Article_Viewtype_Inflection_Info"
+msgstr "Taivutustaulukko"
+
+#: app/pages/WordArticle.php:61
+msgid "Article_Viewtype_DictionaryOrder_Info"
+msgstr "Näytä artikkeli oikeassa aakkoskohdassa"
+
+#: app/pages/WordArticle.php:61
+msgid "Article_Viewtype_DictionaryOrder"
+msgstr "Aakkosellinen selaus"
+
+#: app/pages/WordArticle.php:75
+msgid "Share this entry"
+msgstr "Linkki artikkeliin"
+
+#: app/pages/WordArticle.php:77 app/pages/WordArticle.php:78
+msgid "Permalink"
+msgstr "Linkki artikkeliin"
+
+#: app/pages/WordArticle.php:83 app/pages/WordArticle.php:85
+#: app/pages/WordArticle.php:86
+msgid "Feedback"
+msgstr "Anna palautetta"
+
+#: app/pages/XMLException.php:15
+msgid "XMLException_Caption"
+msgstr "Virhe (XML)"
+
+#: app/pages/XMLException.php:17
+msgid "XMLException_Message"
+msgstr "XML-virhe: tietokanta ei vastaa"
+
+#: app/views/View.php:111 app/views/View.php:148
+msgid "Requested header template could not found."
+msgstr "Haettua yläosan pohjamallia ei löytynyt."
+
+#: app/views/View.php:186
+msgid "Requested popup template could not found."
+msgstr "Haettua alaosan pohjamallia ei löytynyt."
+
+#: app/views/View.php:224
+msgid "Requested footer template could not found."
+msgstr "Haettua alaosan pohjamallia ei löytynyt."
+
+#: app/views/View.php:266
+msgid "Requested left bar template could not found."
+msgstr "Haettua vasemman palkin pohjamallia ei löytynyt."
+
+#: app/views/View.php:302
+msgid "Requested content template could not found."
+msgstr "Haettua sisällön pohjamallia ei löytynyt."
+
+#: app/views/View.php:353
+msgid "Variable could not found."
+msgstr "Virhe: Muuttujaa ei löydy."
+
+#: app/views/View.php:395 app/views/View.php:439 app/views/View.php:477
+msgid "Cannot encode to JSON: variable name could not found."
+msgstr "Ei voida konvertoida JSON-muotoon: muuttujaa ei löytynyt."
+
+#: app/views/View.php:500
+msgid "Cannot encode to XML: variable could not found."
+msgstr "Ei voida konvertoida XML-muotoon: muuttujaa ei löytynyt."
+
+#: inc/Exceptions.php:137
+msgid "Unexpected error"
+msgstr "Odottamaton virhe"
+
+#: inc/Exceptions.php:194
+msgid "Unexpected critical error"
+msgstr "Odottamaton kriittinen virhe"
+
+#: inc/Functions.php:35
+msgid "Requested locale could not found."
+msgstr "Haettua kieliversiota ei löytynyt."
+
+#: pub/AdvSearchLeftBar.php:41 pub/AdvSearchLeftBar.php:51
+#: pub/KwicSearchLeftBar.php:51
+msgid "AdvancedSearchResults_Hits"
+msgstr "kpl"
+
+#: pub/Footer.php:20
+msgid "Footer_Kotus"
+msgstr "Kotimaisten kielten keskus"
+
+#: pub/Footer.php:20 pub/Footer.php:21
+msgid "Footer_Kotus_www"
+msgstr "https://www.kotus.fi/"
+
+#: pub/Footer.php:25 pub/Footer.php:26
+msgid "Footer_Cookies"
+msgstr "Evästekäytäntö"
+
+#: pub/Footer.php:28 pub/Footer.php:29
+msgid "Footer_Accesibility"
+msgstr "Saavutettavuusseloste"
+
+#: pub/Footer.php:34
+msgid "Footer_Bibliography"
+msgstr "Bibliografiatiedot"
+
+#: pub/Footer.php:39
+msgid "Footer_Last_Updated"
+msgstr "Viimeksi päivitetty"
+
+#: pub/Footer.php:41 pub/Footer.php:46
+msgid "Footer_CC4_license_link"
+msgstr "https://creativecommons.org/licenses/by/4.0/deed.fi"
+
+#: pub/Footer.php:45
+msgid "Footer_Published_with"
+msgstr "Aineisto on julkaistu"
+
+#: pub/Footer.php:47 pub/Footer.php:48 pub/Footer.php:49
+msgid "Footer_CC4_International"
+msgstr "Creative Commons Nimeä 4.0 Kansainvälinen"
+
+#: pub/Footer.php:49
+msgid "Footer_Licence"
+msgstr "-lisenssillä"
+
+#: pub/KwicSearchLeftBar.php:50
+msgid "KwicSearchResults_Caption"
+msgstr "Kokotekstihaun tulokset"
+
+#: pub/LeftBar.php:37
+msgid "Headwords"
+msgstr "Hakusanat"
+
+#: pub/Navi.php:45
+msgid "Navi_Browse"
+msgstr "Selaus"
+
+#: pub/Navi.php:52
+msgid "Navi_Search"
+msgstr "Haku"
+
+#: pub/Navi.php:56
+msgid "Navi_Menu"
+msgstr "Valikko"
+
+#: pub/Navi.php:59
+msgid "Navi_Close"
+msgstr "Sulje"
+
+#: pub/Navi.php:61
+msgid "Navi_Mainpage"
+msgstr "Etusivu"
+
+#: pub/Navi.php:62
+msgid "Navi_Help_Search"
+msgstr "Hakuohjeet"
+
+#: pub/Navi.php:63
+msgid "Navi_Help_Read"
+msgstr "Lukuohjeet"
+
+#: pub/Navi.php:64
+msgid "Navi_Abbreviations"
+msgstr "Lyhenteet"
+
+#: pub/Navi.php:65
+msgid "Navi_Background"
+msgstr "Taustatietoa"
+
+#: pub/Navi.php:68
+msgid "Navi_Feedback"
+msgstr "Palaute"
+
+#: pub/SearchLeftBar.php:40
+msgid "QuickSearchResults_Caption"
+msgstr "Hakutulokset"
+
+#: pub/SearchLeftBar.php:41
+msgid "QuickSearchResults_Hits"
+msgstr "kpl"
+
+#~ msgid "Article_Viewtype_Parsing"
+#~ msgstr "Jäsennys"
+
+#~ msgid "Error"
+#~ msgstr "Virhe"
+
+#~ msgid "Example's time span and source cannot be filled simultaneously."
+#~ msgstr ""
+#~ "Esimerkin ajanjaksolla ja lähdekoodilla ei voi hakea samanaikaisesti."
+
+#~ msgid "AdvancedSearchForm_SubKeyword"
+#~ msgstr "Hae alihakusanoista"
+
+#~ msgid "AdvancedSearchForm_MeaningExplanation"
+#~ msgstr "Hae merkityksenselitteistä"
+
+#~ msgid "AdvancedSearchForm_OldLexicons"
+#~ msgstr "Hae vanhoista leksikoista"
+
+#~ msgid "AdvancedSearchForm_Example_Legend"
+#~ msgstr "Hae esimerkeistä"
+
+#~ msgid "AdvancedSearchForm_Example"
+#~ msgstr "sanalla"
+
+#~ msgid "AdvancedSearchForm_Timespan"
+#~ msgstr "ajanjaksolta"
+
+#~ msgid "AdvancedSearchForm_SourceCode"
+#~ msgstr "lähdekoodilla"
+
+#~ msgid "WORD OF THE DAY"
+#~ msgstr "PÄIVÄN SANA"
+
+#~ msgid "Share on Facebook"
+#~ msgstr "Jaa Facebookissa"
+
+#~ msgid "Share on Twitter"
+#~ msgstr "Jaa Twitterissä"
+
+#~ msgid "AdvancedSearchForm_KeywordSearch"
+#~ msgstr "Hakusanahaku"
+
+#~ msgid "AdvancedSearchForm_FullTextSearch"
+#~ msgstr "Kokotekstihaku"
+
+#~ msgid "AdvancedSearchForm_FromBasicCompounds"
+#~ msgstr "yhdyssanojen perusosista"
+
+#~ msgid "Share this dictionary"
+#~ msgstr "Jaa julkaisu"
+
+#~ msgid "References_Caption"
+#~ msgstr "Lähteet"
+
+#~ msgid "Navi_References"
+#~ msgstr "Lähteet"
+
+#~ msgid "Now online"
+#~ msgstr "Tällä hetkellä verkossa"
+
+#~ msgid "Instructions_HTML_Title"
+#~ msgstr "Ohjeet"
+
+#~ msgid "Instructions_Caption"
+#~ msgstr "Hakuohjeet"
+
+#~ msgid "Navi_Help"
+#~ msgstr "Ohjeet"
+
+#~ msgid "Navi_Headwords"
+#~ msgstr "Hakusanaluettelo"
+
+#~ msgid "Navi_QuickSearch"
+#~ msgstr "Pikahaku"
+
+#~ msgid "Navi_AdvancedSearch"
+#~ msgstr "Tarkennettu haku"
+
+#~ msgid "Advanced search"
+#~ msgstr "Haku ja selaus"
+
+#~ msgid "AdvancedSearchResults_NowVisible"
+#~ msgstr "näkyvillä"
+
+#~ msgid "QuickSearchResults_Caption_Contains"
+#~ msgstr "sisältää"
+
+#~ msgid "QuickSearchResults_Caption_EndsWith"
+#~ msgstr "loppuu"
+
+#~ msgid "QuickSearchResults_Caption_StartsWith"
+#~ msgstr "alkaa"
+
+#~ msgid "QuickSearchResults_Hit"
+#~ msgstr "kpl"
+
+#~ msgid "QuickSearchResults_NowVisible"
+#~ msgstr "näkyvillä"
+
+#~ msgid "SearchResults_Paging_Previous"
+#~ msgstr "Edellinen"
+
+#~ msgid "SearchResults_Paging_Next"
+#~ msgstr "Seuraava"
+
+#~ msgid "No XML data found."
+#~ msgstr "XML-tietoa ei löytynyt."
+
+#~ msgid "KS_Title"
+#~ msgstr "KS"
+
+#~ msgid "Footer_Copyright"
+#~ msgstr "Kotimaisten kielten keskus"
+
+#~ msgid "Footer_LastUpdated"
+#~ msgstr "Viimeksi päivitetty"
+
+#~ msgid "Navi_QuickSearch_Keyword"
+#~ msgstr "Hakusana..."
+
+#~ msgid "Navi_QuickSearch_BeginsWith"
+#~ msgstr "alkaa"
+
+#~ msgid "Navi_QuickSearch_Contains"
+#~ msgstr "sisältää"
+
+#~ msgid "Navi_QuickSearch_EndsWith"
+#~ msgstr "loppuu"
+
+#~ msgid "Navi_QuickSearch_ButtonTitle"
+#~ msgstr "Hae"
+
+#~ msgid "FeedbackForm_HTML_Title"
+#~ msgstr "Palaute"
+
+#~ msgid "FeedbackForm_Error_Email_Invalid"
+#~ msgstr "sähköpostiosoite on virheellinen"
+
+#~ msgid "FeedbackForm_Error_Subject_Empty"
+#~ msgstr "aihepiiri puuttuu"
+
+#~ msgid "FeedbackForm_Error_Message_Empty"
+#~ msgstr "viesti puuttuu"
+
+#~ msgid "FeedbackThanks_HTML_Title"
+#~ msgstr "Kiitos palautteesta"
+
+#~ msgid "Unable to send feedback"
+#~ msgstr "Palautteen lähettäminen ei onnistu"
+
+#~ msgid ""
+#~ "SMS was unable to deliver your feedback towards. Possible reason could be "
+#~ "a temporary problem in host's email system. Please retry or try again "
+#~ "later."
+#~ msgstr ""
+#~ "SMS ei onnistunut välittämään palautettasi eteenpäin. Mahdollinen syy "
+#~ "saattaa olla tilapäinen häiriö isäntäkoneen e-mail -järjestelmässä. Ole "
+#~ "hyvä ja yritä nyt tai myöhemmin uudelleen. "
+
+#~ msgid "Given page number is invalid."
+#~ msgstr "Annettua sivunumeroa ei löydy."
+
+#~ msgid "Given page number is out of range."
+#~ msgstr "Annettua sivunumeroa ei löydy."
+
+#~ msgid "Given range is too wide."
+#~ msgstr "Annettua sivunumeroa ei löydy."
+
+#~ msgid "FeedbackForm_Caption"
+#~ msgstr "Palaute"
+
+#~ msgid "FeedBackForm_Text"
+#~ msgstr ""
+#~ "Oheisella lomakkeella voit antaa kaikenlaista Vanhan kirjasuomen "
+#~ "sanakirjaan liittyvää palautetta. Käytämme ajatuksiasi ja mielipiteitäsi "
+#~ "sanakirjan sisällön parantamiseen ja käyttöliittymän kehittämiseen."
+
+#~ msgid "FeedBackForm_Errors"
+#~ msgstr "Lomakkeessa havaittiin seuraavat virheet"
+
+#~ msgid "FeedbackForm_Subject"
+#~ msgstr "aihepiiri"
+
+#~ msgid "FeedbackForm_Subject_Contents"
+#~ msgstr "sanakirjan sisältö"
+
+#~ msgid "FeedbackForm_Subject_Development"
+#~ msgstr "käyttöliittymä"
+
+#~ msgid "FeedbackForm_Message"
+#~ msgstr "viesti"
+
+#~ msgid "FeedbackForm_Name"
+#~ msgstr "nimi"
+
+#~ msgid "FeedbackForm_Email"
+#~ msgstr "sähköposti"
+
+#~ msgid "FeedBackForm_Send"
+#~ msgstr "Lähetä"
+
+#~ msgid "FeedbackThanks_Caption"
+#~ msgstr "Kiitos!"
+
+#~ msgid "Areamap_Caption"
+#~ msgstr "Kartta"
+
+#~ msgid "Dialect groups and their subgroups"
+#~ msgstr "Murreryhmät ja niiden alaryhmät"
+
+#~ msgid "Distribution"
+#~ msgstr "Levikki"
+
+#~ msgid "Navi_Areamap"
+#~ msgstr "Kartta"
+
+#~ msgid "Footer_SLS_Cooperation"
+#~ msgstr "I samarbete med"
+
+#~ msgid "WordGroup_Adjective"
+#~ msgstr "adjektiv"
+
+#~ msgid "WordGroup_Adverb"
+#~ msgstr "adverb"
+
+#~ msgid "WordGroup_Interjection"
+#~ msgstr "interjektion"
+
+#~ msgid "WordGroup_Conjunction"
+#~ msgstr "konjunktion"
+
+#~ msgid "WordGroup_Participle"
+#~ msgstr "particip"
+
+#~ msgid "WordGroup_Preposition"
+#~ msgstr "preposition"
+
+#~ msgid "WordGroup_Pronoun"
+#~ msgstr "pronomen"
+
+#~ msgid "WordGroup_Numeric"
+#~ msgstr "räkneord"
+
+#~ msgid "WordGroup_Substantive"
+#~ msgstr "substantiv"
+
+#~ msgid "WordGroup_Substantive_Maskulinum"
+#~ msgstr "maskulinum"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_1"
+#~ msgstr "maskulinum 1"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_2a"
+#~ msgstr "maskulinum 2a"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_2b"
+#~ msgstr "maskulinum 2b"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_2"
+#~ msgstr "maskulinum 2"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_3"
+#~ msgstr "maskulinum 3"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_svm"
+#~ msgstr "svagt maskulinum"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_svm1"
+#~ msgstr "svagt maskulinum 1"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_svm2a"
+#~ msgstr "svagt maskulinum 2a"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_svm2b"
+#~ msgstr "svagt maskulinum 2b"
+
+#~ msgid "WordGroup_Substantive_Maskulinum_svm2"
+#~ msgstr "svagt maskulinum 2"
+
+#~ msgid "WordGroup_Substantive_MaskFem"
+#~ msgstr "mask./fem."
+
+#~ msgid "WordGroup_Substantive_MaskFem_1"
+#~ msgstr "mask./fem. 1"
+
+#~ msgid "WordGroup_Substantive_MaskFem_2"
+#~ msgstr "mask./fem. 2"
+
+#~ msgid "WordGroup_Substantive_Femininum"
+#~ msgstr "femininum"
+
+#~ msgid "WordGroup_Substantive_Femininum_1"
+#~ msgstr "femininum 1"
+
+#~ msgid "WordGroup_Substantive_Femininum_2a"
+#~ msgstr "femininum 2a"
+
+#~ msgid "WordGroup_Substantive_Femininum_2b"
+#~ msgstr "femininum 2b"
+
+#~ msgid "WordGroup_Substantive_Femininum_2"
+#~ msgstr "femininum 2"
+
+#~ msgid "WordGroup_Substantive_SvagtFemininum"
+#~ msgstr "svagt femininum"
+
+#~ msgid "WordGroup_Substantive_Neutrum"
+#~ msgstr "neutrum"
+
+#~ msgid "WordGroup_Substantive_Neutrum_1"
+#~ msgstr "neutrum 1"
+
+#~ msgid "WordGroup_Substantive_Neutrum_2"
+#~ msgstr "neutrum 2"
+
+#~ msgid "WordGroup_Substantive_SvagtNeutrum"
+#~ msgstr "svagt neutrum"
+
+#~ msgid "WordGroup_Substantive_Realgenus"
+#~ msgstr "realgenus"
+
+#~ msgid "WordGroup_Substantive_Realgenus_1"
+#~ msgstr "realgenus 1"
+
+#~ msgid "WordGroup_Substantive_Realgenus_2"
+#~ msgstr "realgenus 2"
+
+#~ msgid "WordGroup_Substantive_Deklination_1"
+#~ msgstr "deklination I"
+
+#~ msgid "WordGroup_Substantive_Deklination_2"
+#~ msgstr "deklination II"
+
+#~ msgid "WordGroup_Substantive_Deklination_3"
+#~ msgstr "deklination III"
+
+#~ msgid "WordGroup_Substantive_Deklination_4"
+#~ msgstr "deklination IV"
+
+#~ msgid "WordGroup_Substantive_BestamdPluralis"
+#~ msgstr "bestämd pluralis"
+
+#~ msgid "WordGroup_Substantive_BestamdSingularis"
+#~ msgstr "bestämd singularis"
+
+#~ msgid "WordGroup_Substantive_PluraleTantum"
+#~ msgstr "plurale tantum"
+
+#~ msgid "WordGroup_Substantive_Pluralis"
+#~ msgstr "pluralis"
+
+#~ msgid "WordGroup_Substantive_SubstantiveratAdjektiv"
+#~ msgstr "substantiverat adjektiv"
+
+#~ msgid "WordGroup_Verb"
+#~ msgstr "verb"
+
+#~ msgid "WordGroup_Verb_Konjugation_1"
+#~ msgstr "konjugation I"
+
+#~ msgid "WordGroup_Verb_Konjugation_2"
+#~ msgstr "konjugation II"
+
+#~ msgid "WordGroup_Verb_Konjugation_3"
+#~ msgstr "konjugation III"
+
+#~ msgid "WordGroup_Verb_StarktVerb"
+#~ msgstr "starkt verb"
+
+#~ msgid "WordGroup_Verb_Deponens"
+#~ msgstr "deponens"
+
+#~ msgid "WordGroup_Verb_Deponens_1"
+#~ msgstr "deponens I"
+
+#~ msgid "WordGroup_Verb_Deponens_2"
+#~ msgstr "deponens II"
+
+#~ msgid "WordGroup_Verb_Deponens_3"
+#~ msgstr "deponens III"
+
+#~ msgid "WordGroup_Verb_Reflexivum"
+#~ msgstr "reflexivum"
+
+#~ msgid "WordGroup_Verb_Reflexivum_1"
+#~ msgstr "reflexivum I"
+
+#~ msgid "WordGroup_Verb_Reflexivum_2"
+#~ msgstr "reflexivum II"
+
+#~ msgid "WordGroup_Verb_Reflexivum_3"
+#~ msgstr "reflexivum III"
+
+#~ msgid "AdvancedSearchForm_SearchTips"
+#~ msgstr "Söktips"
+
+#~ msgid "AdvancedSearchForm_LimitSearchBy"
+#~ msgstr "Begränsa enligt"
+
+#~ msgid "AdvancedSearchForm_Parish"
+#~ msgstr "socken"
+
+#~ msgid "AdvancedSearchForm_Language"
+#~ msgstr "kieli"
+
+#~ msgid "AdvancedSearchForm_Inflection"
+#~ msgstr "taivutus"
+
+#~ msgid "AdvancedSearchForm_PhoneticForm"
+#~ msgstr "Sök i uttal av ord"
+
+#~ msgid "AdvancedSearchForm_CharList"
+#~ msgstr "valitse erikoismerkki"
+
+#~ msgid "Article_Viewtype_NoExamples"
+#~ msgstr "Ilman esimerkkejä"
+
+#~ msgid "Mainpage_Caption"
+#~ msgstr "Teretulemast!"
+
+#~ msgid "Article could not found"
+#~ msgstr "Artikkelia ei löytynyt"
+
+#~ msgid "The dictionary contains word articles only between alphabets"
+#~ msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
+
+#~ msgid "FOException_Caption"
+#~ msgstr "FOException caption"
+
+#~ msgid "Matching search results were not found"
+#~ msgstr "Hakua vastaavia artikkeleita ei löytynyt"
+
+#~ msgid ""
+#~ "The dictionary contains so far word articles and it's related forms only "
+#~ "between alphabets"
+#~ msgstr ""
+#~ "Sanakirja sisältää toistaiseksi sana-artikkelit ja niihin liittyvät asut "
+#~ "vain aakkosväliltä"
+
+#~ msgid ""
+#~ "If no headword article is found you can search meanings and examples "
+#~ "using Advanced Search."
+#~ msgstr ""
+#~ "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
+#~ "tietoa merkityksenselitteistä ja esimerkeistä käyttämällä Tarkennettu "
+#~ "haku -lomaketta."
+
+#~ msgid "Institute for the Languages of Finland"
+#~ msgstr "Kotimaisten kielten keskus"
+
+#~ msgid "Latest update applied"
+#~ msgstr "Tuorein päivitys"
+
+#~ msgid "Navi_QuickSearch_StartsWith"
+#~ msgstr "börjar med"
+
+#~ msgid "Previous word"
+#~ msgstr "Edellinen sana"
+
+#~ msgid "Show:"
+#~ msgstr "Näytä:"
+
+#~ msgid "Full article"
+#~ msgstr "Koko artikkeli"
+
+#~ msgid "Parsing"
+#~ msgstr "Jäsennys"
+
+#~ msgid "Without examples"
+#~ msgstr "Ilman esimerkkejä"
+
+#~ msgid "Next word"
+#~ msgstr "Seuraava sana"
+
+#~ msgid "AdvancedSearchForm_StartsWith"
+#~ msgstr "börjar med"
+
+#~ msgid "AdvancedSearchForm_Contains"
+#~ msgstr "innehåller"
+
+#~ msgid "AdvancedSearchForm_EndsWith"
+#~ msgstr "slutar med"
+
+#~ msgid "Previous"
+#~ msgstr "Edellinen"
+
+#~ msgid "Next"
+#~ msgstr "Nästa"
+
+#~ msgid "Search result"
+#~ msgstr "Haun tulokset"
+
+#, fuzzy
+#~ msgid "hits"
+#~ msgstr "osuma"
+
+#, fuzzy
+#~ msgid "hit"
+#~ msgstr "Bra "
+
+#, fuzzy
+#~ msgid "now visible"
+#~ msgstr "synligt tal"
+
+#, fuzzy
+#~ msgid "contains"
+#~ msgstr "innehåller"
+
+#, fuzzy
+#~ msgid "ends with"
+#~ msgstr "slutar med"
+
+#, fuzzy
+#~ msgid "begins with"
+#~ msgstr "börjar med"
+
+#~ msgid "Navi_QuickSearch_Option3"
+#~ msgstr "slutar"
+
+#~ msgid "Region_Finland"
+#~ msgstr "Finland"
+
+#~ msgid "Region_Osterbotten"
+#~ msgstr "Österbotten"
+
+#~ msgid "Region_Norra_Osterbotten"
+#~ msgstr "norra Österbotten"
+
+#~ msgid "Parish_Esse"
+#~ msgstr "Esse"
+
+#~ msgid "Parish_Jeppo"
+#~ msgstr "Jeppo"
+
+#~ msgid "Parish_Karleby"
+#~ msgstr "Karleby"
+
+#~ msgid "Parish_Kronoby"
+#~ msgstr "Kronoby"
+
+#~ msgid "Parish_Larsmo"
+#~ msgstr "Larsmo"
+
+#~ msgid "Parish_Munsala"
+#~ msgstr "Munsala"
+
+#~ msgid "Parish_Nykarleby"
+#~ msgstr "Nykarleby"
+
+#~ msgid "Parish_Nedervetil"
+#~ msgstr "Nedervetil"
+
+#~ msgid "Parish_Pedersore"
+#~ msgstr "Pedersöre"
+
+#~ msgid "Parish_Purmo"
+#~ msgstr "Purmo"
+
+#~ msgid "Parish_Terjarv"
+#~ msgstr "Terjärv"
+
+#~ msgid "Parish_Oja"
+#~ msgstr "Öja"
+
+#~ msgid "Region_Mellersta_Osterbotten"
+#~ msgstr "mellersta Österbotten"
+
+#~ msgid "Parish_Bjorkoby"
+#~ msgstr "Björköby"
+
+#~ msgid "Parish_Korsholm"
+#~ msgstr "Korsholm"
+
+#~ msgid "Parish_Kvevlax"
+#~ msgstr "Kvevlax"
+
+#~ msgid "Parish_Maxmo"
+#~ msgstr "Maxmo"
+
+#~ msgid "Parish_Oravais"
+#~ msgstr "Oravais"
+
+#~ msgid "Parish_Replot"
+#~ msgstr "Replot"
+
+#~ msgid "Parish_Solv"
+#~ msgstr "Solv"
+
+#~ msgid "Parish_Vasa"
+#~ msgstr "Vasa"
+
+#~ msgid "Parish_Vora"
+#~ msgstr "Vörå"
+
+#~ msgid "Region_Sodra_Osterbotten"
+#~ msgstr "södra Österbotten"
+
+#~ msgid "Parish_Bergo"
+#~ msgstr "Bergö"
+
+#~ msgid "Parish_Kasko"
+#~ msgstr "Kaskö"
+
+#~ msgid "Parish_Korsnas"
+#~ msgstr "Korsnäs"
+
+#~ msgid "Parish_Kristinestad"
+#~ msgstr "Kristinestad"
+
+#~ msgid "Parish_Lappfjard"
+#~ msgstr "Lappfjärd"
+
+#~ msgid "Parish_Malax"
+#~ msgstr "Malax"
+
+#~ msgid "Parish_Narpes"
+#~ msgstr "Närpes"
+
+#~ msgid "Parish_Petalax"
+#~ msgstr "Petalax"
+
+#~ msgid "Parish_Portom"
+#~ msgstr "Pörtom"
+
+#~ msgid "Parish_Sideby"
+#~ msgstr "Sideby"
+
+#~ msgid "Parish_Tjock"
+#~ msgstr "Tjock"
+
+#~ msgid "Parish_Overmark"
+#~ msgstr "Övermark"
+
+#~ msgid "Region_Satakunta"
+#~ msgstr "Satakunta"
+
+#~ msgid "Parish_Bjorneborg"
+#~ msgstr "Björneborg"
+
+#~ msgid "Parish_Sastmola"
+#~ msgstr "Sastmola"
+
+#~ msgid "Parish_Vittisbofjard"
+#~ msgstr "Vittisbofjärd"
+
+#~ msgid "Region_Aland"
+#~ msgstr "Åland"
+
+#~ msgid "Region_Vastra_Aland"
+#~ msgstr "västra Åland"
+
+#~ msgid "Parish_Eckero"
+#~ msgstr "Eckerö"
+
+#~ msgid "Parish_Finstrom"
+#~ msgstr "Finström"
+
+#~ msgid "Parish_Geta"
+#~ msgstr "Geta"
+
+#~ msgid "Parish_Hammarland"
+#~ msgstr "Hammarland"
+
+#~ msgid "Parish_Jomala"
+#~ msgstr "Jomala"
+
+#~ msgid "Parish_Lemland"
+#~ msgstr "Lemland"
+
+#~ msgid "Parish_Lumparland"
+#~ msgstr "Lumparland"
+
+#~ msgid "Parish_Mariehamn"
+#~ msgstr "Mariehamn"
+
+#~ msgid "Parish_Saltvik"
+#~ msgstr "Saltvik"
+
+#~ msgid "Parish_Sund"
+#~ msgstr "Sund"
+
+#~ msgid "Parish_Vardo"
+#~ msgstr "Vårdö"
+
+#~ msgid "Region_Ostra_Aland"
+#~ msgstr "östra Åland"
+
+#~ msgid "Parish_Brando"
+#~ msgstr "Brändö"
+
+#~ msgid "Parish_Foglo"
+#~ msgstr "Föglö"
+
+#~ msgid "Parish_Kumlinge"
+#~ msgstr "Kumlinge"
+
+#~ msgid "Parish_Kokar"
+#~ msgstr "Kökar"
+
+#~ msgid "Parish_Sottunga"
+#~ msgstr "Sottunga"
+
+#~ msgid "Region_Aboland"
+#~ msgstr "Åboland"
+
+#~ msgid "Region_Vastra_Aboland"
+#~ msgstr "västra Åboland"
+
+#~ msgid "Parish_Bjarna"
+#~ msgstr "Bjärnå"
+
+#~ msgid "Parish_Houtskar"
+#~ msgstr "Houtskär"
+
+#~ msgid "Parish_Inio"
+#~ msgstr "Iniö"
+
+#~ msgid "Parish_Korpo"
+#~ msgstr "Korpo"
+
+#~ msgid "Parish_Nagu"
+#~ msgstr "Nagu"
+
+#~ msgid "Parish_Pargas"
+#~ msgstr "Pargas"
+
+#~ msgid "Parish_Abo"
+#~ msgstr "Åbo"
+
+#~ msgid "Region_Ostra_Aboland"
+#~ msgstr "östra Åboland"
+
+#~ msgid "Parish_Dragsfjard"
+#~ msgstr "Dragsfjärd"
+
+#~ msgid "Parish_Finby"
+#~ msgstr "Finby"
+
+#~ msgid "Parish_Hitis"
+#~ msgstr "Hitis"
+
+#~ msgid "Parish_Karuna"
+#~ msgstr "Karuna"
+
+#~ msgid "Parish_Kimito"
+#~ msgstr "Kimito"
+
+#~ msgid "Parish_Vastanfjard"
+#~ msgstr "Västanfjärd"
+
+#~ msgid "Region_Nyland"
+#~ msgstr "Nyland"
+
+#~ msgid "Region_Vastra_Nyland"
+#~ msgstr "västra Nyland"
+
+#~ msgid "Parish_Bromarv"
+#~ msgstr "Bromarv"
+
+#~ msgid "Parish_Degerby"
+#~ msgstr "Degerby"
+
+#~ msgid "Parish_Ekenas"
+#~ msgstr "Ekenäs"
+
+#~ msgid "Parish_Hango"
+#~ msgstr "Hangö"
+
+#~ msgid "Parish_Inga"
+#~ msgstr "Ingå"
+
+#~ msgid "Parish_Karis"
+#~ msgstr "Karis"
+
+#~ msgid "Parish_Karislojo"
+#~ msgstr "Karislojo"
+
+#~ msgid "Parish_Lojo"
+#~ msgstr "Lojo"
+
+#~ msgid "Parish_Pojo"
+#~ msgstr "Pojo"
+
+#~ msgid "Parish_Snappertuna"
+#~ msgstr "Snappertuna"
+
+#~ msgid "Parish_Tenala"
+#~ msgstr "Tenala"
+
+#~ msgid "Region_Mellersta_Nyland"
+#~ msgstr "mellersta Nyland"
+
+#~ msgid "Parish_Esbo"
+#~ msgstr "Esbo"
+
+#~ msgid "Parish_Helsinge"
+#~ msgstr "Helsinge"
+
+#~ msgid "Parish_Helsingfors"
+#~ msgstr "Helsingfors"
+
+#~ msgid "Parish_Hausjarvi"
+#~ msgstr "Hausjärvi"
+
+#~ msgid "Parish_Kyrkslatt"
+#~ msgstr "Kyrkslätt"
+
+#~ msgid "Parish_Mantsala"
+#~ msgstr "Mäntsälä"
+
+#~ msgid "Parish_Sjundea"
+#~ msgstr "Sjundeå"
+
+#~ msgid "Parish_Tusby"
+#~ msgstr "Tusby"
+
+#~ msgid "Parish_Vichtis"
+#~ msgstr "Vichtis"
+
+#~ msgid "Region_Ostra_Nyland"
+#~ msgstr "östra Nyland"
+
+#~ msgid "Parish_Borga"
+#~ msgstr "Borgå"
+
+#~ msgid "Parish_Elima"
+#~ msgstr "Elimä"
+
+#~ msgid "Parish_Liljendal"
+#~ msgstr "Liljendal"
+
+#~ msgid "Parish_Lovisa"
+#~ msgstr "Lovisa"
+
+#~ msgid "Parish_Lapptrask"
+#~ msgstr "Lappträsk"
+
+#~ msgid "Parish_Morskom"
+#~ msgstr "Mörskom"
+
+#~ msgid "Parish_Pyttis"
+#~ msgstr "Pyttis"
+
+#~ msgid "Parish_Parna"
+#~ msgstr "Pärnå"
+
+#~ msgid "Parish_Sibbo"
+#~ msgstr "Sibbo"
+
+#~ msgid "Parish_Stromfors"
+#~ msgstr "Strömfors"
+
+#~ msgid "AdvancedSearchForm_Keyword_Option1"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_Keyword_Option2"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_Keyword_Option3"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_Parish_Option1"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option1"
+#~ msgstr "absolut"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option2"
+#~ msgstr "adjektiviskt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option3"
+#~ msgstr "attributivt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option4"
+#~ msgstr "bildligt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option5"
+#~ msgstr "i förbindelser"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option6"
+#~ msgstr "förstärkande"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option7"
+#~ msgstr "impersonellt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option8"
+#~ msgstr "ironiskt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option9"
+#~ msgstr "i jämförelser"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option10"
+#~ msgstr "konkret"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option11"
+#~ msgstr "i konstruktioner"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option12"
+#~ msgstr "negerande"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option13"
+#~ msgstr "oegentligt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option14"
+#~ msgstr "i ordspråk"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option15"
+#~ msgstr "i ordstäv"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option16"
+#~ msgstr "pejorativt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option17"
+#~ msgstr "predikativt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option18"
+#~ msgstr "i samordningar"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option19"
+#~ msgstr "skämtsamt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option20"
+#~ msgstr "smeksamt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option21"
+#~ msgstr "substantiverat"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option22"
+#~ msgstr "i svordomar"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option23"
+#~ msgstr "i talesätt"
+
+#~ msgid "AdvancedSearchForm_UsageScope_Option24"
+#~ msgstr "överfört"
+
+#~ msgid "AdvancedSearchForm_Language_Option1"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_WordGroup_Option1"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_Inflection_Option1"
+#~ msgstr "foobar"
+
+#~ msgid "AdvancedSearchForm_Region_Option1"
+#~ msgstr "foobar"
+
+#, fuzzy
+#~ msgid "Levikki"
+#~ msgstr "Circulation"
+
+#, fuzzy
+#~ msgid "Area map"
+#~ msgstr "Aluekartta"
+
+#, fuzzy
+#~ msgid "E-mail address is invalid."
+#~ msgstr "Sähköpostiosoite on virheellinen."
+
+#, fuzzy
+#~ msgid "Subject's identifier is invalid."
+#~ msgstr "Aiheen tunniste on virheellinen."
+
+#, fuzzy
+#~ msgid "Please fill out essential message."
+#~ msgstr "Ole hyvä ja täytä pakollinen viestikenttä."
+
+#, fuzzy
+#~ msgid "Thanks for the feedback"
+#~ msgstr "Kiitos palautteestanne!"

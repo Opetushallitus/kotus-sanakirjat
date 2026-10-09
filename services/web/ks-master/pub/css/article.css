@@ -1,0 +1,524 @@
+/* 
+	@otsikko: SANAKIRJA
+*/
+/*
+	@rakenne: sa
+	@tyyli: .artikkeli
+	@kuvaus: Sana-artikkeli
+	@ulkoasu: lohko, Open Sans -fontti
+*/
+.artikkeli {
+	text-align: left;
+	display: block;
+	line-height: 1.5rem;
+	font-family: "Open Sans", sans-serif;
+}
+/* Peräkkäiset artikkelit homonymia-artikkelissa */
+div.artikkeli + div.artikkeli {
+	margin-top: 3rem;
+}
+
+/* 
+	@otsikko: HAKUSANAN TIEDOT 
+*/
+
+/*
+	@rakenne: hr
+	@tyyli: .hakusanantiedot
+	@kuvaus: Hakusanan tietojen ryhmittely
+	@ulkoasu: lohko, Noto Serif -fontti
+*/
+.hakusanantiedot {
+	font-family: "Noto Serif", serif;
+	display: block;
+	margin-bottom: 1rem;
+}
+/* Viiva hakusanan tietojen alla */
+.display-para {
+	border: 0.031rem solid #cccccc;
+}
+
+/*
+	@rakenne: h
+	@tyyli: .hakusana
+	@kuvaus: Hakusana
+	@ulkoasu: inline, fonttikoko x 1,5
+*/
+.hakusana {
+	font-style: normal;
+  	font-size: 1.5rem;
+  	display: inline;
+  	/*color: #303030;*/
+}
+/* 
+	@rakenne: h[@homonymia]
+	@tyyli: .homonymia
+	@kuvaus: Homonyyminumero
+	@ulkoasu: inline, fonttikoko normaali
+*/
+.homonymia {
+	font-style: normal;
+  	display: inline;
+}
+/* 
+	@rakenne: t, av
+	@tyyli: .indeksi
+	@kuvaus: Taivutus- ja astevaihteluindeksit
+	@ulkoasu: inline, yläindeksi, pienempi fonttikoko
+*/
+.indeksi {
+	font-style: normal;
+	vertical-align: 0.5rem;
+	font-size: smaller;
+	display: inline;
+}
+
+/* 
+	@rakenne: ao
+	@tyyli: .aantamisohje
+	@kuvaus: Ääntämisohje
+	@ulkoasu: inline, fontti normaali
+*/
+.aantamisohje {
+	font-style: normal;
+  	font-weight: normal;
+	display: inline;
+}
+/* 
+	@rakenne: yr
+	@tyyli: .yhdyssanarajat
+	@kuvaus: Yhdyssanarajat
+	@ulkoasu: lohko, fontti normaali
+*/
+.yhdyssanarajat {
+	font-style: normal;
+	font-weight: normal;
+	display: block;
+}
+
+/* 
+	@otsikko: SANALUOKAT JA TARKENTEET
+*/
+/* 
+	@rakenne: sl
+	@tyyli: .sanaluokka
+	@kuvaus: Sanaluokka
+	@ulkoasu: inline, kursiivi
+*/
+.sanaluokka {
+	font-style: italic;
+  	font-weight: normal;
+  	display: inline;
+}
+/* 
+	@rakenne: sltark
+	@tyyli: .tarkenne
+	@kuvaus: Sanaluokkatarkenne
+	@ulkoasu: inline, kursiivi, vihreä (tilapäinen väri)
+*/
+.tarkenne {
+	font-style: italic;
+	font-weight: normal;
+	color: green;
+	display: inline;
+}
+
+/* 
+	@otsikko: TAIVUTUSTIETOJA
+*/
+
+/* 
+	@rakenne: pst
+	@tyyli: .paikallissijataivutus
+	@kuvaus: Paikallissijataivutus
+	@ulkoasu: lohko
+*/
+.paikallissijataivutus {
+	display: block;
+}
+/* 
+	@rakenne: psm
+	@tyyli: .paikallissijamuoto
+	@kuvaus: Paikallissijamuoto
+	@ulkoasu: inline, lihavoitu
+*/
+.paikallissijamuoto { 
+	display: inline;
+	font-weight: bold;
+}
+
+/* 
+	@rakenne: tt
+	@tyyli: .taivutusohje
+	@kuvaus: Taivutustieto
+	@ulkoasu: lohko
+*/
+.taivutusohje {
+	display: block;
+}
+/* samalla tavalla joka paikassa / 18.3.2026 OL
+.artikkeli > .taivutusohje {
+	display: block;
+}
+.merkitysryhma > .taivutusohje {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+*/
+/* 
+	@otsikko: SELITTEET 
+*/
+/* 
+	@rakenne: sel
+	@tyyli: .selite
+	@kuvaus: Selite
+	@ulkoasu: inline
+*/
+.selite {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+
+/* 
+	@otsikko: KÄYTTÖALAT
+*/
+/* 
+	@rakenne: ka
+	@tyyli: .kayttoala
+	@kuvaus: Käyttöala
+	@ulkoasu: inline, kursiivi, lihavoitu; esimerkkilohkon 1. käyttöalan kohdalla pienennetty sisennystä
+*/
+.esimerkkilohko > .kayttoala:first-child {
+	font-style: italic;
+  	font-weight: bold;
+	display: inline;
+	margin-left: -1rem;
+}
+.kayttoala {
+	font-style: italic;
+  	font-weight: bold;
+  	display: inline;
+}
+
+/* 
+	@otsikko: RINNAKKAISASU
+*/
+/* 
+	@rakenne: ra
+	@tyyli: .rinnakkaisasu
+	@kuvaus: Rinnakkaisasu
+	@ulkoasu: normaali fontti, esimerkin ja selitteen sisällä inline, muualla lohko
+*/
+.esimteksti > .rinnakkaisasu {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+	white-space: nowrap; /* ei katkaista sanoja */
+}
+.selite > .rinnakkaisasu {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+	white-space: nowrap; /* ei katkaista sanoja */
+}
+.rinnakkaisasu {
+	display: block;
+}
+
+
+/*
+	@otsikko: VIITTAUKSET
+*/
+
+/* 
+	@rakenne: kan
+	@tyyli: .kantasana
+	@kuvaus: Kantasana
+	@ulkoasu: lohko
+*/
+.kantasana {
+	display: block;
+	white-space: nowrap; /* ei katkaista sanoja */
+}
+
+/* 
+	@rakenne: suo
+	@tyyli: .suositus
+	@kuvaus: Suositus
+	@ulkoasu: inline, normaali fontti
+*/
+.suositus {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+
+/*
+	@rakenne: rn
+	@tyyli: .rinn-viittaus
+	@kuvaus: Rinnakkaismuotoviittaus
+	@ulkoasu: lohko, normaali fontti
+*/
+.rinn-viittaus {
+	font-style: normal;
+	font-weight: normal;
+	display: block;
+}
+/*
+	@rakenne: hv, rn, sv, tv, ltv, uv
+	@tyyli: .viittaus
+	@kuvaus: Muut viittaukset
+	@ulkoasu: inline, normaali fontti
+*/
+.viittaus {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+/*
+	@rakenne: @hnref, @mnref
+	@tyyli: .hnref ja .mnref
+	@kuvaus: Viittauksissa käytetyt homonyymi ja merkitysryhmänumrot
+	@ulkoasu: inline, normaali fontti
+*/
+.hnref, .mnref {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+
+
+/*
+	@rakenne: a
+	@tyyli: .linkki
+	@kuvaus: viittauslinkki
+	@ulkoasu: ei rivinvaihtoja
+*/
+.linkki {
+	white-space: nowrap; 
+}
+
+/* 
+	@otsikko: ESIMERKIT 
+*/
+/* 
+	@rakenne: el
+	@tyyli: .esimerkkilohko
+	@kuvaus: Esimerkkilohko
+	@ulkoasu: sisennetty lista, riviväli 1.6
+*/
+ul.esimerkkilohko {
+	margin-left: 1rem;
+	line-height: 1.6;
+	padding-left: 0px;
+}
+/* 
+	@rakenne: el > e
+	@tyyli: .esimerkkirivi
+	@kuvaus: Esimerkki esimerkkilohkossa
+	@ulkoasu: listakohta, sininen pallura (miksi sininen?)
+*/
+li.esimerkki {
+	color: #05456D;
+}
+/* 
+	@rakenne: e
+	@tyyli: .esimerkkiteksti
+	@kuvaus: Esimerkkiteksti (sekä esimerkkilistassa että selitteen sisällä)
+	@ulkoasu: inline, kursiivi, väri musta (koska sininen pallura)
+*/
+.esimteksti {
+	font-style: italic;
+	font-weight: normal;
+	color: black;
+	display: inline;
+}
+/*
+	@rakenne: esel
+	@tyyli: .esimerkinselite
+	@kuvaus: Esimerkinselite
+	@ulkoasu: inline, normaali fontti (ei kursivointia!)
+*/
+.esimerkinselite {
+	font-style: normal !important;
+	display: inline;
+}
+
+/*
+	@otsikko: MERKITYSRYHMÄT 
+*/
+/*
+	@rakenne: mr
+	@tyyli: .merkitysryhma
+	@kuvaus: Merkitysryhmä
+	@ulkoasu: kaksisarakkeinen grid (joustava taulukko), ensimmäisessä sarakkeessa merkitysryhmän numero, toisessa sisältö
+*/
+.merkitysryhma {
+    display: grid;
+    grid-template-columns: 2rem auto;
+    margin-top: 1rem;
+}
+/*
+	@rakenne: mn
+	@tyyli: .merkryhmanro
+	@kuvaus: Merkitysryhmän numero
+	@ulkoasu: sarakkeessa 1, lihavoitu
+*/
+.merkryhmanro {
+    font-weight: bold;
+	grid-column-start: 1;
+	grid-column-end: span 1;
+}
+/*
+	@rakenne: mka, msl, msuo
+	@tyyli: .merkryhmalabel
+	@kuvaus: Merkitysryhmän signumi (voi olla pidempi)
+	@ulkoasu: sarakkeissa 1–2, lihavoitu
+*/
+.merkryhmalabel {
+	font-weight: bold;
+	grid-column-start: 1;
+	grid-column-end: span 2;
+}
+/*
+	@rakenne: mr > muut elementit
+	@tyyli: .merkryhmasisalto
+	@kuvaus: Merkitysryhmän varsinainen sisältö
+	@ulkoasu: sarakkeessa 2
+*/
+.merkryhmasisalto {
+	grid-column-start: 2;
+	grid-column-end: span 1;
+}
+
+
+/*
+ 	@otsikko: MUUT ELEMENTIT
+*/
+
+/* 
+	@rakenne: lm
+	@tyyli: .lahde
+	@kuvaus: Lähdemerkintä
+	@ulkoasu: inline, pienempi fonttikoko
+*/
+.lahde {
+	display: inline;
+	font-style: normal;
+	font-size: 0.875rem;
+}
+
+/*
+	@rakenne: (lisätty otsikko))
+	@tyyli: .label
+	@kuvaus: Otsikkotyppiset osiot
+	@ulkoasu: inline, kursiivi, lihavoitu
+*/
+.label {
+	font-style: italic;
+	font-weight: bold;
+	display: inline;
+}
+/* testataan lihavoinnin ja kursiivin poistoa rinn-viittauksen otsikosta, 9.6.2026 jv */
+.rinn-viittaus .label {
+	font-style: normal;
+	font-weight: normal;
+}
+
+/*
+	@rakenne: as
+	@tyyli: .apusana
+	@kuvaus: Apusana, käytetään esim. kursivoinnin poistoon
+	@ulkoasu: inline, normaali fontti
+*/
+.apusana {
+	font-style: normal;
+	font-weight: normal;
+	display: inline;
+}
+
+
+/*
+	@otsikko: TAIVUTUSLUETTELOT 
+*/
+/*
+	@rakenne: taivutus
+	@tyyli: details.taivutusluettelo
+	@kuvaus: Taivutuslohko
+	@ulkoasu: avattava lohko
+*/
+details.taivutusluettelo {
+	margin-top: 1rem;
+	padding-bottom: 2rem;
+}
+/*
+	@rakenne: (lisätty otsikko)
+	@tyyli: .taivutuslabel
+	@kuvaus: Taivutuslohkon otsikko
+	@ulkoasu: sininen, lihavoitu, small-caps
+*/
+.taivutuslabel {
+	color: #05456D;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: small-caps;
+	margin-bottom: 0.5rem;
+}
+/*
+	@rakenne: nominisarja, va, verbisarja
+	@tyyli: table.taivutusluettelo
+	@kuvaus: Taivutusluettelo
+	@ulkoasu: sisennetty taulukko
+*/
+table.taivutusluettelo {
+	margin-left: 2rem;
+	margin-bottom: 1rem;
+}
+/*
+	@rakenne: (lisätty otsikko)
+	@tyyli: table.taivutusluettelo > th
+	@kuvaus: Taivutusmuodon nimi
+	@ulkoasu: taulukon otsikkosolu, tummansininen fontti, sisennetty teksti
+*/
+table.taivutusluettelo th {
+	padding-right: 1rem;
+	min-width: 6rem;
+	vertical-align: top;
+	color: #05456D;
+}
+/*
+	@rakenne: taipumaton, eisuositeta
+	@tyyli: .eitaivutusta
+	@kuvaus: Huomautus taipumattomuudesta tai ei-suositeltavuudesta
+	@ulkoasu: kappale, lihavoitu teksti
+*/
+p.eitaivutusta {
+	font-weight: bold;
+}
+
+/*
+	@rakenne: (lisätty otsikko)
+	@tyyli: .haitarilabel
+	@kuvaus: Avattavan osion otsikko (avattavissa esimerkkilohkoissa)
+	@ulkoasu: sininen, lihavoitu, small-caps
+*/
+.haitarilabel {
+	color: #05456D;
+	font-style: normal;
+	font-weight: bold;
+	font-variant: small-caps;
+	margin-bottom: 0.5rem;
+}
+
+/*
+	@rakenne: (Osumien korostus)
+	@tyyli: 
+	@kuvaus: Osumien korostus artikkelissa
+	@ulkoasu: punainen teksti
+*/
+.osuma, [osuma=KOROSTUS] {
+	color: #CC3300;
+	font-weight: bold;
+}

@@ -1,0 +1,35 @@
+{
+    "aws": {
+        "availability_zones": 2,
+        "delegatedNameServers": []
+    },
+    "services": {
+        "web": {
+            "cpu_limit": "1024",
+            "memory_limit": "2048",
+            "min_count": 2,
+            "max_count": 4,
+            "allow_ecs_exec": false,
+            "env_vars": {}
+        },
+        "existdb": {
+            "cpu_limit": "1024",
+            "memory_limit": "6144",
+            "min_count": 1,
+            "max_count": 2,
+            "allow_ecs_exec": false,
+            "env_vars": {}
+        }
+    },
+    "aurora_databases": {
+        "search_index": {
+            "version": "16.15",
+            "min_size_acu": 0.5,
+            "max_size_acu": 4,
+            "performance_insights": true
+        }
+    },
+    "EFS": {
+        "throughputMode": "bursting"
+    }
+}
