@@ -30,7 +30,13 @@ export class UtilityStack extends cdk.Stack {
                 githubOidcProvider.openIdConnectProviderArn,
                 {
                     StringLike: {
-                        'token.actions.githubusercontent.com:sub': `repo:Opetushallitus/${props.repositoryRegex}:*`,
+                        // GitHub's sub claim can be either `repo:ORG/REPO:...` or, with
+                        // immutable org/repo IDs included, `repo:ORG@id/REPO@id:...` -
+                        // match both rather than assuming one fixed format.
+                        'token.actions.githubusercontent.com:sub': [
+                            `repo:Opetushallitus/${props.repositoryRegex}:*`,
+                            `repo:Opetushallitus@*/${props.repositoryRegex}@*:*`,
+                        ],
                         'token.actions.githubusercontent.com:aud': 'sts.amazonaws.com',
                     },
                 },
