@@ -4,6 +4,7 @@ import { aws_cloudwatch_actions, CfnOutput, Duration, RemovalPolicy, Stack, Stac
 import { Construct } from "constructs"
 import { LogGroup } from "aws-cdk-lib/aws-logs"
 import {
+  AvailabilityZoneRebalancing,
   AwsLogDriver,
   Compatibility,
   ContainerImage,
@@ -191,6 +192,9 @@ export class EcsServiceStack extends Stack {
         cluster: props.cluster,
         minHealthyPercent: props.singleWriter ? 0 : 100,
         maxHealthyPercent: props.singleWriter ? 100 : 200,
+        // ECS rejects maxHealthyPercent <= 100 with AZ rebalancing on - and with a
+        // single task there's nothing to rebalance anyway.
+        ...(props.singleWriter ? { availabilityZoneRebalancing: AvailabilityZoneRebalancing.DISABLED } : {}),
         taskDefinition,
         platformVersion: FargatePlatformVersion.LATEST,
         healthCheckGracePeriod: Duration.seconds(props.healthCheckGracePeriod),
