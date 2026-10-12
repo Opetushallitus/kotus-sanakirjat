@@ -129,7 +129,107 @@ Ask whoever holds these values for what to put into `AWS_UTILITY_ACCOUNT_ID`,
 `AWS_SANAKIRJA_PROJECT_OU`, `AWS_SANAKIRJA_PARENT_ZONE_ID`, and each
 environment's `AWS_DEPLOY_ROLE_ARN`.
 
+## Deploying through GitHub Actions
+
+The normal way to deploy. Two workflows in `.github/workflows/`, both run from
+`main`: one builds container images, the other deploys an environment. Building
+never deploys anything, and nothing deploys automatically - every deploy is a
+manual workflow run.
+
+### 1. Build images - `build-and-push.yml`
+
+- **Runs on** a push to `main` that touches `services/web/**`,
+  `services/existdb/**` or the workflow file itself, or manually (Actions →
+  "Build and push service images" → Run workflow).
+- **Builds** only the image(s) whose folder changed on a push; a manual run
+  always builds both.
+- **Pushes** `linux/arm64` images (the ECS task definitions are
+  `CpuArchitecture.ARM64`) to the `sanakirja-web` / `sanakirja-existdb` ECR
+  repositories in the utility account.
+- **Tags** each image `ga-<workflow run number>`. The repositories are
+  immutable, so a tag always refers to exactly one image.
+
+Because builds are path-filtered, the two repositories' tags move
+independently - after a web-only change web might be at `ga-7` while existdb is
+still at `ga-2`. Look up the newest tag per repository (utility account):
+
+```
+aws ecr describe-images --region eu-west-1 --repository-name sanakirja-web \
+  --query 'sort_by(imageDetails,&imagePushedAt)[-1].imageTags' --output text
+```
+
+(and the same with `sanakirja-existdb`). Older `manual-*` / `ks-app-*` tags in
+the repositories are x86_64 images from before the pipeline existed - they do
+not run on the current task definitions, don't deploy them.
+
+### 2. Deploy an environment - `deploy-infra.yml`
+
+Actions → "Deploy infra" → Run workflow, or from the CLI:
+
+```
+gh workflow run deploy-infra.yml -f environment=dev -f web_revision=ga-2 -f existdb_revision=ga-2
+```
+
+| Input | Meaning |
+|---|---|
+| `environment` | `dev` / `qa` / `prod` / `utility`. Selects the GitHub Environment of the same name, which holds that account's `AWS_DEPLOY_ROLE_ARN` and the per-environment secrets (see "Account IDs & other secret identifiers") |
+| `web_revision` | `sanakirja-web` image tag to run |
+| `existdb_revision` | `sanakirja-existdb` image tag to run |
+
+The workflow runs `cdk deploy --all` for the chosen environment:
+
+- **Every stack** in the environment is deployed, in dependency order. Stacks
+  that don't exist yet are created, unchanged ones are a quick no-op.
+- **Both revisions are required** for `dev`/`qa`/`prod`, even if only one image
+  changed - to update just web, pass the tag existdb is already running. They
+  aren't used for `utility`.
+- **Changing a tag** creates a new task definition and replaces the running
+  task. Web starts the new task first and drains the old one once the ALB
+  health check passes (no downtime). eXist-db stops the old task first and then
+  starts the new one (about a minute without eXist-db) - its EFS data directory
+  can only be held by one task at a time.
+- **A task that never becomes healthy** trips the ECS deployment circuit
+  breaker, which rolls the service back to the previous task definition and
+  fails the workflow run.
+
+### Which build runs where
+
+There is no file that pins an environment to a build - the tags are chosen at
+deploy time. The usual flow:
+
+1. **dev**: deploy the newest tag of each repository after a build.
+2. **qa**: deploy the tags that were verified in dev.
+3. **prod**: deploy the tags that were verified in qa.
+
+To see what an environment is running, check the image of its ECS service's
+current task definition, or the inputs of the latest successful "Deploy infra"
+run for that environment. To roll back, deploy the previous tags again.
+
+### First deploy of a new environment
+
+`AlbStack`'s ACM certificate is DNS-validated in the environment's own hosted
+zone, which only works once that zone is delegated from the parent
+`sanakirja.testiopintopolku.fi` zone (held in the dev account). A first
+`--all` deploy into a fresh environment therefore stalls on the certificate
+and fails. Do it in this order instead:
+
+1. Deploy only `HostedZoneStack` for the new environment, locally (the
+   workflow always deploys everything):
+   `npx cdk deploy -c environment=<env> ... HostedZoneStack`
+2. Copy the new zone's four name servers into
+   `environments/<env>.json` → `aws.delegatedNameServers`, and commit.
+3. Deploy `dev` (its `ParentZoneStack` creates the delegation record).
+4. Check the delegation resolves: `dig +short NS <env domain>`.
+5. Deploy the new environment with the workflow as usual.
+
+The AWS Chatbot Slack authorization (needed by `MonitorStack`) and the
+`/monitor/slack_*` SSM parameters must also exist in the account before its
+first deploy - both are one-time manual steps per account.
+
 ## AWS vault / SSO
+
+For deploying from your own machine instead of GitHub Actions (e.g. the
+`HostedZoneStack`-only step above, or `cdk diff`):
 
 `aws-vault exec <target-aws-profile> -- npx cdk <command> -c environment=<dev/qa/prod/utility> -c webRevision=<tag> -c existdbRevision=<tag>`, or `aws sso login --sso-session oph-org-sso --profile <target-account>` first.
 
