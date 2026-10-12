@@ -63,3 +63,42 @@ At each of steps 1-4: zero matches is an error, exactly one is auto-selected
 with a note printed, and more than one shows the lettered picker. Each step
 supports up to 26 choices (one per letter) - past that it errors out rather
 than silently truncating.
+
+# eXist-db tunnel scripts
+
+`existdb-tunnel.sh` / `existdb-tunnel.ps1` open an SSM Session Manager
+port-forwarding session through the bastion host so that
+`http://localhost:8086/exist/` reaches the eXist-db ECS task's port 8086 in
+whichever environment the given profile/region points at. No SSH keys and no
+inbound ports on the bastion are needed.
+
+## Prerequisites
+
+Same AWS CLI v2 / Session Manager plugin / logged-in session requirements as
+above, plus IAM permissions: `ecs:ListClusters`, `ecs:ListServices`,
+`ecs:ListTasks`, `ecs:DescribeTasks`, `ec2:DescribeInstances`,
+`ssm:StartSession`.
+
+## Usage
+
+```
+./existdb-tunnel.sh [-p|--profile PROFILE] [-r|--region REGION] [-l|--local-port PORT]
+./existdb-tunnel.ps1 [-ProfileName PROFILE] [-Region REGION] [-LocalPort PORT]
+```
+
+The local port defaults to 8086. Leave the script running while you use the
+tunnel and press Ctrl+C to close it.
+
+## How it works
+
+1. Lists ECS clusters, then the services in the chosen cluster whose name
+   contains `existdb`, then that service's running tasks.
+2. Reads the chosen task's private IP.
+3. Finds running EC2 instances whose `Name` tag contains `bastion`.
+4. Runs `aws ssm start-session` with the
+   `AWS-StartPortForwardingSessionToRemoteHost` document, forwarding
+   `localhost:<local port>` to `<task IP>:8086` via the bastion.
+
+Each step uses the same auto-pick / lettered-picker behaviour as the ECS Exec
+scripts. The task IP changes whenever the task is replaced, for example on a
+deploy. If that happens, re-run the script.
