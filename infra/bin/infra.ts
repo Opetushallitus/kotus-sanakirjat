@@ -328,6 +328,20 @@ if (environmentName === 'dev' || environmentName === 'qa' || environmentName ===
       iAmPolicyStatements: [Efs.efsPolicyStatement],
       privateDnsNamespace: Namespace.privateDnsNamespace,
       alarmSnsTopic: Monitor.topic,
+      // eXist-db holds an exclusive lock file in its EFS data directory: a second
+      // task started alongside (rolling deploy) fails to start with "directory
+      // seems to be locked by another database instance" - and its process keeps
+      // running without ever listening on 8086. Hence one task at a time (also
+      // why existdb max_count must stay 1), plus a health check so such a task
+      // gets replaced instead of sitting there as RUNNING.
+      singleWriter: true,
+      containerHealthCheck: {
+        command: ['CMD-SHELL', 'curl -fsS http://localhost:8086/exist/status || exit 1'],
+        interval: cdk.Duration.seconds(30),
+        timeout: cdk.Duration.seconds(5),
+        retries: 5,
+        startPeriod: cdk.Duration.seconds(180),
+      },
       efs: {
         volume: {
           name: 'existdb-data',

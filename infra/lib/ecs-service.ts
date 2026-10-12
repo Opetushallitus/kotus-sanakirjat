@@ -10,6 +10,7 @@ import {
   CpuArchitecture,
   FargatePlatformVersion,
   FargateService,
+  HealthCheck,
   ICluster,
   OperatingSystemFamily,
   Secret,
@@ -79,6 +80,15 @@ interface EcsServiceStackProps extends StackProps {
     volume: Volume
   }
   alarmSnsTopic: sns.Topic
+  // Container-level health check (task definition), so ECS replaces a task whose
+  // process is still running but whose app never came up. Mainly for services
+  // without an ALB target group health check (e.g. eXist-db).
+  containerHealthCheck?: HealthCheck
+  // For services whose data directory can only be held by one task at a time
+  // (eXist-db's lock file on EFS): deployments stop the old task before
+  // starting the new one, instead of overlapping them. Means a short outage on
+  // every deploy - unavoidable with a single-writer data directory.
+  singleWriter?: boolean
 }
 
 export class EcsServiceStack extends Stack {
@@ -157,6 +167,7 @@ export class EcsServiceStack extends Stack {
       }),
       portMappings: [{ containerPort: props.containerPort }],
       containerName: `${props.serviceName}`,
+      healthCheck: props.containerHealthCheck,
       secrets: secrets,
       environment: props.env_vars,
       ulimits: [
@@ -178,7 +189,8 @@ export class EcsServiceStack extends Stack {
       "EcsFargateService",
       {
         cluster: props.cluster,
-        minHealthyPercent: 100,
+        minHealthyPercent: props.singleWriter ? 0 : 100,
+        maxHealthyPercent: props.singleWriter ? 100 : 200,
         taskDefinition,
         platformVersion: FargatePlatformVersion.LATEST,
         healthCheckGracePeriod: Duration.seconds(props.healthCheckGracePeriod),
