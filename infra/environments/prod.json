@@ -1,7 +1,12 @@
 {
     "aws": {
         "availability_zones": 2,
-        "delegatedNameServers": []
+        "delegatedNameServers": [
+            "ns-1106.awsdns-10.org",
+            "ns-1789.awsdns-31.co.uk",
+            "ns-260.awsdns-32.com",
+            "ns-978.awsdns-58.net"
+        ]
     },
     "services": {
         "web": {
