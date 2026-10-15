@@ -14,25 +14,10 @@ permissions:
   contents: read
 
 jobs:
-  changes:
-    runs-on: ubuntu-latest
-    outputs:
-      web: ${{ steps.filter.outputs.web }}
-      existdb: ${{ steps.filter.outputs.existdb }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dorny/paths-filter@v3
-        id: filter
-        with:
-          filters: |
-            web:
-              - 'services/web/**'
-            existdb:
-              - 'services/existdb/**'
-
+  # Both images are always built together and get the same ga-<run number>
+  # tag, so the newest tag is the same in both repositories - no need to look
+  # up each repository's latest tag separately before a deploy.
   build-web:
-    needs: changes
-    if: needs.changes.outputs.web == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     # utility Environment already holds AWS_DEPLOY_ROLE_ARN for
     # utility-github-actions-deployment-role, which already has grantPush on
@@ -66,8 +51,6 @@ jobs:
           tags: ${{ steps.ecr.outputs.registry }}/sanakirja-web:ga-${{ github.run_number }}
 
   build-existdb:
-    needs: changes
-    if: needs.changes.outputs.existdb == 'true' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     environment: utility
     steps:
