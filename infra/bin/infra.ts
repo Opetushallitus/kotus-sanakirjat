@@ -17,7 +17,7 @@ import { EcrStack } from '../lib/ecr-stack'
 import { CpuArchitecture } from 'aws-cdk-lib/aws-ecs'
 import { BastionStack } from '../lib/bastion-stack'
 import { TransferBucketStack } from '../lib/transfer-bucket-stack'
-import { SecretManagerStack } from '../lib/secrets-manager-stack'
+import { SecretManagerStack, SEARCH_INDEX_READONLY_USERNAME } from '../lib/secrets-manager-stack'
 import { HostedZoneStack } from '../lib/hosted-zone-stack'
 import { ParentZoneStack } from '../lib/parent-zone-stack'
 import { NamespaceStack } from '../lib/namespaceStack'
@@ -387,6 +387,7 @@ if (environmentName === 'dev' || environmentName === 'qa' || environmentName ===
         ...{
           POSTGRESQL_HOST: SearchIndexAurora.endPoint.hostname,
           POSTGRESQL_PORT: SearchIndexAurora.endPoint.port,
+          PG_USER: SEARCH_INDEX_READONLY_USERNAME,
           EXISTDB_HOST: `sanakirja-existdb.${Namespace.privateDnsNamespace.namespaceName}`,
           EXISTDB_PORT: '8086'
         }
