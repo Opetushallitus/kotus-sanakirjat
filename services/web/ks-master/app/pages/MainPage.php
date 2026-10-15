@@ -17,7 +17,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <main>
 
 	<header class="logo">
-		<img src="/img/logot/ks-logo.png" alt="Kielitoimiston sanakirjan logo" />
+		<img src="./pub/img/ks-logo.png" alt="Kielitoimiston sanakirjan logo" />
 		<h1><?= _("DICT_Title") ?></h1>
 	</header>
 

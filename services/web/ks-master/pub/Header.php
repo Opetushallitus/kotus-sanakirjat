@@ -28,7 +28,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <meta property="og:title" content="<?= $title ?>" />
 <meta property="og:description" content="<?= $title ?>"/>
 <meta property="og:url" content="<?= $cfg['KS']['KS_URL'] ?>" />
-<meta property="og:image" content="/img/logot/ks-logo.png" />
+<meta property="og:image" content="./pub/img/ks-logo.png" />
 <meta property="og:site_name" content="<?= $title ?>" />
 
 <!-- Google fonts -->
