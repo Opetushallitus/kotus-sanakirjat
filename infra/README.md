@@ -141,24 +141,22 @@ manual workflow run.
 - **Runs on** a push to `main` that touches `services/web/**`,
   `services/existdb/**` or the workflow file itself, or manually (Actions →
   "Build and push service images" → Run workflow).
-- **Builds** only the image(s) whose folder changed on a push; a manual run
-  always builds both.
+- **Builds** both images on every run, whichever folder changed.
 - **Pushes** `linux/arm64` images (the ECS task definitions are
   `CpuArchitecture.ARM64`) to the `sanakirja-web` / `sanakirja-existdb` ECR
   repositories in the utility account.
-- **Tags** each image `ga-<workflow run number>`. The repositories are
+- **Tags** both images `ga-<workflow run number>`. The repositories are
   immutable, so a tag always refers to exactly one image.
 
-Because builds are path-filtered, the two repositories' tags move
-independently - after a web-only change web might be at `ga-7` while existdb is
-still at `ga-2`. Look up the newest tag per repository (utility account):
+Because both images are always built together, the newest tag is the same in
+both repositories. Look it up (utility account):
 
 ```
 aws ecr describe-images --region eu-west-1 --repository-name sanakirja-web \
   --query 'sort_by(imageDetails,&imagePushedAt)[-1].imageTags' --output text
 ```
 
-(and the same with `sanakirja-existdb`). Older `manual-*` / `ks-app-*` tags in
+Older `manual-*` / `ks-app-*` tags in
 the repositories are x86_64 images from before the pipeline existed - they do
 not run on the current task definitions, don't deploy them.
 
@@ -180,9 +178,10 @@ The workflow runs `cdk deploy --all` for the chosen environment:
 
 - **Every stack** in the environment is deployed, in dependency order. Stacks
   that don't exist yet are created, unchanged ones are a quick no-op.
-- **Both revisions are required** for `dev`/`qa`/`prod`, even if only one image
-  changed - to update just web, pass the tag existdb is already running. They
-  aren't used for `utility`.
+- **Both revisions are required** for `dev`/`qa`/`prod`. Normally both are the
+  same newest tag. To update just web without restarting eXist-db, pass the
+  tag existdb is already running as `existdb_revision`. They aren't used for
+  `utility`.
 - **Changing a tag** creates a new task definition and replaces the running
   task. Web starts the new task first and drains the old one once the ALB
   health check passes (no downtime). eXist-db stops the old task first and then
@@ -233,7 +232,7 @@ For deploying from your own machine instead of GitHub Actions (e.g. the
 
 `aws-vault exec <target-aws-profile> -- npx cdk <command> -c environment=<dev/qa/prod/utility> -c webRevision=<tag> -c existdbRevision=<tag>`, or `aws sso login --sso-session oph-org-sso --profile <target-account>` first.
 
-`webRevision`/`existdbRevision` are each service's own image tag (`WebEcsService`/`ExistDbEcsService` each read their own) and are required on every deploy - there's no default. They're separate context values, not one shared `revision`, because `build-and-push.yml` builds/pushes each image independently (path-filtered per service) - redeploying `sanakirja-web` with a new tag should never require `sanakirja-existdb` to also have a matching tag pushed, and vice versa. Both are tagged `ga-<GitHub Actions run number>` by `build-and-push.yml` (ECR repos are `imageTagMutability: IMMUTABLE`, so the tag must be new each push).
+`webRevision`/`existdbRevision` are each service's own image tag (`WebEcsService`/`ExistDbEcsService` each read their own) and are required on every deploy - there's no default. They're separate context values, not one shared `revision`, so one service can be redeployed with a new tag while the other keeps running its current one (e.g. updating web without restarting eXist-db). Both are tagged `ga-<GitHub Actions run number>` by `build-and-push.yml` (ECR repos are `imageTagMutability: IMMUTABLE`, so the tag must be new each push).
 
 ## Common commands
 
