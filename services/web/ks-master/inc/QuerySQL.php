@@ -3,10 +3,11 @@
 /**
  * inc/QuerySQL.php
  *
- * Class for all communication between PDO and MySQL.
+ * Class for all communication between PDO and PostgreSQL.
  *
  * Copyright: 	Institute for the Languages of Finland
  * Author:		Teemu Ikonen <teemu.ikonen@kotus.fi>, 2013
+ * 				PostgreSQL-migraatio / 15.10.2026 OL
 */
 
 final class QuerySQL {
@@ -17,39 +18,37 @@ final class QuerySQL {
 	// Class constructor, to be executed when invoking a new instance.
 	public function __construct() {
 
-		// Make the variable usable inside this function scope.
 		global $cfg;
 
-		// Deliberate deviation from the delivered source - pgsql, not mysql
-		// (see cfg/QuerySQL.php for why). PDO_PGSQL's DSN has no "charset"
-		// keyword (libpq doesn't recognize it); the "SET NAMES 'utf8'" query
-		// right below still does the same job, Postgres supports it too.
 		$dsn = sprintf("pgsql:host=%s;port=%d;dbname=%s",
-		$cfg['SQL']['HOSTNAME'], $cfg['SQL']['PORTNUM'], $cfg['SQL']['DATABASE']);
+    	$cfg['SQL']['HOSTNAME'], $cfg['SQL']['PORTNUM'], $cfg['SQL']['DATABASE']);
+	
+		$skeema = sprintf("SET search_path TO %s", $cfg['SQL']['DATABASE']);
 
 		try {
-			
 			// Make a new database object of PDO (PHP Database Object) class and store
-			// opened instance into a class variable.
-			$this->_pdo = new PDO($dsn, $cfg['SQL']['USERNAME'], $cfg['SQL']['PASSWORD']);
+			// opened instance into a class variable.	
+			$this->_pdo = new PDO($dsn, $cfg['SQL']['USERNAME'], $cfg['SQL']['PASSWORD'],
+				[
+                	PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                	PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                	PDO::ATTR_EMULATE_PREPARES   => false,
+                	PDO::ATTR_STRINGIFY_FETCHES  => false,
+            	]);
 
-			$this->query("SET NAMES 'utf8'");
-
-			// Set this instance of PDO to throw an exception in case of error.
-			$this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			
+			$this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		
+			$this->_pdo->exec("SET client_encoding TO 'UTF8'");
+			//$this->query("SET NAMES 'utf8'");
+			$this->_pdo->exec($skeema);
+		
 			return $this->_pdo;
-			
-		// Catch all errors thrown by PDO, it will always throw PDOException in case of error.
-		// Rethrow it forward as QuerySQLException and catch it on models.
+	
 		} catch (PDOException $e) {
 
 			throw new QuerySQLException($e);
 
 		}
-
-		
-
 	}
 
 
