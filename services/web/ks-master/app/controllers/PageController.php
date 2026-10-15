@@ -23,12 +23,6 @@ class PageController extends Controller {
 		
 		// No page title for mainpage.
 		$this->set("title", false);
-
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);
-		
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 	
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
@@ -38,9 +32,6 @@ class PageController extends Controller {
         $word_count = $model->getWordsTotalCount();
         $this->set("word_count", number_format($word_count, 0, '.', ' '));
 		
-		// Get and save word of the day.
-		$word = $this->getArticleOfDay();
-
 		if ($word->homonyyminro) { 
 			$wordhom = $word->hakusana . ":" . $word->homonyyminro; 
 		} else { 

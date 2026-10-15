@@ -40,7 +40,10 @@ $cfg['SQL'] = array(
 	'PASSWORD'	=> getenv('PG_PASS') ?: "",
 
 	// Database to be used
-	'DATABASE'	=> "ks"
+	'DATABASE'	=> "ks",
+
+	// Schema to be used
+	'SCHEMA'	=> "ks"
 
 );
 

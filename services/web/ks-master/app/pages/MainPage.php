@@ -28,19 +28,6 @@ placeholder="<?= _("search headword") ?>" id="hakuinput" /><button type="reset" 
 </div>
 </form>
 
-<?php
-/* POIS
-<!-- Päivän sana -->
-<div id="wordofday">
-	<div id="wordofday-title"><?= _("WORD OF THE DAY") ?></div>
-	<div id="wordofday-word">
-		<a href="./<?= $day_word_url ?>">
-			<?= $day_word_title ?><sup><?= $day_word_hom ?></sup></a>
-	</div>
-</div>
-*/
-?>
-
 <div class="aakkoslinkit" id="aakkoslinkit_div">
 <?php
 // Poistetaan käytöstä php-versio aakkoslinkkien tuottamisesta varten, tuotetaan sen sijaan javascriptillä (4.6.2026 jv)

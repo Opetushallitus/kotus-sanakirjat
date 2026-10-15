@@ -77,9 +77,9 @@ abstract class Model {
 		
 	}
 	
-	
+/*	
 	public function getFirstWordArticle() {
-		
+		global $cfg;
 		try {
 			
 			// Get SQL (MySQL) handle.
@@ -88,7 +88,8 @@ abstract class Model {
 			// Prepare a query for execution.
 			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE tyyppi = 'H' ORDER BY id ASC LIMIT 1");
 			// Kaikki hakusanat mukaan aakkosvaliin / 6.11.2015 OL
-			$query = $sql->prepare("SELECT * FROM hakusanat ORDER BY id ASC LIMIT 1");
+			$sqlText = "SELECT * FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat ORDER BY id ASC LIMIT 1";
+			$query = $sql->prepare($sqlText);
 			
 			// Set fetch mode to object.
 			$query->setFetchMode(PDO::FETCH_OBJ);
@@ -109,7 +110,7 @@ abstract class Model {
 	
 	
 	public function getLastWordArticle() {
-		
+		global $cfg;
 		try {
 			
 			// Get SQL (MySQL) handle.
@@ -118,7 +119,8 @@ abstract class Model {
 			// Prepare a query for execution.
 			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE tyyppi = 'H' ORDER BY id DESC LIMIT 1");
 			// Kaikki hakusanat mukaan aakkosvaliin / 6.11.2015 OL
-			$query = $sql->prepare("SELECT * FROM hakusanat ORDER BY id DESC LIMIT 1");			
+			$sqlText = "SELECT * FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat ORDER BY id DESC LIMIT 1";
+			$query = $sql->prepare($sqlText);
 			// Set fetch mode to object.
 			$query->setFetchMode(PDO::FETCH_OBJ);
 			
@@ -135,17 +137,18 @@ abstract class Model {
 		}
 		
 	}
-	
+*/
 	
 	public function getWordsTotalCount() {
-		
+		global $cfg;
 		try {
 			
 			// Get SQL handle.
 			$sql = $this->getSQLHandle();
 
 			// Prepare a query for execution.
-			$query = $sql->prepare("SELECT COUNT(*) FROM hakusanat");
+			$sqlText = "SELECT COUNT(*) FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat";
+			$query = $sql->prepare($sqlText);
 
 			// Set fetch mode to object.
 			$query->setFetchMode(PDO::FETCH_OBJ);
