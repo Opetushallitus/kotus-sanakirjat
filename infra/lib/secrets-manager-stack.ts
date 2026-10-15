@@ -17,19 +17,23 @@ export type Secrets = {
     [key: string]: SecretEntry;
 };
 
+// Postgres role the web app connects as. SELECT-only - the role, its grants
+// and its '/auroradbs/search-index/readonly-user-password' secret are all
+// managed by hand per environment, not by CDK (the secret is only referenced
+// by name, see PG_PASS below).
+export const SEARCH_INDEX_READONLY_USERNAME = 'ksuser';
+
 // Stack for secrets generated on the fly (mostly resources that don't support Parameter Store)
 export class SecretManagerStack extends cdk.Stack {
     public readonly searchIndexAuroraPassword: secretsmanager.Secret;
     public readonly existDbAdminPassword: secretsmanager.Secret;
 
     public readonly secrets: Secrets = {
-        // Points at the Aurora cluster's own master-user secret below (created
-        // with generateStringKey: 'password') - not a separate secret, so the
-        // web app's PG_PASS always matches what's actually on the DB. A
-        // standalone '/service/web/PG_PASS' secret existed here before but was
-        // never created anywhere, an unnoticed dead reference until WebEcsService
-        // was re-enabled and its task failed to launch over it.
-        PG_PASS: { envVarName: 'PG_PASS', path: '/auroradbs/search-index/master-user-password', secretKey: 'password' },
+        // The web app only reads from the search index, so it connects as the
+        // read-only role, not the Aurora master user. The secret must already
+        // exist in the target account before WebEcsService is deployed, or its
+        // tasks fail to launch.
+        PG_PASS: { envVarName: 'PG_PASS', path: '/auroradbs/search-index/readonly-user-password', secretKey: 'password' },
         EXISTDB_ADMIN_PASS: { envVarName: 'EXISTDB_ADMIN_PASS', path: '/service/existdb/ADMIN_PASS', secretKey: 'secretkey' },
     }
 

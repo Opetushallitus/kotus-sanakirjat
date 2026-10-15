@@ -16,11 +16,11 @@ if (!constant("IN_KS")) die("General error, exiting.");
 // MySQL, so this points at the real Aurora cluster instead of the hardcoded
 // localhost/MySQL values the app shipped with. See inc/QuerySQL.php for the
 // matching PDO driver change (mysql: -> pgsql:).
-// POSTGRESQL_HOST/POSTGRESQL_PORT/PG_PASS are injected by the ECS task
+// POSTGRESQL_HOST/POSTGRESQL_PORT/PG_USER/PG_PASS are injected by the ECS task
 // definition (bin/infra.ts's WebEcsService) - the getenv() fallbacks are only
 // for running this container standalone, outside ECS.
-// 'db_admin' matches the Aurora cluster's actual master username
-// (infra/lib/aurora-serverless-database.ts). 'postgres' is the only database
+// PG_USER/PG_PASS are a SELECT-only Postgres role, not the Aurora master
+// user (infra/lib/secrets-manager-stack.ts). 'postgres' is the only database
 // that actually exists on the cluster so far - no app schema/data has been
 // loaded into it yet (that's a separate, not-yet-built step: the CSV search-
 // word load from the editorial content pipeline), so queries against
@@ -33,10 +33,10 @@ $cfg['SQL'] = array(
 	// Aurora Postgres cluster port.
 	'PORTNUM'	=> (int) (getenv('POSTGRESQL_PORT') ?: 5432),
 
-	// Username (Aurora master username).
-	'USERNAME'	=> "db_admin",
+	// Username (read-only role).
+	'USERNAME'	=> getenv('PG_USER') ?: "",
 
-	// Password (Aurora master password, from Secrets Manager via PG_PASS).
+	// Password (read-only role, from Secrets Manager via PG_PASS).
 	'PASSWORD'	=> getenv('PG_PASS') ?: "",
 
 	// Database to be used - 'postgres' is the only one that exists today.
