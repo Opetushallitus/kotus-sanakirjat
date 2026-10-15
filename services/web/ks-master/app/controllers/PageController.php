@@ -31,18 +31,7 @@ class PageController extends Controller {
         // Hakusanojen lukumäärä tietokannasta
         $word_count = $model->getWordsTotalCount();
         $this->set("word_count", number_format($word_count, 0, '.', ' '));
-		
-		if ($word->homonyyminro) { 
-			$wordhom = $word->hakusana . ":" . $word->homonyyminro; 
-		} else { 
-			$wordhom = $word->hakusana; 
-		} 
-
-		// Save the url and title for the word.
-		$this->set("day_word_url", "?p=article&word={$wordhom}&ks_id={$word->ks_id}");
-		$this->set("day_word_title", $word->hakusana);
-		$this->set("day_word_hom", $word->homonyyminro);
-		
+				
 		// Set some scripts to be used within a page (ennakoivaa hakua varten)
 		//$this->set("scripts", array("ajaxautocomplete.js"));
 		$this->set("etusivu", "on");
@@ -62,10 +51,6 @@ class PageController extends Controller {
 		// Tarvitaan aakkosvalin tulostamista varten / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $this->setModel("PageModel");
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 		
@@ -115,10 +100,6 @@ class PageController extends Controller {
 		// Tarvitaan aakkosvalin tulostamista varten / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $this->setModel("PageModel");
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
         // Get and save the total count of Real Words found from database.
@@ -183,10 +164,6 @@ class PageController extends Controller {
 		// Tarvitaan aakkosvalin tulostamista varten / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $this->setModel("PageModel");
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 		
@@ -236,10 +213,6 @@ class PageController extends Controller {
 		// Tarvitaan aakkosvalin tulostamista varten / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $this->setModel("PageModel");
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 		
@@ -267,18 +240,7 @@ class PageController extends Controller {
 		return $this;
 		
 	}
-	
-	
-
-	public function getArticleOfDay() {
-
-		// Set the model to be used.
-		$model = $this->setModel("ArticleModel");
-
-		return $model->getArticleOfDay();
-
-	}
-	
+		
 }
 
 ?>

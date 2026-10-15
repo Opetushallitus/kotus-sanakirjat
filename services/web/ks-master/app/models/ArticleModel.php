@@ -260,58 +260,6 @@ class ArticleModel extends Model {
 		
 	}
 	
-	// KS: Päivän sana
-	public function getArticleOfDay() {
-
-		try {
-
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-			
-			// Execute query to fetch the *actual* article count.
-			$query = $sql->prepare("SELECT COUNT(*) AS count FROM hakusanat WHERE tyyppi = 'H'");
-
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-
-			// Execute query.
-			$query->execute();
-
-			// Get the actual row count.
-			$count = intval($query->fetch()->count);
-
-			// Use the below algorithm to calculate the word to be shown.
-			//$limit = ((date('j') * 99999999) / 0.02) * date('Y') % $count;
-
-			// Calculate the word to be shown with a seed number.
-			// Offers way better randomization than the remainder above.
-			// Päivän sana vaihdetaan klo 01:01 / OL 28.2.2024
-			srand(mktime(0, 1, 1, date('n'), date('j'), date('Y')));
-			$limit = rand(1, $count);
-
-			// Prepare query to fetch the word of the day.
-			$query = $sql->prepare("SELECT hakusana, ks_id, homonyyminro FROM hakusanat WHERE tyyppi = 'H' LIMIT ?,1");
-			
-			// Bind a variable into it.
-			$query->bindValue(1, $limit, PDO::PARAM_INT);
-
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-			
-			// Execute query.
-			$query->execute();
-
-			// Get the word data.
-			return $query->fetch();
-
-		} catch (QuerySQLException $e) {
-			
-		} catch (DICTException $e) {
-			
-		}
-
-	}
-
 }
 
 ?>

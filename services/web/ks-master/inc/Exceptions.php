@@ -27,10 +27,6 @@ final class QuerySQLException extends PDOException {
 		// aakkosv�lin tiedot / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $ctrl->setModel("PageModel");
-		// Get and save the first word found from database.
-		$ctrl->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$ctrl->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$ctrl->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
@@ -74,10 +70,6 @@ final class QueryXMLException extends SoapFault {
 		// aakkosv�lin tiedot / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $ctrl->setModel("PageModel");
-		// Get and save the first word found from database.
-		$ctrl->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$ctrl->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$ctrl->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
@@ -123,10 +115,6 @@ class DICTException extends Exception {
 		// aakkosv�lin tiedot / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $ctrl->setModel("PageModel");
-		// Get and save the first word found from database.
-		$ctrl->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$ctrl->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$ctrl->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
@@ -180,10 +168,6 @@ class SysException extends Exception {
 		// aakkosv�lin tiedot / 5.2.2020 OL
 		// Set a model to be used.
 		$model = $ctrl->setModel("PageModel");
-		// Get and save the first word found from database.
-		$ctrl->set("first_word", $model->getFirstWordArticle()->hakusana);
-		// Get and save the last word found from database.
-		$ctrl->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$ctrl->set("last_update", $cfg['KS']['LAST_UPDATE']);
 

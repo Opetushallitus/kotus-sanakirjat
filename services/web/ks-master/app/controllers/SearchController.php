@@ -151,10 +151,6 @@ class SearchController extends Controller {
 		// Sivupalkin myötä samalla sivulla haku ja selaus (uusi käännös!) / 11.6.2020 OL
 		$this->set("title", _("Advanced search and browse"));
 
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);		
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 

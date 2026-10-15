@@ -49,12 +49,6 @@ abstract class Model {
 			// Disconnect SQL (MySQL) connection.
 			$this->_sql->disconnect();
 		}
-		/* Ei tarvetta en��, kun k�ytet��n RESTi� / 7.2.2020 OL
-		if ($this->_xml) {
-			// Disconnect XML (eXist) connection.
-			$this->_xml->disconnect();
-		}
-		*/
 
 		// Destroy handles.
 		unset($this->_sql, $this->_xml);
@@ -76,69 +70,7 @@ abstract class Model {
 		return $this->_sql;
 		
 	}
-	
-/*	
-	public function getFirstWordArticle() {
-		global $cfg;
-		try {
-			
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-
-			// Prepare a query for execution.
-			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE tyyppi = 'H' ORDER BY id ASC LIMIT 1");
-			// Kaikki hakusanat mukaan aakkosvaliin / 6.11.2015 OL
-			$sqlText = "SELECT * FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat ORDER BY id ASC LIMIT 1";
-			$query = $sql->prepare($sqlText);
-			
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-
-			// Execute query.
-			$query->execute();
-
-			// Return article data.
-			return $query->fetch();
-			
-		} catch (QuerySQLException $e) {
-			
-		} catch (DICTException $e) {
-			
-		}
 		
-	}
-	
-	
-	public function getLastWordArticle() {
-		global $cfg;
-		try {
-			
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-			
-			// Prepare a query for execution.
-			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE tyyppi = 'H' ORDER BY id DESC LIMIT 1");
-			// Kaikki hakusanat mukaan aakkosvaliin / 6.11.2015 OL
-			$sqlText = "SELECT * FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat ORDER BY id DESC LIMIT 1";
-			$query = $sql->prepare($sqlText);
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-			
-			// Execute query.
-			$query->execute();
-
-			// Return article data.
-			return $query->fetch();
-			
-		} catch (QuerySQLException $e) {
-			
-		} catch (DICTException $e) {
-			
-		}
-		
-	}
-*/
-	
 	public function getWordsTotalCount() {
 		global $cfg;
 		try {
