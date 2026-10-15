@@ -7,11 +7,6 @@ if (!constant("IN_KS")) die("General error, exiting.");
  * Copyright: 	Institute for the Languages of Finland
  * Author: 		Teemu Ikonen <teemu.ikonen@kotus.fi>, 2013
  * 				Outi Lehtinen ja Jari Vihtari, 2021
- *
- * Deliberate deviation from the delivered source: three "REGEXP '^[0-9]+'"
- * occurrences changed to "~ '^[0-9]+'" - MySQL's REGEXP operator doesn't
- * exist in PostgreSQL, which uses ~ instead (same POSIX pattern, no other
- * change). See cfg/QuerySQL.php for why this app now targets Postgres.
 */
 
 class SearchModel extends Model {
@@ -56,7 +51,7 @@ class SearchModel extends Model {
 			$sql = $this->getSQLHandle();
 			// numeroalkuiset hakusanat eri kyselyllä
 			if ($prefix == "0") {
-				$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 100");
+				$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 100");
 			}
 			else { // aakkosilla alkavat
 				$query = $sql->prepare("SELECT * FROM hakusanat WHERE LOWER(hakusana) LIKE CONCAT(?, '%') LIMIT 100");
@@ -89,7 +84,7 @@ class SearchModel extends Model {
 		$union = array();
 		foreach ($prefixes as $prefix) {
 			if ($prefix == "0") {
-				array_push($union, "(SELECT * FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 1)");
+				array_push($union, "(SELECT * FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 1)");
 			}
 			else { // aakkosilla alkavat
 				array_push($union, "(SELECT * FROM hakusanat WHERE LOWER(hakusana) LIKE '" . $prefix . "%' LIMIT 1)");
@@ -121,7 +116,7 @@ class SearchModel extends Model {
 		$union = array();
 		foreach ($prefix_values as $prefix) {
 			if ($prefix == "0") {
-				array_push($union, "(SELECT hakusanat.*, '" . $prefix . "' AS prefix FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 1)");
+				array_push($union, "(SELECT hakusanat.*, '" . $prefix . "' AS prefix FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 1)");
 			}
 			else { // aakkosilla alkavat
 				array_push($union, "(SELECT hakusanat.*, '" . $prefix . "' AS prefix FROM hakusanat WHERE hakusana LIKE '" . $prefix . "%' LIMIT 1)");
@@ -330,6 +325,37 @@ class SearchModel extends Model {
 
 	}
 
+	//
+	public function getExactHeadword($hakusana) {
+
+		try {
+		
+			// Get SQL handle from the base model.
+			$sql = $this->getSQLHandle();
+
+			// Prepare query
+			$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakusana = ? LIMIT 1");
+			$query->bindValue(1, $hakusana);
+			
+			// Set fetch mode to object.
+			$query->setFetchMode(PDO::FETCH_OBJ);
+			
+			// Execute query
+			$query->execute();
+
+			// Get the row data.
+			$res = $query->fetch();
+			
+			return $res;
+		
+		} catch (QuerySQLException $e) {
+			
+		} catch (DICTException $e) {
+			
+		}
+
+	}
+
 	// Pikahaun jokerimerkkien käsittely ja muuntaminen SQL-hakua varten
 	public function convertWildcards($keyword) {
 		
@@ -481,7 +507,8 @@ class SearchModel extends Model {
 		$query = "";
 		
 		// Replace * => .* and ? => . for regular expression search.
-		$keyword = str_replace(array("*", "?"), array(".*", "."), $keyword);
+		// poistetaan piste, koska sitä ei voi hakea / 13.10.2026 OL
+		$keyword = str_replace(array("*", "?", "."), array(".*", ".", ""), $keyword);
 		//$fulltext = str_replace(array("*", "?"), array(".*", "."), $fulltext);
 		
 		if ($keyword and $from == 1) {
@@ -562,7 +589,8 @@ class SearchModel extends Model {
 		$query = "";
 		
 		// Replace * => .* and ? => . for regular expression search.
-		$fulltext = str_replace(array("*", "?"), array(".*", "."), $fulltext);
+		// poistetaan piste, koska sitä ei voi hakea / 13.10.2026 OL
+		$fulltext = str_replace(array("*", "?", "."), array(".*", ".", ""), $fulltext);
 		
 		if ($fulltext and $fullfrom == 1) {
 			// Haku koko artikkelista
@@ -614,10 +642,28 @@ class SearchModel extends Model {
 	}
 	
 	// Muodostaa XQueryn eXistin REST API -hakua varten
-	public function getKwicRestWrappedQuery($orig_query, $start = 1, $existSession = 0) {
+	public function getKwicRestWrappedQuery($orig_query, $fullfrom = 1, $start = 1, $existSession = 0) {
 
 		global $cfg; // Get global configurations
 		
+		// haun konteksti
+		switch ($fullfrom) {
+			case 2:
+				//$context = "ancestor::Definition"; // selite
+				$context = "let \$parent := \$hit/ancestor::Definition";
+				break;
+			case 3:
+				//$context = "ancestor::Example"; // esimerkki
+				$context = "let \$parent := \$hit/ancestor::Example";
+				break;
+			default:
+				//$context = "parent::node()"; // osuman isäntäelementti
+				$context = "let \$ancestor := (\$hit/ancestor::*[self::Headword or self::Definition or self::Example or self::SeeAlso or self::See])[1] 
+    					let \$parent := if (\$ancestor) then \$ancestor else \$hit/parent::node()";
+
+		}
+
+		// tulosten määrä sivulla ja aloituspaikka
 		$max = 10;
 		if ($start <= 0) { $start = 1; }
 
@@ -634,6 +680,24 @@ class SearchModel extends Model {
 				declare function local:filter(\$node as node(), \$mode as xs:string) {
     				if (\$mode eq 'before') then text { concat(\$node, ' ') }
     				else \$node
+				};
+				declare function local:mark-hits(\$node as node(), \$hit as node()) as node() {
+  					typeswitch(\$node)
+						case text()
+      						return \$node
+					    case element()
+					      return
+        					if (\$node is \$hit)
+        					then
+          						<exist:match>{\$node/node()}</exist:match>
+        					else
+          						element {node-name(\$node)} {
+            						\$node/@*,
+            						for \$child in \$node/node()
+            						return local:mark-hits(\$child, \$hit)
+          						}
+				   		default
+      						return \$node
 				};
 				";
 		$end = "]]></text></query>";
@@ -664,19 +728,13 @@ class SearchModel extends Model {
 					for \$item at \$nro in subsequence(\$allHits, " . $start . ", " . $max . ") 
 					    let \$doc := doc(xs:string(\$item?doc))
     					let \$hit := util:node-by-id(\$doc, \$item?node-id)
-    					let \$parent := \$hit/parent::node()
-    					let \$osuma := <osuma>
-							{for \$child in \$parent/node()
-                  			return
-                    			if (\$child is \$hit)
-                    			then <exist:match>{\$child/node()}</exist:match>
-                    			else \$child}
-							</osuma>
+    					" . $context . 
+    					" let \$osuma := if (name(\$parent)='Headword') then <osuma/> else <osuma>{local:mark-hits(\$parent, \$hit)}</osuma>
 						let \$de := \$hit/ancestor-or-self::DictionaryEntry
 					return serialize(
 					  	map{'id' : \$nro + " . $start . " - 1,
 							'ks_id' : \$de/xs:string(@id), 
-							'hakusana' : \$de/HeadwordCtn/Headword[1]/text(),
+							'hakusana' : string(\$de/HeadwordCtn/Headword[1]),
 							'kwic' : kwic:summarize(\$osuma, <config width='40'/>)
 						},
 						map{
@@ -686,9 +744,9 @@ class SearchModel extends Model {
 					$end;
 		}
 		// DEBUG
-		//echo "<p>";
+		//echo "<pre>";
 		//echo $restquery;
-		//echo "</p>";
+		//echo "</pre>";
 
 		return $restquery;
 	}

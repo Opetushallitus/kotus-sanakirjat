@@ -55,9 +55,13 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 	<div class="search-form-grid">
 		<label for="search-form-keyword"><?= _("AdvancedSearchForm_Keyword") ?></label>
 		<div>
-			<input type="text" id="search-form-keyword" name="keyword" value="" 
-				aria-required="true" required 
-				oninvalid="this.setCustomValidity('<?= _("AdvancedSearchForm_Keyword_Required") ?>')" onchange="this.setCustomValidity('')"/>
+			<input type="text" id="search-form-keyword" name="keyword" value="" />
+
+				<!-- poistetaan 9.10.2026 jv:
+				aria-required="true" required  
+				oninvalid="this.setCustomValidity('<?= _("AdvancedSearchForm_Keyword_Required") ?>')" onchange="this.setCustomValidity('')" 
+				-->
+				
 			<select id="search-form-hwfrom" name="hwfrom">
 				<option value="1"><?= _("AdvancedSearchForm_FromAllWords") ?></option>
 				<!-- Poistettu osahaku käytöstä, ainakin toistaiseksi / 21.9.2026 OL
@@ -106,7 +110,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 			</select>
 		</div>
 	</div>
-
+	<span id="search-form-error"></span>
 	<div>&nbsp;</div>
 	<div class="search-form-buttons">
 		<input type="submit" value="<?= _("AdvancedSearchForm_SearchButton") ?>" />
@@ -130,19 +134,19 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 				<option value="2"><?= _("AdvancedSearchForm_FullFromDefinitions") ?></option>
 				<option value="3"><?= _("AdvancedSearchForm_FullFromExamples") ?></option>
 			</select>
-
 			<a href="./?p=help#hakuohje-kokoteksti" target="_blank" 
 				aria-label="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>" 
 				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>">
 				<img src="/img/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
 			</a>
+			<span id="search-form-fulltext-error"></span>
 	</div>
+				
 	<div class="search-form-checkbox">
-		<input type="checkbox" id="search-form-lemma" name="lemma">
-		<label for="search-form-lemma"><?= _("AdvancedSearchForm_Lemma") ?></label>&nbsp;<a href="./?p=help#hakuohje-lemma" 
+		<input type="checkbox" id="search-form-lemma" name="lemma" />
+		<label for="search-form-lemma" id="search-form-lemma-label"><?= _("AdvancedSearchForm_Lemma") ?></label>&nbsp;<a href="./?p=help#hakuohje-lemma" 
 				target="_blank" aria-label="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>" 
-				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>">
-			<img src="/img/ohjeet.png" alt="Ohje" class="iconimg">
+				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>"><img src="/img/ohjeet.png" alt="Ohje" class="iconimg">
 		</a>
 	</div>
 

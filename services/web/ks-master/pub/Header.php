@@ -27,7 +27,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <!-- Open Graph -->
 <meta property="og:title" content="<?= $title ?>" />
 <meta property="og:description" content="<?= $title ?>"/>
-<meta property="og:url" content="<?= $cfg['KS']['KAINO_URL'] ?>" />
+<meta property="og:url" content="<?= $cfg['KS']['KS_URL'] ?>" />
 <meta property="og:image" content="/img/logot/ks-logo.png" />
 <meta property="og:site_name" content="<?= $title ?>" />
 

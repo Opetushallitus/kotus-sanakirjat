@@ -190,38 +190,6 @@ class ArticleModel extends Model {
 			
 	}
 
-	// Artikkelin tietojen hakeminen SQL-tietokannasta sanakirja_id:n perusteella
-	public function getArticleById($id) {
-		
-		try {
-		
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-			
-			// Prepare a query for execution.
-			// Lis�tty rajoitus (tyyppi=H), jotta saadaan vain oikeita hakusanoja / 12.8.2020 OL
-			$query = $sql->prepare("SELECT * FROM hakusanat WHERE ks_id = ? AND tyyppi = 'H' LIMIT 1");
-			
-			// Bind a variable into it.
-			$query->bindValue(1, $id);
-			
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-			
-			// Execute query.
-			$query->execute();
-			
-			// Return the word data.
-			return $query->fetch();
-		
-		} catch (QuerySQLException $e) {
-			
-		} catch (DICTException $e) {
-			
-		}
-		
-	}
-
 	// UUSI 18.11.2019 OL - Käytetään vain kerran, aakkosselauksessa!
 	// Palauttaa sanakirja-id:n tietokanta-id:n perusteella
 	public function getArticleIdById($id) {
@@ -254,15 +222,41 @@ class ArticleModel extends Model {
 		
 	}
 
-
-	// UUSI 31.12.2019 OL
-	// Pysyv�n artikkelilinkin polku (pidetään samana kuin ennenkin)
-	// ONGELMA: Homonyyminumero aiheuttaa kohdistusvirheen!
 	public function getArticlePath($ks_id, $word) {
 
 		// p=article&dict_id=xxx&word=yyy
 	
 		return "p=article&ks_id=" . $ks_id . "&word=" . $word;
+	}
+
+	// Pysyvä linkki artikkeliin / 1.10.2026 OL
+	public function getArticleHeadword($ks_id) {
+	
+		try {
+		
+			// Get SQL (MySQL) handle.
+			$sql = $this->getSQLHandle();
+			
+			// Prepare a query for execution.
+			$query = $sql->prepare("SELECT hakusana FROM hakusanat WHERE ks_id = ? LIMIT 1");
+			
+			// Bind a variable into it.
+			$query->bindValue(1, $ks_id);
+			
+			// Set fetch mode to object.
+			$query->setFetchMode(PDO::FETCH_OBJ);
+			
+			// Execute query.
+			$query->execute();
+			$result = $query->fetch();
+
+			return $result->hakusana;
+		
+		} catch (QuerySQLException $e) {
+			
+		} catch (DICTException $e) {
+			
+		}
 		
 	}
 	

@@ -16,8 +16,11 @@ $cfg['KS'] = array(
 	// Base path for the application.
 	'BASE_PATH' 	=> dirname(dirname(__FILE__)),
 
-	// Kaino-URL (permalinkkeja varten)
-	'KAINO_URL'		=> "https://kaino.kotus.fi/ks/",
+	// URL
+	'KS_PATH'		=> "https://kaino-testi.kotus.valtion.fi/ks/",
+	//'KS_URL'		=> "https://pilviosoite-tähän",
+	'KS_URL'		=> "https://kielitoimistonsanakirja.fi/",
+	//'KS_PATH'		=> "/",
 
 	// MAILTO
 	'MAILTO'		=> "mailto:kielitoimistonsanakirja@kotus.fi?subject=Palautetta Kielitoimiston sanakirjasta: ",
@@ -31,7 +34,7 @@ $cfg['KS'] = array(
 	// Directory separator.
 	'DIR_SEP'		=> DIRECTORY_SEPARATOR,
 	
-	'LAST_UPDATE'	=> "27.5.2026"
+	'LAST_UPDATE'	=> "28.9.2026"
 
 );
 

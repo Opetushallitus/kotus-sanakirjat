@@ -71,16 +71,15 @@ class SearchController extends Controller {
 		if ($_POST) {
 			$_SESSION['search'] = $_POST;
 		}
-		
+
+		// POST-data on tallennettu suoraan sessioon, siksi sanitoidaan
+		// myös SESSION-muuttujat ennen käyttöä / 6.10.2026 JV	
 		// Set POST-parameter 'keyword'.
-		$this->set("keyword", $_SESSION['search']['keyword']);
+		$this->set("keyword", sanitize_input($_SESSION['search']['keyword'], 'string'));
 
 		// Set a page title - lisätään haettu termi otsikkoon / 11.6.2020 OL
 		$this->set("title", _("Search results") . ": " . $this->get("keyword"));
 
-		// first and last word found from database.
-		$this->set("first_word", $smodel->getFirstWordArticle()->hakusana);		
-		$this->set("last_word", $smodel->getLastWordArticle()->hakusana);
 		// last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
@@ -88,13 +87,10 @@ class SearchController extends Controller {
 		$count = $smodel->getQuickSearchResultsCount($this->get("keyword"));
 		$this->set("count", $count);
 
-		// Huom. Tässä KS-kohtaista sisältöä: UKK / 5.11.2019 OL
+		// Ilmoitus, jos hakusanaa ei löydy
 		if ($count == 0) {
 			throw new DICTException(_("QuickSearchResults_NoResults_Caption"), 
-				_("QuickSearchResults_NoResults_Message_Begin") .
-				" <i>" . $this->get("first_word") . "&ndash;" . $this->get("last_word") . "</i>. " .
-				_("QuickSearchResults_NoResults_Message_End") . 
-				" <a target='_ukk' href='" . $cfg['KS']['UKK_URL'] . "'>" . _("FAQ") . "</a>" . "."
+				_("QuickSearchResults_NoResults_Message_Begin")
 			);
 		}
 		
@@ -109,7 +105,37 @@ class SearchController extends Controller {
 		}
 	}
 
-	
+	// Haetaan artikkeli pikaosoitteen (permalink) perusteella / 30.9.2026 OL
+	public function showArticleFromPermalink() {
+		global $cfg; // Get global configurations
+		
+		// Set a models to be used.
+		$model = $this->setModel("SearchModel");
+		$view  = $this->setView("SearchView");
+
+		if ($_POST) {
+			$_SESSION['search'] = $_POST;
+		}
+		
+		// lisätty sanitointikutsu / 6.10.2026 JV
+		$this->set("keyword", sanitize_input($_SESSION['search']['keyword'], 'string'));
+		
+		// Haetaan ensimmäisen osuman id ja hakusana
+		$firstWord = $model->getExactHeadword($this->get("keyword"));
+
+		// Ilmoitus, jos hakusanaa ei löydy
+		if ($firstWord === false) {
+			throw new DICTException(_("QuickSearchResults_NoResults_Caption"), 
+				_("QuickSearchResults_NoResults_Message_Begin")
+			);
+		}
+
+		$this->set("ks_id", $firstWord->ks_id);
+		
+		header("Location: ./?p=article&ks_id=" . $this->get("ks_id") . "&word=" . $firstWord->hakusana);
+		
+	}
+
 	// Tarkennetun haun lomake
 	public function showAdvancedSearchForm() {
 
@@ -185,16 +211,16 @@ class SearchController extends Controller {
 		// Set search-type 17.7.2026 jv
 		$_SESSION['advsearchtype'] = "advsearch";
 		
-		// Set a POST-parameters
-		$this->set("keyword", strtolower($_SESSION['advsearch']['keyword']));
-		$this->set("hwfrom", $_SESSION['advsearch']['hwfrom']);
-		$this->set("tindex", $_SESSION['advsearch']['tindex']);
-		$this->set("avindex", $_SESSION['advsearch']['avindex']);
-		$this->set("word_group", $_SESSION['advsearch']['word_group']);
-		$this->set("usage_scope", $_SESSION['advsearch']['usage_scope']);
+		// Set a POST-parameters, lisätty sanitointikutsut / 6.10.2026 JV
+		$this->set("keyword", sanitize_input(strtolower($_SESSION['advsearch']['keyword']), 'string'));
+		$this->set("hwfrom", sanitize_input($_SESSION['advsearch']['hwfrom'], 'string'));
+		$this->set("tindex", sanitize_input($_SESSION['advsearch']['tindex'], 'string'));
+		$this->set("avindex", sanitize_input($_SESSION['advsearch']['avindex'], 'string'));
+		$this->set("word_group", sanitize_input($_SESSION['advsearch']['word_group'], 'string'));
+		$this->set("usage_scope", sanitize_input($_SESSION['advsearch']['usage_scope'], 'string'));
 				
-		// Check wheter used has filled even one essential field.
-		if (!$this->get("keyword")) {
+		// Check whether used has filled even one essential field.
+		if (!$this->get("keyword") && !$this->get("tindex") && !$this->get("avindex") && !$this->get("word_group") && !$this->get("usage_scope")) {
 
 			// Redirect user back to the form and stop execution.
 			// This should not happen when user has Javascript enabled
@@ -287,9 +313,9 @@ class SearchController extends Controller {
 			header("Location: ./?p=advkwicresults");
 		}
 		
-		// Set a POST-parameters
-		$this->set("fulltext", strtolower($_SESSION['kwicsearch']['fulltext']));
-		$this->set("fullfrom", $_SESSION['kwicsearch']['fullfrom']);
+		// Set a POST-parameters, lisätty sanitointikutsut / 6.10.2026 JV
+		$this->set("fulltext", sanitize_input(strtolower($_SESSION['kwicsearch']['fulltext']), 'string'));
+		$this->set("fullfrom", sanitize_input($_SESSION['kwicsearch']['fullfrom'], 'string'));
 		$this->set("lemma", isset($_SESSION['kwicsearch']['lemma']) ? 1 : 0);
 		
 		// Check wheter used has filled an essential field.
@@ -307,7 +333,7 @@ class SearchController extends Controller {
 		//var_dump($query);
 
 		// ensimmäinen kysely, ei sessionid:tä / 17.7.2026 OL
-		$firstquery = $model->getKwicRestWrappedQuery($query, 1, 0);
+		$firstquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), 1, 0);
 		// tehdään haku
 		$firstresults = $model->getAdvancedSearchResults($firstquery);
 		// poimitaan hakutulosten määrä ja sessionid
@@ -332,7 +358,7 @@ class SearchController extends Controller {
 			
 		}
 		// Make the query
-		$kwicquery = $model->getKwicRestWrappedQuery($query, 1, $this->get("sessionid"));
+		$kwicquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), 1, $this->get("sessionid"));
 		$results = $model->getAdvancedSearchResults($kwicquery);
 		// DEBUG
 		echo "<pre>";
@@ -371,7 +397,8 @@ class SearchController extends Controller {
 		// Set a view to be used.
 		$view  = $this->setView("SearchView");
 		
-		$id = $this->set("id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
+		// lisätty sanitointikutsu / 6.10.2026 JV
+		$id = $this->set("id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
 		
 		$headwords = $model->getHeadwordListById($id);
 		$this->set("headwords", $headwords);
@@ -386,7 +413,8 @@ class SearchController extends Controller {
 		// Set a view to be used.
 		$view  = $this->setView("SearchView");
 		
-		$prefix = $this->set("prefix", isset($_GET['prefix']) ? $_GET['prefix'] : '');
+		// lisätty sanitointikutsu / 6.10.2026 JV
+		$prefix = $this->set("prefix", isset($_GET['prefix']) ? sanitize_input($_GET['prefix'], 'string', ['default' => '']) : '');
 		
 		$headwords = $model->getHeadwordListByPrefix($prefix);
 		$this->set("headwords", $headwords);
@@ -470,8 +498,9 @@ class SearchController extends Controller {
 		// Set a view to be used.
 		$view  = $this->setView("SearchView");
 
-		$keyword = $this->set("keyword", isset($_GET['prefix']) ? $_GET['prefix'] : '');
-		$list_id = $this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
+		// lisätty sanitointikutsut / 6.10.2026 JV
+		$keyword = $this->set("keyword", isset($_GET['prefix']) ? sanitize_input($_GET['prefix'], 'string', ['default' => '']) : '');
+		$list_id = $this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
 
 		$qsresults = $model->getQuickSearchResults($keyword, $list_id);
 		$this->set("qsresults", $qsresults);
@@ -486,16 +515,17 @@ class SearchController extends Controller {
 		// Set a view to be used.
 		$view  = $this->setView("SearchView");
 
-		$this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
-		$this->set("sessionid", isset($_GET['existSession']) ? $_GET['existSession'] : null);
+		// lisätty sanitointikutsut / 6.10.2026 JV
+		$this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
+		$this->set("sessionid", isset($_GET['existSession']) ? sanitize_input($_GET['existSession'], 'string', ['default' => null]) : null);
 
 		// Get SESSION-parameters
-		$this->set("keyword", strtolower($_SESSION['advsearch']['keyword']));
-		$this->set("hwfrom", $_SESSION['advsearch']['hwfrom']);
-		$this->set("tindex", $_SESSION['advsearch']['tindex']);
-		$this->set("avindex", $_SESSION['advsearch']['avindex']);
-		$this->set("word_group", $_SESSION['advsearch']['word_group']);
-		$this->set("usage_scope", $_SESSION['advsearch']['usage_scope']);
+		$this->set("keyword", sanitize_input($_SESSION['advsearch']['keyword'], 'string'));
+		$this->set("hwfrom", sanitize_input($_SESSION['advsearch']['hwfrom'], 'string'));
+		$this->set("tindex", sanitize_input($_SESSION['advsearch']['tindex'], 'string'));
+		$this->set("avindex", sanitize_input($_SESSION['advsearch']['avindex'], 'string'));
+		$this->set("word_group", sanitize_input($_SESSION['advsearch']['word_group'], 'string'));
+		$this->set("usage_scope", sanitize_input($_SESSION['advsearch']['usage_scope'], 'string'));
 		//$this->set("fulltext", strtolower($_SESSION['advsearch']['fulltext']));
 
 		// Build up a query to be used with eXist.
@@ -520,12 +550,13 @@ class SearchController extends Controller {
 		// Set a view to be used.
 		$view  = $this->setView("SearchView");
 
-		$this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
-		$this->set("sessionid", isset($_GET['existSession']) ? $_GET['existSession'] : 0);
+		// lisätty sanitointikutsut / 6.10.2026 JV
+		$this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
+		$this->set("sessionid", isset($_GET['existSession']) ? sanitize_input($_GET['existSession'], 'string', ['default' => null]) : null);
 
-		// Get SESSION-parameters
-		$this->set("fulltext", strtolower($_SESSION['kwicsearch']['fulltext']));
-		$this->set("fullfrom", $_SESSION['kwicsearch']['fullfrom']);
+		// Get SESSION-parameters, lisätty sanitointikutsut / 6.10.2026 JV
+		$this->set("fulltext", sanitize_input($_SESSION['kwicsearch']['fulltext'], 'string'));
+		$this->set("fullfrom", sanitize_input($_SESSION['kwicsearch']['fullfrom'], 'string'));
 		$this->set("lemma", isset($_SESSION['kwicsearch']['lemma']) ? 1 : 0);
 
 		// Build up a query to be used with eXist.
@@ -537,7 +568,7 @@ class SearchController extends Controller {
 		// Jos tietoja ei löydy välimuistista
 		if (!$found) {
 			// tehdään koko haku uudestaan ja tallennetaan välimuistiin
-			$firstquery = $model->getKwicRestWrappedQuery($query, 1, 0);
+			$firstquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), 1, 0);
 			$firstresults = $model->getAdvancedSearchResults($firstquery);
 			// poimitaan hakutulosten määrä ja sessionid
 			$meta = $model->getKwicSearchResultsCount($firstresults);
@@ -552,7 +583,7 @@ class SearchController extends Controller {
 		}
 
 		// Tehdään haku välimuistista
-		$kwicquery = $model->getKwicRestWrappedQuery($query, $this->get("list_id"), $this->get("sessionid"));
+		$kwicquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), $this->get("list_id"), $this->get("sessionid"));
 		$kwicresults = $model->getAdvancedSearchResults($kwicquery);
 		
 		$this->set("kwicresults", $kwicresults);

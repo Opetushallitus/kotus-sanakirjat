@@ -61,12 +61,13 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 			}
 			var size = obj.record.length;
 			for (var i = 0; i < size; i++) {
-				var item = document.createElement("div");
-				item.setAttribute("id", obj.record[i].id);
-				// koostetaan linkki artikkeliin
-				var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
-				// KWIC-haku: lisätään myös konteksti
+				// KWIC-haku
 				if (isKwic) {
+					var item = document.createElement("div");
+					item.setAttribute("id", obj.record[i].id);
+					// koostetaan linkki artikkeliin
+					var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
+					// lisätään myös konteksti
 					// hakutulos ensiksi div-elementin sisään
 					item.innerHTML = obj.record[i].kwic;
 					// linkki div-elementin sisään, jos ensimmäinen artikkelissa
@@ -85,6 +86,10 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else {
 					// muut kuin kwic-tulokset
+					var item = document.createElement("div");
+					item.setAttribute("id", obj.record[i].id);
+					// koostetaan linkki artikkeliin
+					var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
 					item.appendChild(link);
 				}
 				parentElem.appendChild(item);

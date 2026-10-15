@@ -15,18 +15,23 @@
 include_once "inc/DICT_init.php";
 
 $uriparts = explode("/", $_SERVER["REQUEST_URI"]);
+// poimitaan mahdollinen hakusana
 $hakusana = isset($uriparts[2]) && !str_starts_with($uriparts[2], '?') ? $uriparts[2] : '';
+// ei sallita muita kuin kirjaimia, numeroita, välilyöntejä, yhdysmerkkejä ja heittomerkkejä
+$siivottu_hakusana = preg_replace(
+    '/[^\p{L}\p{N}’\s-]/u',
+    '',
+    urldecode($hakusana)
+);
 
-// Sivu (?p) vai pikaosoite
+// Sivu (?p) vai pikaosoite hakusanalla
 if (isset($_GET['p'])) {
 	$page = (!empty($_GET['p'])) ? $_GET['p'] : "main";	
-} else if (!empty($hakusana)) {
+} else if (!empty($siivottu_hakusana)) {
 	$page = "shortaddress";
-	//$hakusana = $_GET['h'];
 } else {
 	$page = "main";
 }
-//$page = (isset($_GET['p'])) ? $_GET['p'] : "main";
 
 switch ($page) {
 
@@ -100,8 +105,8 @@ switch ($page) {
 	// lyhytosoite hakusanalla
 	case "shortaddress":
 		// käsitellään samaan tapaan kuin pikahaku
-		$_POST['keyword'] = $hakusana;
-		new SearchController("showQuickSearchResults");
+		$_POST['keyword'] = $siivottu_hakusana;
+		new SearchController("showArticleFromPermalink");
 		break;
 
 	// ETUSIVU

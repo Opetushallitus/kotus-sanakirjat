@@ -15,12 +15,12 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <?php
 		// Korjataan näkymälinkit (tulos)listan ensimmäiselle osumalle
 		if (preg_match("/p=headwords/", $_SERVER['REQUEST_URI'])) {
-			$req_uri = "?" . $this->get("permalink");
+			$req_uri = "?" . $this->get("articlepath");
 		} else if (preg_match("/p=searchresults/", $_SERVER['REQUEST_URI'])) {
-			$qs_link = preg_replace("/p=article/", "p=qs-article", $this->get("permalink")) . "&keyword=" . $this->get("keyword");
+			$qs_link = preg_replace("/p=article/", "p=qs-article", $this->get("articlepath")) . "&keyword=" . $this->get("keyword");
 			$req_uri = preg_replace("/p=searchresults/", $qs_link, $_SERVER['REQUEST_URI']);
 		} else if (preg_match("/p=advsearchresults/", $_SERVER['REQUEST_URI'])) {
-			$as_link = preg_replace("/p=article/", "p=as-article", $this->get("permalink")) . "&keyword=" . $this->get("keyword");
+			$as_link = preg_replace("/p=article/", "p=as-article", $this->get("articlepath")) . "&keyword=" . $this->get("keyword");
 			$req_uri = preg_replace("/p=advsearchresults/", $qs_link, $_SERVER['REQUEST_URI']);
 		} else {
 			// poistetaan edellinen näkymäparametri
@@ -57,7 +57,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 		// Näytetään vain jos on haettu jotain
 		if (!preg_match("/p=article/", $_SERVER['REQUEST_URI'])) {
 			$views .= "<span class=\"article-viewtype-sep\">&nbsp;&nbsp;||&nbsp;&nbsp;</span>";
-			$views .= "<a href=\"./?" . $this->get("permalink") . "\"  
+			$views .= "<a href=\"./?" . $this->get("articlepath") . "\"  
 						title=\"" . _("Article_Viewtype_DictionaryOrder_Info") .  "\">" . _("Article_Viewtype_DictionaryOrder") . "</a>";
 		}
 		$views .= "</div>";
@@ -71,13 +71,15 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <?= $articlehtml; ?>
 
 <div class="jaalinkit">
+<!--
 <span class="jakolinkki">
 	<span aria-hidden="true"><?= _("Share this entry") ?>:</span>
-	<a href="<?= "./?" . $this->get("permalink"); ?>" target="_blank" 
+	<a href="<?= $this->get("permalink"); ?>" target="_blank" 
 	title="<?= _("Permalink") ?> <?= _("Link_OpenNewWin") ?>"
 	aria-label="<?= _("Permalink") ?> <?= _("Link_OpenNewWin") ?>">
 	<img alt="" src="/img/link.svg"></a>
 </span>
+-->
 <span class="jakolinkki">
 	<!-- palaute artikkelista sähköpostilla / 30.2.2026 OL -->
 	<span aria-hidden="true"><?= _("Feedback") ?>:</span>
@@ -86,11 +88,36 @@ if (!constant("IN_KS")) die("General error, exiting.");
 	aria-label="<?= _("Feedback") ?>">
 	<img alt="" src="/img/mail.svg"></a>
 </span>
+<span class="jakolinkki">
+	<span aria-hidden="true"><?= _("Share this entry") ?>:</span>
+	<button type="button" class="jakonappi"
+  		aria-label="<?= _("Share this entry") ?>"
+  		title="<?= _("Share this entry") ?>"
+  		onclick="copyPermalink(this)"
+  		data-url="<?= $this->get("permalink"); ?>">
+  		<img alt="" src="/img/link.svg"/>
+	</button>
+	<span id="copy-status" aria-live="polite"></span>
+</span>
 </div>
 
 </article>
 
 <script type="text/javascript">
+	// linkin kopiointi leikepöydälle
+	function copyPermalink(button) {
+  		const url = button.dataset.url;
+
+  		navigator.clipboard.writeText(url)
+    	.then(() => {
+      			document.getElementById('copy-status').textContent =
+        		'<?= _("Link copied to clipboard") ?>';
+    		})
+    	.catch(() => {
+      		document.getElementById('copy-status').textContent =
+        	'<?= _("Failed to copy link to clipboard") ?>';
+    	});
+	}
 	// Show the hash target if it exists
 	function showHashTarget(hash) {
 		kohde = hash.replace("#", "");

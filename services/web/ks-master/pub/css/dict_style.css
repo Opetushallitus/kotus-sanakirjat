@@ -67,10 +67,16 @@
 	color: #007FAA;
 }
 
-/* Jakolinkkien asettelu */
+/* Jakolinkkien ja -nappuloiden asettelu */
 .jakolinkki {
-	display: inline;
+	display: block;
 	margin-right: 2rem;
+	margin-bottom: 1rem;
+}
+.jakonappi {
+	border: none;
+	background: transparent;
+	cursor: pointer;
 }
 
 /* Kwic-haun tarvitsemat muutokset */
@@ -137,12 +143,23 @@ div.search-form-grid {
 }
 
 #search-form2 {
-  text-align: left;
-  font-family: 'Open Sans', sans-serif;
+	text-align: left;
+	font-family: 'Open Sans', sans-serif;
 }
 #search-form2 select {
-  font-size: 1rem;
-  border: 1px solid #cccccc;
+	font-size: 1rem;
+	border: 1px solid #cccccc;
+}
+/* search-form-fulltext */
+#search-form-fulltext:invalid, input[aria-invalid="true"] {
+	background-color: #ffe6db;
+}
+#search-form-fulltext-error, #search-form-error	{
+	display:none;
+	color: #cc3300;
+}
+.search-form-checkbox {
+	margin-top: 0.8rem;
 }
 
 /* tarkennetun haun lomakkeen submit- ja reset-painikkeet, 10.6.2026 jv */

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-17 11:38+0300\n"
-"PO-Revision-Date: 2026-07-17 11:42+0300\n"
+"POT-Creation-Date: 2026-10-01 17:07+0300\n"
+"PO-Revision-Date: 2026-10-01 17:09+0300\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -18,26 +18,26 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-0: .git\n"
 "X-Poedit-SearchPathExcluded-1: .vs\n"
 
-#: app/controllers/ArticleController.php:56
-#: app/controllers/ArticleController.php:146
-#: app/controllers/ArticleController.php:213
-#: app/controllers/ArticleController.php:268 app/pages/WordArticle.php:52
+#: app/controllers/ArticleController.php:45
+#: app/controllers/ArticleController.php:119
+#: app/controllers/ArticleController.php:179
+#: app/controllers/ArticleController.php:231 app/pages/WordArticle.php:52
 #: app/pages/WordArticle.php:54
 msgid "Article_Viewtype_Inflection"
 msgstr "Taivutus"
 
-#: app/controllers/ArticleController.php:58
-#: app/controllers/ArticleController.php:148
-#: app/controllers/ArticleController.php:215
-#: app/controllers/ArticleController.php:270 app/pages/WordArticle.php:44
+#: app/controllers/ArticleController.php:47
+#: app/controllers/ArticleController.php:121
+#: app/controllers/ArticleController.php:181
+#: app/controllers/ArticleController.php:233 app/pages/WordArticle.php:44
 #: app/pages/WordArticle.php:46
 msgid "Article_Viewtype_Examples"
 msgstr "Tiivis näkymä"
 
-#: app/controllers/ArticleController.php:60
-#: app/controllers/ArticleController.php:150
-#: app/controllers/ArticleController.php:217
-#: app/controllers/ArticleController.php:272 app/pages/WordArticle.php:36
+#: app/controllers/ArticleController.php:49
+#: app/controllers/ArticleController.php:123
+#: app/controllers/ArticleController.php:183
+#: app/controllers/ArticleController.php:235 app/pages/WordArticle.php:36
 #: app/pages/WordArticle.php:38
 msgid "Article_Viewtype_Full"
 msgstr "Perusnäkymä"
@@ -91,63 +91,57 @@ msgstr "Selaa hakusanoja aakkosjärjestyksessä"
 msgid "Search results"
 msgstr "Hakutulos"
 
-#: app/controllers/SearchController.php:93
+#: app/controllers/SearchController.php:90
+#: app/controllers/SearchController.php:125
 msgid "QuickSearchResults_NoResults_Caption"
 msgstr "Haku ei tuottanut tuloksia"
 
-#: app/controllers/SearchController.php:94
+#: app/controllers/SearchController.php:91
+#: app/controllers/SearchController.php:126
 msgid "QuickSearchResults_NoResults_Message_Begin"
 msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
 
-#: app/controllers/SearchController.php:96
-msgid "QuickSearchResults_NoResults_Message_End"
-msgstr ""
-"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
-"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
-"-hakua. Lisäksi kannattaa tutustua"
-
-#: app/controllers/SearchController.php:97
-#: app/controllers/SearchController.php:233
-#: app/controllers/SearchController.php:328
-msgid "FAQ"
-msgstr "usein kysyttyihin kysymyksiin"
-
-#: app/controllers/SearchController.php:126
+#: app/controllers/SearchController.php:149
 msgid "Advanced search and browse"
 msgstr "Haku ja selaus"
 
-#: app/controllers/SearchController.php:230
-#: app/controllers/SearchController.php:325
+#: app/controllers/SearchController.php:253
+#: app/controllers/SearchController.php:350
 msgid "AdvancedSearchResults_NoResults_Caption"
 msgstr "Haku ei tuottanut tuloksia"
 
-#: app/controllers/SearchController.php:230
-#: app/controllers/SearchController.php:326
+#: app/controllers/SearchController.php:253
+#: app/controllers/SearchController.php:351
 msgid "AdvancedSearchResults_NoResults_Message_Begin"
 msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
 
-#: app/controllers/SearchController.php:232
-#: app/controllers/SearchController.php:327
+#: app/controllers/SearchController.php:255
+#: app/controllers/SearchController.php:352
 msgid "AdvancedSearchResults_NoResults_Message_End"
 msgstr ""
 "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
 "jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
 "-hakua. Lisäksi kannattaa tutustua"
 
-#: app/controllers/SearchController.php:244
-#: app/controllers/SearchController.php:339
+#: app/controllers/SearchController.php:256
+#: app/controllers/SearchController.php:353
+msgid "FAQ"
+msgstr "usein kysyttyihin kysymyksiin"
+
+#: app/controllers/SearchController.php:267
+#: app/controllers/SearchController.php:366
 msgid "Advanced search results"
 msgstr "Tarkennetun haun tulokset"
 
-#: app/models/ArticleModel.php:76 app/models/ArticleModel.php:164
+#: app/models/ArticleModel.php:76 app/models/ArticleModel.php:139
 msgid "ArticleNotFound_Caption"
 msgstr "Sana-artikkelia ei löytynyt"
 
-#: app/models/ArticleModel.php:77 app/models/ArticleModel.php:165
+#: app/models/ArticleModel.php:77 app/models/ArticleModel.php:140
 msgid "ArticleNotFound_Message_Begin"
 msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit aakkosväliltä"
 
-#: app/models/ArticleModel.php:78 app/models/ArticleModel.php:166
+#: app/models/ArticleModel.php:78 app/models/ArticleModel.php:141
 msgid "ArticleNotFound_Message_End"
 msgstr ""
 "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
@@ -162,11 +156,11 @@ msgstr "Lyhenteet"
 msgid "AdvancedSearch_Page"
 msgstr "Tarkennettu haku Kielitoimiston sanakirjasta"
 
-#: app/pages/AdvancedSearchForm.php:30 app/pages/AdvancedSearchForm.php:68
-#: app/pages/AdvancedSearchForm.php:69 app/pages/AdvancedSearchForm.php:133
-#: app/pages/AdvancedSearchForm.php:134 app/pages/AdvancedSearchForm.php:141
-#: app/pages/AdvancedSearchForm.php:142 app/pages/Background.php:25
-#: app/pages/WordArticle.php:77 app/pages/WordArticle.php:78 pub/Footer.php:21
+#: app/pages/AdvancedSearchForm.php:30 app/pages/AdvancedSearchForm.php:70
+#: app/pages/AdvancedSearchForm.php:71 app/pages/AdvancedSearchForm.php:135
+#: app/pages/AdvancedSearchForm.php:136 app/pages/AdvancedSearchForm.php:143
+#: app/pages/AdvancedSearchForm.php:144 app/pages/Background.php:25
+#: app/pages/WordArticle.php:78 app/pages/WordArticle.php:79 pub/Footer.php:21
 #: pub/Footer.php:25 pub/Footer.php:26 pub/Footer.php:28 pub/Footer.php:29
 #: pub/Footer.php:42 pub/Footer.php:43 pub/Footer.php:47 pub/Footer.php:48
 #: pub/Navi.php:68
@@ -193,72 +187,72 @@ msgstr "Kenttää ei voi jättää tyhjäksi."
 msgid "AdvancedSearchForm_FromAllWords"
 msgstr "kaikista"
 
-#: app/pages/AdvancedSearchForm.php:63
+#: app/pages/AdvancedSearchForm.php:64
 msgid "AdvancedSearchForm_FromCompoundParts"
 msgstr "vain yhdyssanojen osista"
 
-#: app/pages/AdvancedSearchForm.php:64
+#: app/pages/AdvancedSearchForm.php:66
 msgid "AdvancedSearchForm_FromCompounds"
 msgstr "vain yhdyssanoista"
 
-#: app/pages/AdvancedSearchForm.php:65
+#: app/pages/AdvancedSearchForm.php:67
 msgid "AdvancedSearchForm_FromNotCompounds"
 msgstr "vain ei-yhdyssanoista"
 
-#: app/pages/AdvancedSearchForm.php:68 app/pages/AdvancedSearchForm.php:69
-#: app/pages/AdvancedSearchForm.php:70 app/pages/AdvancedSearchForm.php:133
-#: app/pages/AdvancedSearchForm.php:134 app/pages/AdvancedSearchForm.php:135
-#: app/pages/AdvancedSearchForm.php:141 app/pages/AdvancedSearchForm.php:142
+#: app/pages/AdvancedSearchForm.php:70 app/pages/AdvancedSearchForm.php:71
+#: app/pages/AdvancedSearchForm.php:72 app/pages/AdvancedSearchForm.php:135
+#: app/pages/AdvancedSearchForm.php:136 app/pages/AdvancedSearchForm.php:137
+#: app/pages/AdvancedSearchForm.php:143 app/pages/AdvancedSearchForm.php:144
 msgid "AdvancedSearchForm_Help"
 msgstr "Ohje"
 
-#: app/pages/AdvancedSearchForm.php:73
+#: app/pages/AdvancedSearchForm.php:75
 msgid "AdvancedSearchForm_TIndex"
 msgstr "Valitse taivutusindeksi"
 
-#: app/pages/AdvancedSearchForm.php:81
+#: app/pages/AdvancedSearchForm.php:83
 msgid "AdvancedSearchForm_AVIndex"
 msgstr "Valitse astevaihtelu"
 
-#: app/pages/AdvancedSearchForm.php:89
+#: app/pages/AdvancedSearchForm.php:91
 msgid "AdvancedSearchForm_WordGroup"
 msgstr "Valitse sanaluokka"
 
-#: app/pages/AdvancedSearchForm.php:98
+#: app/pages/AdvancedSearchForm.php:100
 msgid "AdvancedSearchForm_UsageScope"
 msgstr "Valitse käyttöala"
 
-#: app/pages/AdvancedSearchForm.php:110 app/pages/AdvancedSearchForm.php:149
-#: app/pages/AdvancedSearchForm.php:158
+#: app/pages/AdvancedSearchForm.php:112 app/pages/AdvancedSearchForm.php:151
+#: app/pages/AdvancedSearchForm.php:160
 msgid "AdvancedSearchForm_SearchButton"
 msgstr "Hae"
 
-#: app/pages/AdvancedSearchForm.php:111 app/pages/AdvancedSearchForm.php:150
-#: app/pages/AdvancedSearchForm.php:159
+#: app/pages/AdvancedSearchForm.php:113 app/pages/AdvancedSearchForm.php:152
+#: app/pages/AdvancedSearchForm.php:161
 msgid "AdvancedSearchForm_ResetButton"
 msgstr "Tyhjennä"
 
-#: app/pages/AdvancedSearchForm.php:119
+#: app/pages/AdvancedSearchForm.php:121
 msgid "AdvancedSearchForm_FullText_Legend"
 msgstr "Koko teksti"
 
-#: app/pages/AdvancedSearchForm.php:124
+#: app/pages/AdvancedSearchForm.php:126
 msgid "AdvancedSearchForm_FullText"
 msgstr "Hae koko tekstistä"
 
-#: app/pages/AdvancedSearchForm.php:127
+#: app/pages/AdvancedSearchForm.php:129
 msgid "AdvancedSearchForm_FullFromAll"
 msgstr "koko tekstistä"
 
-#: app/pages/AdvancedSearchForm.php:128
+#: app/pages/AdvancedSearchForm.php:130
 msgid "AdvancedSearchForm_FullFromDefinitions"
 msgstr "vain selitteistä"
 
-#: app/pages/AdvancedSearchForm.php:129
+#: app/pages/AdvancedSearchForm.php:131
 msgid "AdvancedSearchForm_FullFromExamples"
 msgstr "vain esimerkeistä"
 
-#: app/pages/AdvancedSearchForm.php:140
+#: app/pages/AdvancedSearchForm.php:142
 msgid "AdvancedSearchForm_Lemma"
 msgstr "Hae myös taipuneita muotoja"
 
@@ -313,18 +307,27 @@ msgstr "Näytä artikkeli oikeassa aakkoskohdassa"
 msgid "Article_Viewtype_DictionaryOrder"
 msgstr "Aakkosellinen selaus"
 
-#: app/pages/WordArticle.php:75
+#: app/pages/WordArticle.php:76 app/pages/WordArticle.php:92
+#: app/pages/WordArticle.php:94 app/pages/WordArticle.php:95
 msgid "Share this entry"
-msgstr "Linkki artikkeliin"
+msgstr "Jaa linkki"
 
-#: app/pages/WordArticle.php:77 app/pages/WordArticle.php:78
+#: app/pages/WordArticle.php:78 app/pages/WordArticle.php:79
 msgid "Permalink"
 msgstr "Linkki artikkeliin"
 
-#: app/pages/WordArticle.php:83 app/pages/WordArticle.php:85
-#: app/pages/WordArticle.php:86
+#: app/pages/WordArticle.php:85 app/pages/WordArticle.php:87
+#: app/pages/WordArticle.php:88
 msgid "Feedback"
 msgstr "Anna palautetta"
+
+#: app/pages/WordArticle.php:114
+msgid "Link copied to clipboard"
+msgstr "Kopioitu leikepöydälle."
+
+#: app/pages/WordArticle.php:118
+msgid "Failed to copy link to clipboard"
+msgstr "Kopiointi epäonnistui."
 
 #: app/pages/XMLException.php:15
 msgid "XMLException_Caption"
@@ -478,6 +481,12 @@ msgstr "Hakutulokset"
 #: pub/SearchLeftBar.php:41
 msgid "QuickSearchResults_Hits"
 msgstr "kpl"
+
+#~ msgid "QuickSearchResults_NoResults_Message_End"
+#~ msgstr ""
+#~ "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
+#~ "jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
+#~ "-hakua. Lisäksi kannattaa tutustua"
 
 #~ msgid "Article_Viewtype_Parsing"
 #~ msgstr "Jäsennys"

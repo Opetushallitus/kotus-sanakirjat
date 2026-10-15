@@ -16,41 +16,31 @@ class ArticleController extends Controller {
 		
 		global $cfg;
 
-
 		// Set the model to be used.
 		$model = $this->setModel("ArticleModel");
-
 		// Set the view to be used.
 		$view  = $this->setView("ArticleView");
 
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);		
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
-		// Save a GET-parameter 'word'.
-		$this->set("word", isset($_GET['word']) ? $_GET['word'] : '');
+		// Save a GET-parameter 'word', lisätty sanitaatiokutsu / 6.10.2026 JV
+		$this->set("word", isset($_GET['word']) ? sanitize_input($_GET['word'], 'string', ['default' => '']) : '');
 		
-		// Save a GET-parameter 'mtype' - OL 13.2.2012
-		$this->set("mtype", isset($_GET['type']) ? $_GET['type'] : null);
-
-		// Save a GET-parameter for dictionary id.
-		$this->set("ks_id", isset($_GET['ks_id']) ? $_GET['ks_id'] : 'id-puuttuu');
+		// Save a GET-parameter for dictionary id, lisätty sanitaatiokutsu / 6.10.2026 JV
+		$this->set("ks_id", isset($_GET['ks_id']) ? sanitize_input($_GET['ks_id'], 'ks-id', ['default' => 'id-puuttuu']) : 'id-puuttuu');
 
 		// Save a GET-parameter for first headword in the list / 19.7.2019 OL
-		//$this->set("list_id", $_GET['list_id']);
 		if (isset($_GET['list_id'])) {
-			$this->set("list_id", $_GET['list_id']);
+			// lisätty sanitaatiokutsu / 6.10.2026 JV
+			$this->set("list_id", sanitize_input($_GET['list_id'], 'int'));
 		} else {
 			$listid = $model->getHeadwordListIndexByWord($this->get("word"));
 			$this->set('list_id', $listid);
 		}
 		
-		// Save a GET-parameter 'view'.
-		// This controls the way how user will see an article.
-		$this->set("viewtype", isset($_GET['view']) ? $_GET['view'] : 'full');
+		// Näkymävalinta
+		$this->set("viewtype", isset($_GET['view']) ? sanitize_input($_GET['view'], 'string', ['default' => 'full']) : 'full');
 		// näkymän nimi titleä varten / 11.6.2020 OL
 		if ($this->get("viewtype") == "inflection") {
 			$viewtitle = _("Article_Viewtype_Inflection");
@@ -63,27 +53,18 @@ class ArticleController extends Controller {
 		// Set some scripts to be used within a page.
 		$this->set("scripts", array("leftbar.js"));
 		
-		// Get a word article from model.
-		// with information of dialect form for highlighting
-		// OL 13.2.2012
-		if ($this->get("mtype") == "m") {
-		  $data = $model->getWordArticle($this->get("ks_id"), $this->get("word"), $this->get("viewtype"));
-		} // or not
-		else {
-		  $data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
-		}
+		// Hae artikkeli XML-tietokannasta ja palauta HTML-muodossa
+		$data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
 
-		// Grab title from MySQL, else from GET-param word.
-		// lisätään titleen näkymän nimi / 11.6.2020 OL
-		$temp = $model->getArticleById($this->get("ks_id"));
-		$atitle = ($temp) ? $temp->hakusana : strip_tags($this->get("word"));
-		$this->set("title",  $atitle . " - " . $viewtitle);
-		// tallennetaan hakusana palautetta varten / 30.4.2026 OL
-		$this->set("hakusana", $atitle);
-		$temp = null;
+		// haetaan artikkelin hakusana
+		$hw = $model->getArticleHeadword($this->get("ks_id"));
+		$hakusana = ($hw) ? $hw : strip_tags($this->get("word"));
+		//muodostetaan title
+		$this->set("title",  $hakusana . " - " . $viewtitle);
 
-		// Rakennetaan polku pysyvän artikkelilinkin pohjaksi / 31.12.2019 OL
-		$this->set("permalink", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		// Rakennetaan polut artikkelilinkin pohjaksi
+		$this->set("articlepath", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		$this->set("permalink", $cfg['KS']['KS_PATH'] . $hakusana);
 
 		// Save article's data
 		$this->set("article", $data, false);
@@ -112,12 +93,8 @@ class ArticleController extends Controller {
 		// Set the view to be used.
 		$view  = $this->setView("ArticleView");
 
-		$this->set("keyword", isset($_GET['keyword']) ? $_GET['keyword'] : '');
+		$this->set("keyword", isset($_GET['keyword']) ? sanitize_input($_GET['keyword'], 'string', ['default' => '']) : '');
 
-		// Get and save the first word found from database.
-		$this->set("first_word", $model->getFirstWordArticle()->hakusana);		
-		// Get and save the last word found from database.
-		$this->set("last_word", $model->getLastWordArticle()->hakusana);
 		// Set last update date from the config.
 		$this->set("last_update", $cfg['KS']['LAST_UPDATE']);
 
@@ -126,21 +103,19 @@ class ArticleController extends Controller {
 		// Set a total count of results.
 		$this->set("count", $count);
 
-		// Save a GET-parameter 'word'.
-		$this->set("word", isset($_GET['word']) ? $_GET['word'] : '');
+		// Save a GET-parameter 'word', lisätty sanitaatiokutsu / 6.10.2026 JV
+		$this->set("word", isset($_GET['word']) ? sanitize_input($_GET['word'], 'string', ['default' => '']) : '');
 		
-		// Save a GET-parameter 'mtype' - OL 13.2.2012
-		$this->set("mtype", isset($_GET['type']) ? $_GET['type'] : null);
-
-		// Save a GET-parameter for dictionary id.
-		$this->set("ks_id", isset($_GET['ks_id']) ? $_GET['ks_id'] : 'id-puuttuu');
+		// Save a GET-parameter for dictionary id, lisätty sanitaatiokutsu / 6.10.2026 JV
+		$this->set("ks_id", isset($_GET['ks_id']) ? sanitize_input($_GET['ks_id'], 'ks-id', ['default' => 'id-puuttuu']) : 'id-puuttuu');
 
 		// Save a GET-parameter for first headword in the list / 19.7.2019 OL
-		$this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
+		// lisätty sanitaatiokutsu / 6.10.2026 JV
+		$this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
 		
-		// Save a GET-parameter 'view'.
+		// Save a GET-parameter 'view', lisätty sanitaatiokutsu / 6.10.2026 JV
 		// This controls the way how user will see an article.
-		$this->set("viewtype", isset($_GET['view']) ? $_GET['view'] : 'full');
+		$this->set("viewtype", isset($_GET['view']) ? sanitize_input($_GET['view'], 'string', ['default' => 'full']) : 'full');
 		// näkymän nimi titleä varten / 11.6.2020 OL
 		if ($this->get("viewtype") == "inflection") {
 			$viewtitle = _("Article_Viewtype_Inflection");
@@ -156,24 +131,18 @@ class ArticleController extends Controller {
 		$this->set("scripts", array("leftbar.js"));
 		
 		// Get a word article from model.
-		// with information of dialect form for highlighting
 		// OL 13.2.2012
-		if ($this->get("mtype") == "m") {
-		  $data = $model->getWordArticle($this->get("ks_id"), $this->get("word"), $this->get("viewtype"));
-		} // or not
-		else {
-		  $data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
-		}
+		$data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
 
-		// Grab title from MySQL, else from GET-param word.
-		// lisätään titleen näkymän nimi / 9.4.2021 OL
-		$temp = $model->getArticleById($this->get("ks_id"));
-		$atitle = ($temp) ? $temp->hakusana : strip_tags($this->get("word"));
-		$this->set("title",  $atitle . " - " . $viewtitle);
-		$temp = null;
+		// haetaan artikkelin hakusana
+		$hw = $model->getArticleHeadword($this->get("ks_id"));
+		$hakusana = ($hw) ? $hw : strip_tags($this->get("word"));
+		//muodostetaan title
+		$this->set("title",  $hakusana . " - " . $viewtitle);
 
-		// Rakennetaan polku pysyvän artikkelilinkin pohjaksi / 31.12.2019 OL
-		$this->set("permalink", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		// Rakennetaan polut artikkelilinkin pohjaksi
+		$this->set("articlepath", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		$this->set("permalink", $cfg['KS']['KS_PATH'] . $hakusana);
 
 		// Save article's data.
 		$this->set("article", $data, false);
@@ -203,11 +172,11 @@ class ArticleController extends Controller {
 		$this->set("count", $_SESSION['advsearch']['count']);
 		$this->set("sessionid", $_SESSION['advsearch']['existSessionId']);
 
-		$this->set("word", isset($_GET['word']) ? $_GET['word'] : '');
-		$this->set("mtype", isset($_GET['type']) ? $_GET['type'] : null);
-		$this->set("ks_id", isset($_GET['ks_id']) ? $_GET['ks_id'] : 'id-puuttuu');
-		$this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
-		$this->set("viewtype", isset($_GET['view']) ? $_GET['view'] : 'full');
+		// lisätty sanitaatiokutsut / 6.10.2026 JV
+		$this->set("word", isset($_GET['word']) ? sanitize_input($_GET['word'], 'string', ['default' => '']) : '');
+		$this->set("ks_id", isset($_GET['ks_id']) ? sanitize_input($_GET['ks_id'], 'ks-id', ['default' => 'id-puuttuu']) : 'id-puuttuu');
+		$this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int', ['default' => 1]) : 1);
+		$this->set("viewtype", isset($_GET['view']) ? sanitize_input($_GET['view'], 'string', ['default' => 'full']) : 'full');
 		// näkymän nimi titleä varten / 11.6.2020 OL
 		if ($this->get("viewtype") == "inflection") {
 			$viewtitle = _("Article_Viewtype_Inflection");
@@ -220,20 +189,17 @@ class ArticleController extends Controller {
 		$this->set("scripts", array("leftbar.js"));		
 		$this->set("advresults", "false");
 
-		if ($this->get("mtype") == "m") {
-		  $data = $model->getWordArticle($this->get("ks_id"), $this->get("word"), $this->get("viewtype"));
-		} // or not
-		else {
-		  $data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
-		}
+		$data = $model->getWordArticle($this->get("ks_id"), '', $this->get("viewtype"));
 
-		// lisätään titleen näkymän nimi / 9.4.2021 OL
-		$temp = $model->getArticleById($this->get("ks_id"));
-		$atitle = ($temp) ? $temp->hakusana : strip_tags($this->get("word"));
-		$this->set("title",  $atitle . " - " . $viewtitle);
-		$temp = null;
+		// haetaan artikkelin hakusana
+		$hw = $model->getArticleHeadword($this->get("ks_id"));
+		$hakusana = ($hw) ? $hw : strip_tags($this->get("word"));
+		//muodostetaan title
+		$this->set("title",  $hakusana . " - " . $viewtitle);
 
-		$this->set("permalink", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		// Rakennetaan polut artikkelilinkin pohjaksi
+		$this->set("articlepath", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		$this->set("permalink", $cfg['KS']['KS_PATH'] . $hakusana);
 
 		$this->set("article", $data, false);
 		
@@ -258,11 +224,12 @@ class ArticleController extends Controller {
 		$this->set("count", isset($_SESSION['advsearch']['count']) ? $_SESSION['advsearch']['count'] : null); // isset-lisäys 18.9.2026 JV
 		$this->set("sessionid", isset($_SESSION['advsearch']['existSessionId']) ? $_SESSION['advsearch']['existSessionId'] : null); // isset-lisäys 18.9.2026 JV
 
-		$this->set("word", isset($_GET['word']) ? $_GET['word'] : '');
-		$this->set("ks_id", isset($_GET['ks_id']) ? $_GET['ks_id'] : 'id-puuttuu');
-		$this->set("list_id", isset($_GET['list_id']) ? $_GET['list_id'] : 1);
-		$this->set("viewtype", isset($_GET['view']) ? $_GET['view'] : 'full');
-		$this->set("osumanro", isset($_GET['mpos']) ? $_GET['mpos'] : 1);
+		// lisätty sanitaatiokutsut / 6.10.2026 JV
+		$this->set("word", isset($_GET['word']) ? sanitize_input($_GET['word'], 'string', ['default' => '']) : '');
+		$this->set("ks_id", isset($_GET['ks_id']) ? sanitize_input($_GET['ks_id'], 'ks-id', ['default' => 'id-puuttuu']) : 'id-puuttuu');
+		$this->set("list_id", isset($_GET['list_id']) ? sanitize_input($_GET['list_id'], 'int') : 1);
+		$this->set("viewtype", isset($_GET['view']) ? sanitize_input($_GET['view'], 'string', ['default' => 'full']) : 'full');
+		$this->set("osumanro", isset($_GET['mpos']) ? sanitize_input($_GET['mpos'], 'int', ['default' => 1]) : 1);
 		// näkymän nimi titleä varten / 11.6.2020 OL
 		if ($this->get("viewtype") == "inflection") {
 			$viewtitle = _("Article_Viewtype_Inflection");
@@ -277,13 +244,15 @@ class ArticleController extends Controller {
 
 		$data = $model->getKwicWordArticle($this->get("ks_id"), $this->get("osumanro"), $this->get("viewtype"));
 
-		// lisätään titleen näkymän nimi / 9.4.2021 OL
-		$temp = $model->getArticleById($this->get("ks_id"));
-		$atitle = ($temp) ? $temp->hakusana : strip_tags($this->get("word"));
-		$this->set("title",  $atitle . " - " . $viewtitle);
-		$temp = null;
+		// haetaan artikkelin hakusana
+		$hw = $model->getArticleHeadword($this->get("ks_id"));
+		$hakusana = ($hw) ? $hw : strip_tags($this->get("word"));
+		//muodostetaan title
+		$this->set("title",  $hakusana . " - " . $viewtitle);
 
-		$this->set("permalink", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		// Rakennetaan polut artikkelilinkin pohjaksi
+		$this->set("articlepath", $model->getArticlePath($this->get("ks_id"), $this->get("word")));
+		$this->set("permalink", $cfg['KS']['KS_PATH'] . $hakusana);
 
 		$this->set("article", $data, false);
 		

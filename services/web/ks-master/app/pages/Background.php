@@ -43,7 +43,7 @@ Kielitoimiston sanakirjaan viitataan seuraavasti:
 Kielitoimiston sanakirja. <?= preg_replace('/^\d+\.\d+\./','', $last_update) ?>.
 Helsinki: Kotimaisten kielten keskuksen verkkojulkaisuja 35. URN:NBN:fi:kotus-201433. 
 Päivitettävä julkaisu. Päivitetty <?= $last_update ?> [viitattu xx.xx.xxxx]. 
-Saatavissa <?= $cfg['KS']['KAINO_URL'] ?>.
+Saatavissa <?= $cfg['KS']['KS_URL'] ?>.
 </blockquote>
 
 <p>
