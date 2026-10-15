@@ -15,7 +15,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <footer class="kivijalka">
 
 <div>
-<img src="/img/kotus-suomi-valkoinen.png" alt="Kotimaisten kielten keskus" width="285" height="50" />
+<img src="./pub/img/common/kotus-suomi-valkoinen.png" alt="Kotimaisten kielten keskus" width="285" height="50" />
 <p>
 © <?= _("Footer_Kotus") ?> (<a target="_blank" href="<?= _("Footer_Kotus_www") ?>" 
 aria-label="<?= _("Footer_Kotus_www") ?> <?= _("Link_OpenNewWin") ?>"><?= _("Footer_Kotus_www") ?></a>)

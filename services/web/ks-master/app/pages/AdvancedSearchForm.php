@@ -73,7 +73,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 			<a href="./?p=help#hakuohje-hakusanat" target="_blank" 
 			aria-label="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>"
 			title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>">
-				<img src="/img/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
+				<img src="./pub/img/common/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
 			</a>
 		</div>
 		<label for="search-form-tindex"><?= _("AdvancedSearchForm_TIndex") ?></label>
@@ -137,7 +137,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 			<a href="./?p=help#hakuohje-kokoteksti" target="_blank" 
 				aria-label="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>" 
 				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>">
-				<img src="/img/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
+				<img src="./pub/img/common/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
 			</a>
 			<span id="search-form-fulltext-error"></span>
 	</div>
@@ -146,7 +146,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 		<input type="checkbox" id="search-form-lemma" name="lemma" />
 		<label for="search-form-lemma" id="search-form-lemma-label"><?= _("AdvancedSearchForm_Lemma") ?></label>&nbsp;<a href="./?p=help#hakuohje-lemma" 
 				target="_blank" aria-label="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>" 
-				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>"><img src="/img/ohjeet.png" alt="Ohje" class="iconimg">
+				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>"><img src="./pub/img/common/ohjeet.png" alt="Ohje" class="iconimg">
 		</a>
 	</div>
 

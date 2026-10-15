@@ -71,22 +71,13 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <?= $articlehtml; ?>
 
 <div class="jaalinkit">
-<!--
-<span class="jakolinkki">
-	<span aria-hidden="true"><?= _("Share this entry") ?>:</span>
-	<a href="<?= $this->get("permalink"); ?>" target="_blank" 
-	title="<?= _("Permalink") ?> <?= _("Link_OpenNewWin") ?>"
-	aria-label="<?= _("Permalink") ?> <?= _("Link_OpenNewWin") ?>">
-	<img alt="" src="/img/link.svg"></a>
-</span>
--->
 <span class="jakolinkki">
 	<!-- palaute artikkelista sähköpostilla / 30.2.2026 OL -->
 	<span aria-hidden="true"><?= _("Feedback") ?>:</span>
 	<a href="<?= $cfg['KS']['MAILTO'] . $this->get("word"); ?>"
 	title="<?= _("Feedback") ?>"
 	aria-label="<?= _("Feedback") ?>">
-	<img alt="" src="/img/mail.svg"></a>
+	<img alt="" src="./pub/img/common/mail.svg"></a>
 </span>
 <span class="jakolinkki">
 	<span aria-hidden="true"><?= _("Share this entry") ?>:</span>
@@ -95,7 +86,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
   		title="<?= _("Share this entry") ?>"
   		onclick="copyPermalink(this)"
   		data-url="<?= $this->get("permalink"); ?>">
-  		<img alt="" src="/img/link.svg"/>
+  		<img alt="" src="./pub/img/common/link.svg"/>
 	</button>
 	<span id="copy-status" aria-live="polite"></span>
 </span>

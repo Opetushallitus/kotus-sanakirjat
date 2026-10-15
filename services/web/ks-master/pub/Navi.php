@@ -40,23 +40,17 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <!-- Suurennuslasi- ja sämpylävalikot -->
 <div class="valikot">
 
-<!--
-<nav class="navigointi" aria-label="selaus">
-<a href="./?p=headwords" class="tekstimenubutton"><img src="/img/selaus.svg" alt=""/>&#160;<?= _("Navi_Browse") ?></a>
-</nav>
--->
-
 <!-- UUSI hakusivu = tarkennetun haun lomake + sivupalkki / 9.6.2020 OL -->
 <!-- Tekstilliset navinappulat / 24.11.2020 OL -->
 <nav class="navigointi" aria-label="haku">
-<a href="./?p=advsearchform" class="tekstimenubutton"><img src="/img/suurennuslasi.svg" alt=""/>&#160;<?= _("Navi_Search") ?></a>
+<a href="./?p=advsearchform" class="tekstimenubutton"><img src="./pub/img/common/suurennuslasi.svg" alt=""/>&#160;<?= _("Navi_Search") ?></a>
 </nav>
 
 <nav class="navigointi" aria-label="valikko">
-<button id="paanavi_open" class="tekstimenubutton"><img src="/img/sampyla.svg" alt=""/>&#160;<?= _("Navi_Menu") ?></button>
+<button id="paanavi_open" class="tekstimenubutton"><img src="./pub/img/common/sampyla.svg" alt=""/>&#160;<?= _("Navi_Menu") ?></button>
 <div id="paanavi" class="navivalikko">
 <button id="paanavi_close" name="navilistan_sulku" class="tekstimenubutton">
-<img src="/img/rasti_valkoinen.svg" alt=""/>&#160;<?= _("Navi_Close") ?></button>
+<img src="./pub/img/common/rasti_valkoinen.svg" alt=""/>&#160;<?= _("Navi_Close") ?></button>
 <ul>
 <li><a href="./?p=main"><?= _("Navi_Mainpage") ?></a></li>
 <li><a href="./?p=help"><?= _("Navi_Help_Search") ?></a></li>

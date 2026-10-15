@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 192 192" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+	<g fill="#007FAA" stroke="#007FAA" stroke-width="0">
+		<rect x="0" y="0" rx="20" ry="20" width="192" height="40" />
+		<rect x="0" y="76" rx="20" ry="20" width="192" height="40" />
+		<rect x="0" y="152" rx="20" ry="20" width="192" height="40" />
+	</g>
+</svg>

@@ -1,17 +1,4 @@
-﻿/*
-function toggleUpDown(elemid, button) {
-	var elem = document.getElementById(elemid);
-	if (elem.style.display === "block") {
-		elem.style.display = "none";
-		button.src="/img/avaa_alas.png";
-	}
-	else {
-		elem.style.display = "block";
-		button.src="/img/avaa_ylos.png";
-	}
-}
-*/
-var scrollAjax = true;
+﻿var scrollAjax = true;
 
 function haeTarkennetunHaunTulos(list_id, existSession) {
 	var xhttp = new XMLHttpRequest();

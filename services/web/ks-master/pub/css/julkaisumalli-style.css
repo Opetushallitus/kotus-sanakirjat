@@ -586,7 +586,7 @@ form.hakuruutu input[type=text]:focus {
 }
 form.hakuruutu input[type=submit], form.hakuruutu button[type=submit] {
 	background-color: #ffffff;
-	background-image: url("/img/suurennuslasi.png");
+	background-image: url("./pub/img/common/suurennuslasi.png");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: auto 70%;
@@ -610,7 +610,7 @@ form.hakuruutu input[type=submit]:focus, form.hakuruutu button[type=submit]:focu
 }
 form.hakuruutu input[type=reset], form.hakuruutu button[type=reset] {
 	background-color: #ffffff;
-	background-image: url("/img/rasti.png");
+	background-image: url("./pub/img/common/rasti.png");
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: auto 40%;
@@ -889,7 +889,7 @@ div#search-form-charlist button:hover, div.merkkipaletti button:hover {
 }
 .avausnuoli button {
 	background-color: #f7f7f7;
-	background-image: url("/img/avaa_ylos_levea.png");
+	background-image: url("./pub/img/common/avaa_ylos_levea.png");
 	background-position: center bottom;
 	background-repeat: no-repeat;
 	/*background-size: 80% 80%;*/
@@ -917,22 +917,6 @@ div#search-form-charlist button:hover, div.merkkipaletti button:hover {
 
 
 /* Details-summary */
-/*
-details {
-}
-details summary {
-  list-style-image: url("/img/avaa_ylos_levea.png");
-}
-details summary::-webkit-details-marker {
-  background: url("/img/avaa_ylos_levea.png");
-}
-details[open] summary {
-  list-style-image: url("/img/avaa_alas_levea.png");
-}
-details[open] summary::-webkit-details-marker {
-  background: url("/img/avaa_alas_levea.png");
-}
-*/
 
 summary {
 	cursor: pointer;
@@ -1133,7 +1117,7 @@ footer.kivijalka a:focus {
 	}
 
 	.avausnuoli button {
-		background-image: url("/img/avaa_alas_levea.png");
+		background-image: url("./pub/img/common/avaa_alas_levea.png");
 	}
 
 	form.hakuruutu input[type=text] {
