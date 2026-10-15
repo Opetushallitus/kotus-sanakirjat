@@ -60,8 +60,8 @@ if (!constant("IN_KS")) die("General error, exiting.");
 		}
 	?>
 
-<!-- Google Analytics script / 24.10.2016 OL -->
-<?php include_once("analyticstracking.php") ?>
+<!-- Matomon seuranta kommentoitu pois toistaiseksi / 15.10.2026 OL -->
+<!-- ?php include_once("analyticstracking.php") ?-->
 
 </head>
 
