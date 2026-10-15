@@ -33,14 +33,14 @@ $cfg['SQL'] = array(
 	// Aurora Postgres cluster port.
 	'PORTNUM'	=> (int) (getenv('POSTGRESQL_PORT') ?: 5432),
 
-	// Username (Aurora master username).
-	'USERNAME'	=> "db_admin",
+	// Username (read-only user).
+	'USERNAME'	=> "ksuser",
 
 	// Password (Aurora master password, from Secrets Manager via PG_PASS).
 	'PASSWORD'	=> getenv('PG_PASS') ?: "",
 
-	// Database to be used - 'postgres' is the only one that exists today.
-	'DATABASE'	=> "postgres"
+	// Database to be used
+	'DATABASE'	=> "ks"
 
 );
 
