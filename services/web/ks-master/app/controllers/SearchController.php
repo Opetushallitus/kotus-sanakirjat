@@ -432,60 +432,6 @@ class SearchController extends Controller {
 		$view->datalist("headwords");
 	}
 
-	// EI KÄYTÖSSÄ / 1.6.2026 JV
-	// Listataan kaikki ensimmäiset hakusanat prefixin perusteella (etusivun aakkoslinkkejä varten)
-	public function getHeadwordsFirstAllByPrefix() {
-		// Set a model to be used.
-		$model = $this->setModel("SearchModel");
-		
-		$prefixes = array(
-			array("0", "0-9"),
-			array("a", "A"),
-			array("b", "B"),
-			array("c", "C"),
-			array("d", "D"),
-			array("e", "E"),
-			array("f", "F"),
-			array("g", "G"),
-			array("h", "H"),
-			array("i", "I"),
-			array("j", "J"),
-			array("k", "K"),
-			array("l", "L"),
-			array("m", "M"),
-			array("n", "N"),
-			array("o", "O"),
-			array("p", "P"),
-			array("q", "Q"),
-			array("r", "R"),
-			array("s", "S"),
-			array("t", "T"),
-			array("u", "U"),
-			array("v", "VW"),
-			array("x", "X"),
-			array("y", "Y"),
-			array("z", "Z"),
-			array("å", "Å"),
-			array("ä", "Ä"),
-			array("ö", "Ö")
-		);
-
-		$prefix_values = array_column($prefixes, 0);
-
-		$model = $this->setModel("SearchModel");
-
-		$first_headwords = $model->getFirstHeadwordsByPrefix($prefix_values);
-		foreach ($prefixes as $index => $prefix) {
-			$first_headword = $first_headwords[$index];
-			if ($first_headword) {
-				echo "<a id=\"prefix_" . $prefix[0] . "\" class=\"aakkonen\" href=\"?p=article&ks_id=" . $first_headword['ks_id'] . "&word=" . $first_headword['hakusana'] . "&list_id=" . $first_headword['id'] . "\">" . $prefix[1] . "</a>";
-			}
-			else {
-				echo "<a id=\"prefix_" . $prefix[0] . "\" class=\"aakkonen\">" . $prefix[1] . "</a>";
-			}
-		}
-	}
-
 	// UUSI / 7.11.2019 OL
 	// Tehdään pikahaku ja palautetaan tulokset vasempaan sivupalkkiin
 	public function getAjaxQuickSearch() {

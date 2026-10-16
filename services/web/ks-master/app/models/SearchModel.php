@@ -51,7 +51,7 @@ class SearchModel extends Model {
 			$sql = $this->getSQLHandle();
 			// numeroalkuiset hakusanat eri kyselyllä
 			if ($prefix == "0") {
-				$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 100");
+				$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 100");
 			}
 			else { // aakkosilla alkavat
 				$query = $sql->prepare("SELECT * FROM hakusanat WHERE LOWER(hakusana) LIKE CONCAT(?, '%') LIMIT 100");
@@ -84,7 +84,7 @@ class SearchModel extends Model {
 		$union = array();
 		foreach ($prefixes as $prefix) {
 			if ($prefix == "0") {
-				array_push($union, "(SELECT * FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 1)");
+				array_push($union, "(SELECT * FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 1)");
 			}
 			else { // aakkosilla alkavat
 				array_push($union, "(SELECT * FROM hakusanat WHERE LOWER(hakusana) LIKE '" . $prefix . "%' LIMIT 1)");
@@ -109,37 +109,6 @@ class SearchModel extends Model {
 		}
 	}
 
-	// Uusi funktio / 1.6.2026 JV
-	// Hakee tietokannasta alkukirjaimen perusteella KAIKKIEN aakkosten ensimmäiset hakusanat (aakkoslinkkejä varten, PHP-versio, ei käytössä 5.6.2026 jv)
-	public function getFirstHeadwordsByPrefix(array $prefix_values) {
-		$result = array();
-		$union = array();
-		foreach ($prefix_values as $prefix) {
-			if ($prefix == "0") {
-				array_push($union, "(SELECT hakusanat.*, '" . $prefix . "' AS prefix FROM hakusanat WHERE hakusana REGEXP '^[0-9]+' LIMIT 1)");
-			}
-			else { // aakkosilla alkavat
-				array_push($union, "(SELECT hakusanat.*, '" . $prefix . "' AS prefix FROM hakusanat WHERE hakusana LIKE '" . $prefix . "%' LIMIT 1)");
-			}
-		}
-		$union_query = implode(" UNION ", $union);
-		try
-		{
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-			$query = $sql->prepare($union_query);
-			// Set fetch mode to object.
-			// Set a fetch mode and execute the query.
-			$query->setFetchMode(PDO::FETCH_ASSOC);
-			$query->execute();
-			$result = $query->fetchAll();
-			return $result;			
-		}
-		catch (QuerySQLException $e) {
-		}
-		catch (DICTException $e) {
-		}
-	}
 	
 	/*
 		PIKAHAKU
@@ -209,12 +178,19 @@ class SearchModel extends Model {
 			// haetaan hakumuodoista / 19.6.2023 OL
 			if ($count > 0) {
 				// jokerimerkkejä käytetty: haku kokonaisella sanalla
-				$hakumuoto = '%#' . $hakusana . '#%';
+				//$hakumuoto = '%#' . $hakusana . '#%';
+				$hakumuoto = $hakusana;
 			} else {
 				// ei jokerimerkkejä: haku alkuosalla
-				$hakumuoto = '%#' . $hakusana . '%';
+				//$hakumuoto = '%#' . $hakusana . '%';
+				$hakumuoto = $hakusana . '%';
 			}
-			$query = $sql->prepare("SELECT COUNT(*) AS cnt FROM hakusanat WHERE hakumuoto LIKE ?");
+			//$query = $sql->prepare("SELECT COUNT(*) AS cnt FROM hakusanat WHERE hakumuoto LIKE ?");
+			$query = $sql->prepare("SELECT COUNT(DISTINCT h.ks_id) AS cnt
+									FROM hakusanat h
+									JOIN hakumuodot hm
+									  ON hm.ks_id = h.ks_id
+									WHERE hm.hakumuoto LIKE ?");
 
 			// haetaan hakumuodolla / 14.5.2025 OL
 			$query->bindValue(1, $hakumuoto);
@@ -249,13 +225,19 @@ class SearchModel extends Model {
 			// Tehdään haku sanan alkuosalla vain jos jokerimerkkejä ei ole käytetty
 			if ($count > 0) {
 				// jokerimerkkejä käytetty: haku kokonaisella sanalla
-				$ehdotus = '%#' . $ehdotus . '#%';
+				//$ehdotus = '%#' . $ehdotus . '#%';
 			} else {
 				// ei jokerimerkkejä: haku alkuosalla
-				$ehdotus = '%#' . $ehdotus . '%';
+				//$ehdotus = '%#' . $ehdotus . '%';
+				$ehdotus = $ehdotus . '%';
 			}
 			// haetaan hakumuodoista / 14.5.2025 OL
-			$query = $sql->prepare("SELECT hakusana,tyyppi,hakumuoto FROM hakusanat WHERE hakumuoto LIKE ? GROUP BY hakusana COLLATE utf8_bin ORDER BY id LIMIT 15");
+			//$query = $sql->prepare("SELECT hakusana,tyyppi,hakumuoto FROM hakusanat WHERE hakumuoto LIKE ? GROUP BY hakusana COLLATE utf8_bin ORDER BY id LIMIT 15");
+			$query = $sql->prepare("SELECT DISTINCT h.hakusana, h.tyyppi FROM hakusanat h
+									JOIN hakumuodot hm ON hm.ks_id = h.ks_id
+									WHERE hm.hakumuoto LIKE ?
+									ORDER BY h.id
+									LIMIT 15;");
 
 			// Bind a keyword to the query.
 			$query->bindValue(1, $ehdotus);
@@ -291,16 +273,21 @@ class SearchModel extends Model {
 			// haetaan hakumuodoista / 14.5.2025 OL
 			if ($count > 0) {
 				// jokerimerkkejä käytetty: haku kokonaisella sanalla
-				$hakumuoto = '%#' . $hakusana . '#%';
+				//$hakumuoto = '%#' . $hakusana . '#%';
+				$hakumuoto = $hakusana;
 			} else {
 				// ei jokerimerkkejä: haku alkuosalla
-				$hakumuoto = '%#' . $hakusana . '%';
-				//$hakusana .= '%';
+				//$hakumuoto = '%#' . $hakusana . '%';
+				$hakumuoto = $hakusana . '%';
 			}
-			// testi: haetaan sekä hakusanasta että hakumuodoista / 30.5.2025 OL
-			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE ((hakusana LIKE ?) AND (hakumuoto LIKE ?)) LIMIT 1");
 
-			$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakumuoto LIKE ? LIMIT 1");
+			//$query = $sql->prepare("SELECT * FROM hakusanat WHERE hakumuoto LIKE ? LIMIT 1");
+			$query = $sql->prepare("SELECT h.* FROM hakusanat h
+									JOIN hakumuodot hm
+									  ON hm.ks_id = h.ks_id
+									WHERE hm.hakumuoto LIKE ?
+									ORDER BY h.id
+									LIMIT 1;");
 
 			// haetaan hakumuodolla / 14.5.2025 OL
 			//$query->bindValue(1, $hakusana);

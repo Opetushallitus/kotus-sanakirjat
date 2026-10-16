@@ -74,14 +74,13 @@ abstract class Model {
 	}
 		
 	public function getWordsTotalCount() {
-		global $cfg;
+
 		try {
 			
 			// Get SQL handle.
 			$sql = $this->getSQLHandle();
 
 			// Prepare a query for execution.
-			//$sqlText = "SELECT COUNT(*) FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat";
 			$sqlText = "SELECT COUNT(*) FROM hakusanat";
 			$query = $sql->prepare($sqlText);
 
