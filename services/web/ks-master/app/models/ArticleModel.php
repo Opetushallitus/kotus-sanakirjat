@@ -162,19 +162,9 @@ class ArticleModel extends Model {
 			// Get SQL (MySQL) handle.
 			$sql = $this->getSQLHandle();
 			
-			// Tarkistetaan onko homonyyminumero / 13.2.2020 OL
-			// Homonyyminumeroita ei käytetä? / 28.10.2024 OL
-			//$head = explode(':', $word, 2);
-			// Haku
-			//if ($head[1]) {
-			//	$query = $sql->prepare("SELECT id FROM hakusanat WHERE hakusana LIKE CONCAT(?, '%') AND homonyyminro=? LIMIT 1");
-			//	$query->bindValue(1, $head[0]);
-			//	$query->bindValue(2, $head[1]);
-			//} else {
-				$query = $sql->prepare("SELECT id FROM hakusanat WHERE hakusana LIKE CONCAT(?, '%') LIMIT 1");
-				$query->bindValue(1, $word);
-			//}
-			// Set a fetch mode and execute the query.
+			$query = $sql->prepare("SELECT id FROM hakusanat WHERE hakusana LIKE CONCAT(?, '%') LIMIT 1");
+			$query->bindValue(1, $word);
+
 			$query->setFetchMode(PDO::FETCH_NUM);
 			$query->execute();
 
