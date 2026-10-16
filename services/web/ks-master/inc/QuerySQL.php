@@ -23,7 +23,7 @@ final class QuerySQL {
 		$dsn = sprintf("pgsql:host=%s;port=%d;dbname=%s",
     	$cfg['SQL']['HOSTNAME'], $cfg['SQL']['PORTNUM'], $cfg['SQL']['DATABASE']);
 	
-		$skeema = sprintf("SET search_path TO %s", $cfg['SQL']['DATABASE']);
+		$skeema = sprintf("SET search_path TO %s", $cfg['SQL']['SCHEMA']);
 
 		try {
 			// Make a new database object of PDO (PHP Database Object) class and store

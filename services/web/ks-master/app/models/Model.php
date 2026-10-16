@@ -29,7 +29,9 @@ abstract class Model {
 			// Create a new XML (eXist) handle.
 			$this->_xml = new QueryXML();
 
-		} catch (QuerySQLException $e) {
+		} catch (PDOException $e) {
+
+			throw new QuerySQLException($e);
 
 		} catch (QueryXMLException $e) {
 
@@ -79,7 +81,8 @@ abstract class Model {
 			$sql = $this->getSQLHandle();
 
 			// Prepare a query for execution.
-			$sqlText = "SELECT COUNT(*) FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat";
+			//$sqlText = "SELECT COUNT(*) FROM " . $cfg['SQL']['SCHEMA'] . ".hakusanat";
+			$sqlText = "SELECT COUNT(*) FROM hakusanat";
 			$query = $sql->prepare($sqlText);
 
 			// Set fetch mode to object.
