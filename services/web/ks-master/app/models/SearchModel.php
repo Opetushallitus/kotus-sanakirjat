@@ -127,20 +127,35 @@ class SearchModel extends Model {
 			// Tehdään haku hakumuodoista sanan alkuosalla, jos jokerimerkkejä ei ole käytetty / 14.5.2025 OL
 			if ($count > 0) {
 				// jokerimerkkejä käytetty: haku kokonaisella sanalla
-				$hakumuoto = '%#' . $hakusana . '#%';
+				//$hakumuoto = '%#' . $hakusana . '#%';
+				$hakumuoto = $hakusana;
 			} else {
 				// ei jokerimerkkejä: haku alkuosalla
-				$hakumuoto = '%#' . $hakusana . '%';
+				//$hakumuoto = '%#' . $hakusana . '%';
+				$hakumuoto = $hakusana . '%';
 			}
 
 			// haetaan tuloksia sivupalkkiin ja numeroidaan hakutulos (id) / 6.11.2019 OL
 			// haku hakumuodoista / 14.5.2025 OL
-			$query = $sql->prepare("SELECT t.id, t.ks_id, t.tyyppi, t.hakusana, t.hakumuoto, t.homonyyminro
+			/*$query = $sql->prepare("SELECT t.id, t.ks_id, t.tyyppi, t.hakusana, t.hakumuoto, t.homonyyminro
 			FROM (SELECT @rownum:=0) AS r
 			JOIN (SELECT h.ks_id, h.tyyppi, h.hakusana, h.hakumuoto, h.homonyyminro, @rownum:=@rownum + 1 AS id 
 			FROM hakusanat AS h
 			WHERE h.hakumuoto LIKE ?) AS t
 			WHERE t.id > ? - 100 AND t.id < ? + 100");
+			*/
+			$query = $sql->prepare("SELECT t.id, t.ks_id, t.tyyppi, t.hakusana
+									FROM (
+    									SELECT
+        									row_number() OVER (ORDER BY h.id) AS id,
+        									h.ks_id, h.tyyppi, h.hakusana
+    									FROM hakusanat h
+    									WHERE EXISTS (
+											SELECT 1 FROM hakumuodot hm
+											WHERE hm.ks_id = h.ks_id AND hm.hakumuoto LIKE ?
+										)
+									) t
+									WHERE t.id > ? - 100 AND t.id < ? + 100;");
 
 			// haetaan hakumuodolla / 14.5.2025 OL
 			$query->bindValue(1, $hakumuoto);			
