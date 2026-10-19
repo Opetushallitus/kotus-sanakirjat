@@ -248,9 +248,11 @@ class SearchModel extends Model {
 			}
 			// haetaan hakumuodoista / 14.5.2025 OL
 			//$query = $sql->prepare("SELECT hakusana,tyyppi,hakumuoto FROM hakusanat WHERE hakumuoto LIKE ? GROUP BY hakusana COLLATE utf8_bin ORDER BY id LIMIT 15");
-			$query = $sql->prepare("SELECT DISTINCT h.hakusana, h.tyyppi FROM hakusanat h
-									JOIN hakumuodot hm ON hm.ks_id = h.ks_id
-									WHERE hm.hakumuoto LIKE ?
+			$query = $sql->prepare("SELECT h.hakusana, h.tyyppi FROM hakusanat h
+									WHERE EXISTS (
+    									SELECT 1 FROM hakumuodot hm
+    									WHERE hm.ks_id = h.ks_id AND hm.hakumuoto LIKE ?
+									)
 									ORDER BY h.id
 									LIMIT 15;");
 
