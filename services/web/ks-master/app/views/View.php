@@ -343,9 +343,10 @@ abstract class View {
 		if ($data) {
 			$rivit = array();
 			foreach ($data as $row) {
-				$rivit[] = '{"id":"' . $row['id'] . '", "ks_id":"' . $row['ks_id'] . '", 
-				"tyyppi":"' . $row['tyyppi'] . '", "hakusana":"' . $row['hakusana'] . '", 
-				"homonyyminro":"' . $row['homonyyminro'] . '"}';
+				$rivit[] = '{"id":"' . $row['id'] . '", 
+				"ks_id":"' . $row['ks_id'] . '", 
+				"tyyppi":"' . $row['tyyppi'] . '", 
+				"hakusana":"' . $row['hakusana'] . '"}';
 			}
 			$datalist = '{"record":[' . "\n" . implode(",\n", $rivit) . ']}';
 		} else {
