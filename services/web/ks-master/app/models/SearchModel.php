@@ -66,7 +66,9 @@ class SearchModel extends Model {
 
 			return $result;
 			
-		} catch (QuerySQLException $e) {
+		} catch (PDOException $e) {
+
+			throw new QuerySQLException($e);
 		
 		} catch (DICTException $e) {
 		
@@ -77,33 +79,37 @@ class SearchModel extends Model {
 
 	// Uusi funktio / 27.5.2026 JV
 	// Hakee tietokannasta alkukirjaimen perusteella KAIKKIEN aakkosten ensimmäiset hakusanat (aakkoslinkkejä varten)
-	public function getHeadwordFirstAllByPrefix($prefix_str = "0,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z,å,ä,ö") {
-		$prefixes = explode(',', $prefix_str);
-		//$prefixes = array("0", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", 
-		//					"p", "q", "r", "s", "t", "u", "v", "x", "y", "z", "å", "ä", "ö");
-		$union = array();
-		foreach ($prefixes as $prefix) {
-			if ($prefix == "0") {
-				array_push($union, "(SELECT * FROM hakusanat WHERE hakusana ~ '^[0-9]+' LIMIT 1)");
-			}
-			else { // aakkosilla alkavat
-				array_push($union, "(SELECT * FROM hakusanat WHERE LOWER(hakusana) LIKE '" . $prefix . "%' LIMIT 1)");
-			}
-		}
-		$union_query = implode(" UNION ", $union);
+	// Muokattu PostgreSQL:ää varten / 20.10.2026 OL
+	public function getHeadwordFirstAllByPrefix() {
+
+		$prefixes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+					'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+					'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z', 'å', 'ä', 'ö'];
+		$placeholders = implode(',', array_fill(0, count($prefixes), '?'));
+
+		$aakkos_query = "SELECT * FROM (
+    						SELECT DISTINCT ON (lower(left(hakusana, 1))) *
+    						FROM hakusanat
+    						WHERE lower(left(hakusana, 1)) IN ($placeholders)
+    						ORDER BY lower(left(hakusana, 1)), id
+						) ekathakusanat
+						ORDER BY id;";
+		
 		try
 		{
 			// Get SQL (MySQL) handle.
 			$sql = $this->getSQLHandle();
-			$query = $sql->prepare($union_query);
-			// Set fetch mode to object.
-			// Set a fetch mode and execute the query.
+			$query = $sql->prepare($aakkos_query);
+			// Set a fetch mode and execute the query with the prefixes as parameters.
 			$query->setFetchMode(PDO::FETCH_ASSOC);
-			$query->execute();
+			$query->execute($prefixes);
 			$result = $query->fetchAll();
 			return $result;			
 		}
-		catch (QuerySQLException $e) {
+		catch (PDOException $e) {
+
+			throw new QuerySQLException($e);
+
 		}
 		catch (DICTException $e) {
 		}
