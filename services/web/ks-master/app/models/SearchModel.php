@@ -82,16 +82,30 @@ class SearchModel extends Model {
 	// Muokattu PostgreSQL:ää varten / 20.10.2026 OL
 	public function getHeadwordFirstAllByPrefix() {
 
-		$prefixes = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
-					'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+		$prefixes = ['0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
 					'p', 'q', 'r', 's', 't', 'u', 'v', 'x', 'y', 'z', 'å', 'ä', 'ö'];
 		$placeholders = implode(',', array_fill(0, count($prefixes), '?'));
 
-		$aakkos_query = "SELECT * FROM (
-    						SELECT DISTINCT ON (lower(left(hakusana, 1))) *
-    						FROM hakusanat
-    						WHERE lower(left(hakusana, 1)) IN ($placeholders)
-    						ORDER BY lower(left(hakusana, 1)), id
+		$aakkos_query = "SELECT * FROM 
+						(SELECT DISTINCT ON (
+        					CASE
+            					WHEN hakusana ~ '^[0-9]' THEN '0'
+            					ELSE lower(left(hakusana, 1))
+        					END
+							) *
+    					FROM hakusanat
+    					WHERE (
+        					CASE
+            					WHEN hakusana ~ '^[0-9]' THEN '0'
+            					ELSE lower(left(hakusana, 1))
+        					END
+    					) IN ($placeholders)
+    					ORDER BY
+        					CASE
+            					WHEN hakusana ~ '^[0-9]' THEN '0'
+            					ELSE lower(left(hakusana, 1))
+        					END,
+        					id
 						) ekathakusanat
 						ORDER BY id;";
 		
