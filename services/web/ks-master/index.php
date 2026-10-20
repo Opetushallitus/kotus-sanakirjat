@@ -16,7 +16,7 @@ include_once "inc/DICT_init.php";
 
 $uriparts = explode("/", $_SERVER["REQUEST_URI"]);
 // poimitaan mahdollinen hakusana
-$hakusana = isset($uriparts[1]) && !str_starts_with($uriparts[1], '?') ? $uriparts[1] : '';
+$hakusana = isset($uriparts[0]) && !str_starts_with($uriparts[0], '?') ? $uriparts[0] : '';
 // ei sallita muita kuin kirjaimia, numeroita, välilyöntejä, yhdysmerkkejä ja heittomerkkejä
 $siivottu_hakusana = preg_replace(
     '/[^\p{L}\p{N}’\s-]/u',
