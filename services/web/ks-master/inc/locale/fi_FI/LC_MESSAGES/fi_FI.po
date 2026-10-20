@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-20 11:05+0300\n"
-"PO-Revision-Date: 2026-10-20 11:07+0300\n"
+"POT-Creation-Date: 2026-10-20 17:08+0300\n"
+"PO-Revision-Date: 2026-10-20 17:08+0300\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -161,8 +161,7 @@ msgstr "Tarkennettu haku Kielitoimiston sanakirjasta"
 #: app/pages/AdvancedSearchForm.php:139 app/pages/AdvancedSearchForm.php:148
 #: app/pages/AdvancedSearchForm.php:149 app/pages/Background.php:25
 #: pub/Footer.php:21 pub/Footer.php:25 pub/Footer.php:26 pub/Footer.php:28
-#: pub/Footer.php:29 pub/Footer.php:42 pub/Footer.php:43 pub/Footer.php:47
-#: pub/Footer.php:48 pub/Navi.php:62
+#: pub/Footer.php:29 pub/Footer.php:42 pub/Footer.php:43 pub/Navi.php:62
 msgid "Link_OpenNewWin"
 msgstr "avautuu uuteen ikkunaan"
 
@@ -405,21 +404,9 @@ msgstr "Bibliografiatiedot"
 msgid "Footer_Last_Updated"
 msgstr "Viimeksi päivitetty"
 
-#: pub/Footer.php:41 pub/Footer.php:46
-msgid "Footer_CC4_license_link"
-msgstr "https://creativecommons.org/licenses/by/4.0/deed.fi"
-
-#: pub/Footer.php:45
-msgid "Footer_Published_with"
-msgstr "Aineisto on julkaistu"
-
-#: pub/Footer.php:47 pub/Footer.php:48 pub/Footer.php:49
-msgid "Footer_CC4_International"
-msgstr "Creative Commons Nimeä 4.0 Kansainvälinen"
-
-#: pub/Footer.php:49
-msgid "Footer_Licence"
-msgstr "-lisenssillä"
+#: pub/Footer.php:42 pub/Footer.php:43
+msgid "Footer_Terms_of_use"
+msgstr "Käyttöehdot"
 
 #: pub/KwicSearchLeftBar.php:50
 msgid "KwicSearchResults_Caption"
@@ -472,6 +459,18 @@ msgstr "Hakutulokset"
 #: pub/SearchLeftBar.php:41
 msgid "QuickSearchResults_Hits"
 msgstr "kpl"
+
+#~ msgid "Footer_CC4_license_link"
+#~ msgstr "https://creativecommons.org/licenses/by/4.0/deed.fi"
+
+#~ msgid "Footer_Published_with"
+#~ msgstr "Aineisto on julkaistu"
+
+#~ msgid "Footer_CC4_International"
+#~ msgstr "Creative Commons Nimeä 4.0 Kansainvälinen"
+
+#~ msgid "Footer_Licence"
+#~ msgstr "-lisenssillä"
 
 #~ msgid "Permalink"
 #~ msgstr "Linkki artikkeliin"

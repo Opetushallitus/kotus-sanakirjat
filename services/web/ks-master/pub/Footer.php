@@ -21,10 +21,10 @@ if (!constant("IN_KS")) die("General error, exiting.");
 aria-label="<?= _("Footer_Kotus_www") ?> <?= _("Link_OpenNewWin") ?>"><?= _("Footer_Kotus_www") ?></a>)
 </p>
 <p>
-<a target="_blank" href="https://www.kotus.fi/kotus/kotus_verkossa/evastekaytanto" 
+<a target="_blank" href="https://kaino.kotus.fi/tietoja/evasteet.html" 
  title="<?= _("Footer_Cookies") ?> <?= _("Link_OpenNewWin") ?>" 
  aria-label="<?= _("Footer_Cookies") ?> <?= _("Link_OpenNewWin") ?>"><?= _("Footer_Cookies") ?></a><br />
-<a target="_blank" href="https://www.kotus.fi/kotus/kotus_verkossa/saavutettavuusseloste" 
+<a target="_blank" href="https://kaino.kotus.fi/tietoja/saavutettavuus.html" 
  title="<?= _("Footer_Accesibility") ?> <?= _("Link_OpenNewWin") ?>"
  aria-label="<?= _("Footer_Accesibility") ?> <?= _("Link_OpenNewWin") ?>"><?= _("Footer_Accesibility") ?></a><br />
 </p>
@@ -38,15 +38,9 @@ ISSN 2323-3370</p>
 <p>
 <?= _("Footer_Last_Updated") ?> <?= $last_update ?></p>
 <p>
-<a rel="license" target="_blank" href="<?= _("Footer_CC4_license_link") ?>" 
- title="Creative Commons -lisenssi <?= _("Link_OpenNewWin") ?>" 
- aria-label="Creative Commons -lisenssi <?= _("Link_OpenNewWin") ?>">
-<img alt="Creative Commons -lisenssi" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/80x15.png" /></a><br />
-<?= _("Footer_Published_with") ?> 
-<a target="_blank" rel="license" href="<?= _("Footer_CC4_license_link") ?>" 
- title="<?= _("Footer_CC4_International") ?> <?= _("Link_OpenNewWin") ?>"
- aria-label="<?= _("Footer_CC4_International") ?> <?= _("Link_OpenNewWin") ?>">
-<?= _("Footer_CC4_International") ?></a> <?= _("Footer_Licence") ?>.
+<a target="_blank" href="./?p=kayttoehdot" 
+ title="<?= _("Footer_Terms_of_use") ?> <?= _("Link_OpenNewWin") ?>" 
+ aria-label="<?= _("Footer_Terms_of_use") ?> <?= _("Link_OpenNewWin") ?>"><?= _("Footer_Terms_of_use") ?></a>
 <br />
 </p>
 </div>
