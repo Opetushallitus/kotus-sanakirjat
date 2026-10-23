@@ -225,6 +225,10 @@ The AWS Chatbot Slack authorization (needed by `MonitorStack`) and the
 `/monitor/slack_*` SSM parameters must also exist in the account before its
 first deploy - both are one-time manual steps per account.
 
+### Updating PHP (incl. urgent security fixes)
+
+See [`docs/playbooks/php-security-update.md`](../docs/playbooks/php-security-update.md).
+
 ## AWS vault / SSO
 
 For deploying from your own machine instead of GitHub Actions (e.g. the

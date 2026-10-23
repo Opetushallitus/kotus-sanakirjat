@@ -4,7 +4,10 @@
 # this file is infra: base image, PHP extensions/locale the app needs, Apache
 # config (this app ships no .htaccess of its own), and the health/robots
 # endpoints that aren't part of the app.
-FROM php:8.3-apache
+# Pinned to an exact patch release so a rebuild can't silently pick up an
+# older cached base. 8.3.36 fixes CVE-2026-109618 / CVE-2026-109619 (remote
+# code execution via multipart request parsing) - don't go below it.
+FROM php:8.3.36-apache
 
 # ECS's containerPort for this service is fixed at 8080 (see infra/bin/infra.ts,
 # WebEcsService) - the image's default of 80 needs to move to match.
