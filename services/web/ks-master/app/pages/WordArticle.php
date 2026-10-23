@@ -97,9 +97,10 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <script type="text/javascript">
 	// linkin kopiointi leikepöydälle
 	function copyPermalink(button) {
-  		const url = button.dataset.url;
-
-  		navigator.clipboard.writeText(url)
+  		//const url = button.dataset.url;
+  		//navigator.clipboard.writeText(url)
+		const url = new URL(button.dataset.url, window.location.origin);
+		navigator.clipboard.writeText(url.href)
     	.then(() => {
       			document.getElementById('copy-status').textContent =
         		'<?= _("Link copied to clipboard") ?>';

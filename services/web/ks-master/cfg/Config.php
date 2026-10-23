@@ -17,10 +17,10 @@ $cfg['KS'] = array(
 	'BASE_PATH' 	=> dirname(dirname(__FILE__)),
 
 	// URL
-	'KS_PATH'		=> "https://kaino-testi.kotus.valtion.fi/ks/",
+	//'KS_PATH'		=> "https://kaino-testi.kotus.valtion.fi/ks/",
 	//'KS_URL'		=> "https://pilviosoite-tähän",
 	'KS_URL'		=> "https://kielitoimistonsanakirja.fi/",
-	//'KS_PATH'		=> "/",
+	'KS_PATH'		=> "/",
 
 	// MAILTO
 	'MAILTO'		=> "mailto:kielitoimistonsanakirja@kotus.fi?subject=Palautetta Kielitoimiston sanakirjasta: ",
