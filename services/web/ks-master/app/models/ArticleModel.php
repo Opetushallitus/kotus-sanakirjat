@@ -156,21 +156,19 @@ class ArticleModel extends Model {
 	}
 
 	// Hakusanalistan oikean kohdan noutamiseen tietokannasta sanan perusteella 
-	public function getHeadwordListIndexByWord($word) {
+	public function getHeadwordListIndexByWord(string $word): ?int {
 		
 		try {
 			// Get SQL (MySQL) handle.
 			$sql = $this->getSQLHandle();
 			
-			$query = $sql->prepare("SELECT id FROM hakusanat WHERE hakusana LIKE CONCAT(?, '%') LIMIT 1");
-			$query->bindValue(1, $word);
+			    $query = $sql->prepare("SELECT id FROM hakusanat WHERE hakusana ILIKE ? ORDER BY id LIMIT 1");
 
-			$query->setFetchMode(PDO::FETCH_NUM);
-			$query->execute();
+    			$query->execute([$word . '%']);
 
-			$result = $query->fetchAll();
+    			$id = $query->fetchColumn();
 
-			return $result[0][0];
+    			return $id !== false ? (int)$id : null;
 			
 		} catch (QuerySQLException $e) {
 		
