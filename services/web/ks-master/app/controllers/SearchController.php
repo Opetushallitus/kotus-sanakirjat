@@ -250,9 +250,7 @@ class SearchController extends Controller {
 		if ($this->get("count") == 0) {
 
 			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
-				" <i>" . $model->getFirstWordArticle()->hakusana . "&ndash;" . $model->getLastWordArticle()->hakusana . "</i>. " .
-				_("AdvancedSearchResults_NoResults_Message_End") . 
-				" <a target='_ukk' href='" . $cfg['KS']['UKK_URL'] . "'>" . _("FAQ") . "</a>" . "."
+				_("AdvancedSearchResults_NoResults_Message_End") . "."
 			);
 			
 		}
