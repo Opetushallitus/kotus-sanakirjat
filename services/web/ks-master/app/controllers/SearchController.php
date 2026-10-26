@@ -258,7 +258,7 @@ class SearchController extends Controller {
 		$fullquery = $model->getRestWrappedQuery($query, 1, $this->get("sessionid"));
 		$results = $model->getAdvancedSearchResults($fullquery);
 		// DEBUG
-		var_dump($results);
+		//var_dump($results);
 		
 		// Set a page title.
 		$this->set("title", _("Advanced search results"));
@@ -355,9 +355,9 @@ class SearchController extends Controller {
 		$kwicquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), 1, $this->get("sessionid"));
 		$results = $model->getAdvancedSearchResults($kwicquery);
 		// DEBUG
-		echo "<pre>";
-		echo htmlspecialchars($results);
-		echo "</pre>";
+		//echo "<pre>";
+		//echo htmlspecialchars($results);
+		//echo "</pre>";
 		
 		// Set a page title.
 		$this->set("title", _("Advanced search results") . " (KWIC)");
