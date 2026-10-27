@@ -530,10 +530,10 @@ class SearchModel extends Model {
 
 		$query = "";
 		
+		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
+		$keyword = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $keyword);
 		// Replace * => .* and ? => . for regular expression search.
-		// poistetaan piste, koska sitä ei voi hakea / 13.10.2026 OL
-		$keyword = str_replace(array("*", "?", "."), array(".*", ".", ""), $keyword);
-		//$fulltext = str_replace(array("*", "?"), array(".*", "."), $fulltext);
+		$keyword = str_replace(['*', '?'],['.*', '.'], $keyword);
 		
 		if ($keyword and $from == 1) {
 			// Search for all headword
@@ -612,9 +612,11 @@ class SearchModel extends Model {
 
 		$query = "";
 		
+		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
+		$fulltext = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $fulltext);
 		// Replace * => .* and ? => . for regular expression search.
-		// poistetaan piste, koska sitä ei voi hakea / 13.10.2026 OL
-		$fulltext = str_replace(array("*", "?", "."), array(".*", ".", ""), $fulltext);
+		$fulltext = str_replace(['*', '?'],['.*', '.'], $fulltext);
+
 		
 		if ($fulltext and $fullfrom == 1) {
 			// Haku koko artikkelista
