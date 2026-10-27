@@ -15,7 +15,7 @@ class ArticleModel extends Model {
 	//
 	// UUSI osumien korostustapa / 27.4.2021 OL
 	//
-	public function getWordArticle($id, $mword="", $viewtype = "full") {
+	public function getWordArticle(string $id, string $mword='', string $viewtype = 'full'): ?string {
 
 		global $cfg; // Get global configurations
 
@@ -96,7 +96,7 @@ class ArticleModel extends Model {
 	//
 	// UUSI osumien korostustapa / 27.4.2021 OL
 	//
-	public function getKwicWordArticle($id, $osumanro = 1, $viewtype = "full") {
+	public function getKwicWordArticle(string $id, int $osumanro = 1, string $viewtype = 'full'): ?string {
 
 		global $cfg; // Get global configurations
 
@@ -178,39 +178,7 @@ class ArticleModel extends Model {
 			
 	}
 
-	// UUSI 18.11.2019 OL - Käytetään vain kerran, aakkosselauksessa!
-	// Palauttaa sanakirja-id:n tietokanta-id:n perusteella
-	public function getArticleIdById($id) {
-		
-		try {
-		
-			// Get SQL (MySQL) handle.
-			$sql = $this->getSQLHandle();
-			
-			// Prepare a query for execution.
-			$query = $sql->prepare("SELECT * FROM hakusanat WHERE id = ? LIMIT 1");
-			
-			// Bind a variable into it.
-			$query->bindValue(1, $id);
-			
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-			
-			// Execute query.
-			$query->execute();
-			
-			// Return the word data.
-			return $query->fetch();
-		
-		} catch (QuerySQLException $e) {
-			
-		} catch (DICTException $e) {
-			
-		}
-		
-	}
-
-	public function getArticlePath($ks_id, $word) {
+	public function getArticlePath(string $ks_id, string $word): ?string {
 
 		// p=article&dict_id=xxx&word=yyy
 	
@@ -218,7 +186,7 @@ class ArticleModel extends Model {
 	}
 
 	// Pysyvä linkki artikkeliin / 1.10.2026 OL
-	public function getArticleHeadword($ks_id) {
+	public function getArticleHeadword(string $ks_id): ?string {
 	
 		try {
 		
@@ -227,18 +195,14 @@ class ArticleModel extends Model {
 			
 			// Prepare a query for execution.
 			$query = $sql->prepare("SELECT hakusana FROM hakusanat WHERE ks_id = ? LIMIT 1");
-			
 			// Bind a variable into it.
 			$query->bindValue(1, $ks_id);
 			
-			// Set fetch mode to object.
-			$query->setFetchMode(PDO::FETCH_OBJ);
-			
 			// Execute query.
 			$query->execute();
-			$result = $query->fetch();
+			$hakusana = $query->fetchColumn();
 
-			return $result->hakusana;
+			return $hakusana !== false ? (string)$hakusana : null;
 		
 		} catch (QuerySQLException $e) {
 			
