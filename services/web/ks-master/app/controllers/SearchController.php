@@ -234,6 +234,12 @@ class SearchController extends Controller {
 
 		// DEBUG
 		//var_dump($query);
+		// Hakuehdoissa jotain vikaa, jos $query on tyhjä / 27.10.2026 OL
+		if (!$query) {
+			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
+				_("AdvancedSearchResults_NoResults_Message_End") . "."
+			);
+		}
 
 		$firstquery = $model->getRestWrappedQuery($query, 1, 0);
 
@@ -325,7 +331,13 @@ class SearchController extends Controller {
 
 		// DEBUG
 		//var_dump($query);
-
+		// Hakuehdoissa jotain vikaa, jos $query on tyhjä / 27.10.2026 OL
+		if (!$query) {
+			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
+				_("AdvancedSearchResults_NoResults_Message_End") . "."
+			);
+		}
+		
 		// ensimmäinen kysely, ei sessionid:tä / 17.7.2026 OL
 		$firstquery = $model->getKwicRestWrappedQuery($query, $this->get("fullfrom", true), 1, 0);
 		// tehdään haku

@@ -390,6 +390,8 @@ class SearchModel extends Model {
 
 		return array($hakusana, $count);
 	}
+
+
 	
 	/*
 		TARKENNETTU HAKU
@@ -532,6 +534,8 @@ class SearchModel extends Model {
 		
 		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
 		$keyword = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $keyword);
+		// tarkistetaan, ettei hakuun jäänyt pelkkiä jokerimerkkejä (* ja ?)
+		if (preg_match('/^[\*\?]+$/', $keyword)) { $keyword = ''; }
 		// Replace * => .* and ? => . for regular expression search.
 		$keyword = str_replace(['*', '?'],['.*', '.'], $keyword);
 		
@@ -594,8 +598,12 @@ class SearchModel extends Model {
 
 		}
 
-		// xQuery-yhdistelmähaku kokonaisuudessaan
-		$query = "//DictionaryEntry" . $query;
+		if (empty($query)) {
+			$query = null;
+		} else {
+			// xQuery-yhdistelmähaku kokonaisuudessaan
+			$query = "//DictionaryEntry" . $query;	
+		}
 
 		return $query;
 		
@@ -614,6 +622,8 @@ class SearchModel extends Model {
 		
 		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
 		$fulltext = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $fulltext);
+		// tarkistetaan, ettei hakuun jäänyt pelkkiä jokerimerkkejä (? ja *)
+		if (preg_match('/^[\*\?]+$/', $fulltext)) { $fulltext = ''; }
 		// Replace * => .* and ? => . for regular expression search.
 		$fulltext = str_replace(['*', '?'],['.*', '.'], $fulltext);
 
@@ -647,9 +657,12 @@ class SearchModel extends Model {
 
 		} else {
 			// TODO: do something if $fullfrom wasn't set at all.
-			$query = "//foo";
-			$_SESSION['query']['fulltext'] = $query;
+			$query = "";
 		}
+
+		if (empty($query)) {
+			$query = null;
+		} 
 
 		return $query;
 		
