@@ -704,7 +704,7 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 .search-form-grid {
 	display: grid;
 	grid-template-columns: auto auto;
-	align-items: start;
+	align-items: baseline;
 	justify-items: start;
 	grid-column-gap: 1rem;
 	grid-row-gap: 1rem;
@@ -714,28 +714,46 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	justify-self: stretch;
 }
 
-#search-form input[type=text] {
+#search-form input[type=text], #search-form2 input[type=text] {
 	font-size: 1rem;
-	padding-left: 0.2rem;
-	padding-right: 0.2rem;
-	border: 1px solid #cccccc;
+	line-height: 1.4375rem;
+	border: 1px solid #454545;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding-left: 0.58rem;
+	padding-right: 0.58rem;
+	min-height: 2.5rem;
 }
-#search-form select {
+#search-form select, #search-form2 select {
 	font-size: 1rem;
-	border: 1px solid #cccccc;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	cursor: pointer;
+	border-radius: 4px;
+	border: 1px solid #454545;
+	box-sizing: border-box;
+	background: #fff;
+	padding: 0.5rem 0.5rem;
+	line-height: 1.4375rem;
+	min-height: 2.5rem;	
 }
 #search-form option {
 	font-size: 1rem;
 }
 
-#search-form input[type=submit], #search-form input[type=reset] {
-	font-family: "Noto Serif", serif;
+#search-form input[type=submit], #search-form input[type=reset], , #search-form2 input[type=submit], #search-form2 input[type=reset] {
+	font-family: "Open Sans", sans-serif;
 	font-size: 1rem;
 	color: #ffffff;
 	background-color: #007faa;
-	padding: 0.3rem 1rem;
-	border: 1px solid #007faa;
-	border-radius: 1.3rem;
+	border: 2px solid transparent;
+	border-radius: 0.25rem;
+	padding: 0.375rem 1rem;
+	cursor: pointer;
+}
+
+#search-form label {
+	font-weight: bold;
 }
 
 .search-form-box {
