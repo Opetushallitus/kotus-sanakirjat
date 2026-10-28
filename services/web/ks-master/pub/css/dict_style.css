@@ -127,52 +127,6 @@ div.kwic {
 	padding-bottom: 0.75rem;
 }
 
-/* Tarkennetun haun lomakkeen lisäsäädöt */
-#search-form fieldset + fieldset, #search-form fieldset + div, #search-form div + fieldset {
-	margin-top: 1rem;
-}
-div.search-form-grid {
-	grid-template-columns: fit-content(12rem) auto !important;
-}
-
-.hakutab {
-	border-style: solid;
-	border-width: thin;
-	padding: 1rem;
-  	margin-bottom: 1rem;
-}
-
-#search-form2 {
-	text-align: left;
-	font-family: 'Open Sans', sans-serif;
-}
-#search-form2 select {
-	font-size: 1rem;
-	border: 1px solid #cccccc;
-}
-/* search-form-fulltext */
-#search-form-fulltext:invalid, input[aria-invalid="true"] {
-	background-color: #ffe6db;
-}
-#search-form-fulltext-error, #search-form-error	{
-	display:none;
-	color: #cc3300;
-}
-.search-form-checkbox {
-	margin-top: 0.8rem;
-}
-
-/* tarkennetun haun lomakkeen submit- ja reset-painikkeet, 10.6.2026 jv */
-.search-form-buttons input[type=submit], .search-form-buttons input[type=reset] {
-	font-family: "Noto Serif", serif;
-	font-size: 1rem;
-	color: #ffffff;
-	background-color: #007faa;
-	padding: 0.3rem 1rem;
-	border: 1px solid #007faa;
-	border-radius: 1.3rem;
-}
-
 @media screen and (max-width: 800px) {
 	.search-form-grid {
 		display: block !important;

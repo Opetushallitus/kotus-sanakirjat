@@ -694,16 +694,19 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 
 /* === TARKENNETUN HAUN LOMAKE === */
 
-#search-form {
+#search-form, #search-form2 {
 	text-align: left;
 	font-family: 'Open Sans', sans-serif;
-	font-size: 1rem;
+	font-size: 1rem;	
+}
+#search-form {
 	margin-bottom: 3rem;
 }
 
 .search-form-grid {
 	display: grid;
-	grid-template-columns: auto auto;
+	/* grid-template-columns: auto auto; */
+	grid-template-columns: fit-content(12rem) auto !important;
 	align-items: baseline;
 	justify-items: start;
 	grid-column-gap: 1rem;
@@ -712,6 +715,9 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 .search-form-grid fieldset {
 	grid-column-start: span 2;
 	justify-self: stretch;
+}
+#search-form fieldset + fieldset, #search-form fieldset + div, #search-form div + fieldset {
+	margin-top: 1rem;
 }
 
 #search-form input[type=text], #search-form2 input[type=text] {
@@ -737,11 +743,14 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	line-height: 1.4375rem;
 	min-height: 2.5rem;	
 }
+#search-form2 select {
+	background: linear-gradient(180deg, #F3F3F3, #E3E3E3);
+}
 #search-form option {
 	font-size: 1rem;
 }
 
-#search-form input[type=submit], #search-form input[type=reset], , #search-form2 input[type=submit], #search-form2 input[type=reset] {
+#search-form input[type=submit], #search-form input[type=reset], #search-form2 input[type=submit], #search-form2 input[type=reset] {
 	font-family: "Open Sans", sans-serif;
 	font-size: 1rem;
 	color: #ffffff;
@@ -767,6 +776,40 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	grid-column-gap:  0.8rem;
 	grid-row-gap:  0.8rem;
 }
+
+/* Tarkennetun haun lomakkeen lisäsäädöt */
+
+.hakutab {
+	border-style: solid;
+	border-width: thin;
+	padding: 1rem;
+  	margin-bottom: 1rem;
+}
+
+#search-form-fulltext:invalid, input[aria-invalid="true"] {
+	background-color: #ffe6db;
+}
+#search-form-fulltext-error, #search-form-error	{
+	display:none;
+	color: #cc3300;
+	font-family: Open Sans, sans-serif;
+	font-size: 0.813rem;
+	line-height: 1rem;
+	margin: 4px 0px;
+}
+
+.search-form-checkbox {
+	margin-top: 0.8rem;
+}
+
+.iconimg {
+	vertical-align: bottom;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+
+
 
 /* MERKKIPALETTI */
 .search-form-grid-span {
@@ -803,14 +846,6 @@ div#search-form-charlist button, div.merkkipaletti button {
 div#search-form-charlist button:hover, div.merkkipaletti button:hover {
 	background-color: #f0f0f0;
 	font-weight: bold;
-}
-
-
-
-.iconimg {
-	vertical-align: bottom;
-	width: 1.5rem;
-	height: 1.5rem;
 }
 
 
