@@ -533,7 +533,7 @@ class SearchModel extends Model {
 		$query = "";
 		
 		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
-		$keyword = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $keyword);
+		$keyword = preg_replace('/[^\p{L}\p{N}*?]/u', '', $keyword);
 		// tarkistetaan, ettei hakuun jäänyt pelkkiä jokerimerkkejä (* ja ?)
 		if (preg_match('/^[\*\?]+$/', $keyword)) { $keyword = ''; }
 		// Replace * => .* and ? => . for regular expression search.
@@ -621,7 +621,7 @@ class SearchModel extends Model {
 		$query = "";
 		
 		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
-		$fulltext = preg_replace('/[^\p{L}\p{N}\s*?]/u', '', $fulltext);
+		$fulltext = preg_replace('/[^\p{L}\p{N}*?]/u', '', $fulltext);
 		// tarkistetaan, ettei hakuun jäänyt pelkkiä jokerimerkkejä (? ja *)
 		if (preg_match('/^[\*\?]+$/', $fulltext)) { $fulltext = ''; }
 		// Replace * => .* and ? => . for regular expression search.
