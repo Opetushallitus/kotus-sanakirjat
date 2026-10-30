@@ -127,7 +127,10 @@ class ArticleModel extends Model {
 						$query_fulltext . " return util:node-id(\$s) ";
 			$korostettavat[] = "\$elem";
 			$query .= " return (" . implode(",", $korostettavat) . ")";
-			var_dump($query);
+			
+			// DEBUG
+			//var_dump($query);
+
 			$result = $xml->queryRESTXQarticleMatches($id, $query, $viewtype);
 
 			//echo '<pre>';
