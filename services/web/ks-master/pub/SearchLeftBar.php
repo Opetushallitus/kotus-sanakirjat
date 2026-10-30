@@ -24,11 +24,6 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <div class="hakuehdotus" aria-live="polite">
 <input type="text" name="keyword"  
 placeholder="<?= _("search headword") ?>"
-<?php
-	//if (isset($keyword)) {
-	//	echo ' value="' . htmlspecialchars($keyword) . '"';
-	//}
-?>
 id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><button type="submit" aria-label="Hae">&nbsp;</button>
 </div>
 </form>
@@ -43,10 +38,9 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
     </summary>
 	<div class="hakuosa">
 
-		<!--<div class="hakemisto" id="hlista" onscroll="skrollaa(this, '<?= $keyword ?>')" style=""></div>-->
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
 		<div class="hakemisto" id="hlista" 
-			onscroll="skrollaa(this, '<?= isset($keyword) ? $keyword : null ?>', false, 
+			onscroll="skrollaa(this, '<?= isset($keyword) ? htmlspecialchars($keyword, ENT_QUOTES) : null ?>', false, 
 			'<?= isset($list_id) ? $list_id : 1 ?>')" style=""></div>
 
 	</div>
