@@ -64,9 +64,9 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 	});
 	
 
-	// uusi listatoteutus / 7.7.2020 OL
-	haeHakusanatListaan(<?= isset($list_id) ? $list_id : 1 ?>, 
-	'<?= isset($keyword) ? $keyword : "" ?>', false);
+	// Hakusanoissa voi olla heittomerkkejä, jotka pitää koodata / 30.10.2026 OL
+    haeHakusanatListaan(<?= isset($list_id) ? $list_id : 1 ?>,
+    '<?= isset($keyword) ? htmlspecialchars($keyword, ENT_QUOTES) : "" ?>', false);
 
 	// Lisätään details-elementille kuuntelija, joka tuhoaa itsensä ensimmäisen käytön jälkeen (kai?)
 	document.getElementById("hakutuloslista").addEventListener('toggle', detailsUpdate);
