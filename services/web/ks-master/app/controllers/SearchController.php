@@ -472,7 +472,7 @@ class SearchController extends Controller {
 		$this->set("sessionid", isset($_GET['existSession']) ? sanitize_input($_GET['existSession'], 'string', ['default' => null]) : null);
 
 		// Get SESSION-parameters
-		$this->set("keyword", sanitize_input($_SESSION['advsearch']['keyword'], 'string'));
+		$this->set("keyword", sanitize_input(strtolower($_SESSION['advsearch']['keyword']), 'string'));
 		$this->set("hwfrom", sanitize_input($_SESSION['advsearch']['hwfrom'], 'string'));
 		$this->set("tindex", sanitize_input($_SESSION['advsearch']['tindex'], 'string'));
 		$this->set("avindex", sanitize_input($_SESSION['advsearch']['avindex'], 'string'));
