@@ -172,7 +172,7 @@ class SearchModel extends Model {
     									FROM hakusanat h
     									WHERE EXISTS (
 											SELECT 1 FROM hakumuodot hm
-											WHERE hm.ks_id = h.ks_id AND hm.hakumuoto LIKE ?
+											WHERE hm.ks_id = h.ks_id AND hm.hakumuoto ILIKE ?
 										)
 									) t
 									WHERE t.id > ? - 100 AND t.id < ? + 100;");
@@ -225,7 +225,7 @@ class SearchModel extends Model {
 									FROM hakusanat h
 									JOIN hakumuodot hm
 									  ON hm.ks_id = h.ks_id
-									WHERE hm.hakumuoto LIKE ?");
+									WHERE hm.hakumuoto ILIKE ?");
 
 			// haetaan hakumuodolla / 14.5.2025 OL
 			$query->bindValue(1, $hakumuoto);
@@ -271,7 +271,7 @@ class SearchModel extends Model {
 			$query = $sql->prepare("SELECT h.hakusana, h.tyyppi FROM hakusanat h
 									WHERE EXISTS (
     									SELECT 1 FROM hakumuodot hm
-    									WHERE hm.ks_id = h.ks_id AND hm.hakumuoto LIKE ?
+    									WHERE hm.ks_id = h.ks_id AND hm.hakumuoto ILIKE ?
 									)
 									ORDER BY h.id
 									LIMIT 15;");
@@ -322,7 +322,7 @@ class SearchModel extends Model {
 			$query = $sql->prepare("SELECT h.* FROM hakusanat h
 									JOIN hakumuodot hm
 									  ON hm.ks_id = h.ks_id
-									WHERE hm.hakumuoto LIKE ?
+									WHERE hm.hakumuoto ILIKE ?
 									ORDER BY h.id
 									LIMIT 1;");
 
