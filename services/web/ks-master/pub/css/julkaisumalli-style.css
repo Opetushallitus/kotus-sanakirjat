@@ -699,9 +699,6 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1rem;	
 }
-#search-form {
-	margin-bottom: 3rem;
-}
 
 .search-form-grid {
 	display: grid;
@@ -803,11 +800,18 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 }
 
 .iconimg {
-	vertical-align: bottom;
+	vertical-align: center;
 	width: 1.5rem;
 	height: 1.5rem;
 }
 
+.hakuhaitari {
+	color: #05456D;
+	font-style: normal;
+	font-weight: bold;
+	/*font-variant: small-caps;*/
+	margin-bottom: 0.5rem;
+}
 
 
 
