@@ -32,7 +32,9 @@ if (!constant("IN_KS")) die("General error, exiting.");
 	</div>
 </details>
 
+<!-- pois 1.11.2026 JV
 <h2><?= _("AdvancedSearchForm_Caption") ?></h2>
+-->
 
 
 <!-- TARKENNETUN HAUN LOMAKE -->
