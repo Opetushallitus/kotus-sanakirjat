@@ -34,13 +34,13 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
     <summary>
         <?= _("QuickSearchResults_Caption") .
         " (" . "$count " . _("QuickSearchResults_Hits") . ")" .
-        ": htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8') " ?>
+        ": " . htmlspecialchars($keyword, ENT_QUOTES, 'UTF-8') ?>
     </summary>
 	<div class="hakuosa">
 
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
 		<div class="hakemisto" id="hlista" 
-			onscroll="skrollaa(this, '<?= isset($keyword) ? json_encode($keyword) : null ?>', false, 
+			onscroll="skrollaa(this, <?= isset($keyword) ? json_encode($keyword) : null ?>, false, 
 			'<?= isset($list_id) ? $list_id : 1 ?>')" style=""></div>
 
 	</div>
@@ -53,14 +53,14 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 	window.addEventListener("load", function() {
 		var inputElem = document.getElementById("hakuinput");
 		if (inputElem) {
-			inputElem.value = '<?= isset($keyword) ? json_encode($keyword) : "" ?>';
+			inputElem.value = <?= isset($keyword) ? json_encode($keyword) : "" ?>;
 		}
 	});
 	
 
 	// Hakusanoissa voi olla heittomerkkejä, jotka pitää koodata / 30.10.2026 OL
     haeHakusanatListaan(<?= isset($list_id) ? $list_id : 1 ?>,
-    '<?= isset($keyword) ? json_encode($keyword) : "" ?>', false);
+    <?= isset($keyword) ? json_encode($keyword) : "" ?>, false);
 
 	// Lisätään details-elementille kuuntelija, joka tuhoaa itsensä ensimmäisen käytön jälkeen (kai?)
 	document.getElementById("hakutuloslista").addEventListener('toggle', detailsUpdate);

@@ -31,7 +31,7 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 <!-- Siirretty hakutuloslistan sisältä tähän / 12.6.2020 OL 
 <div class="hakuinfo">
 	<p>
-	<?= _("AdvancedSearchResults_Caption") . ": $keyword " ?><br>
+	<?= _("AdvancedSearchResults_Caption") . ": " . $keyword " ?><br>
 	<span id="advcount"><?= $count ?></span><?= " " . _("AdvancedSearchResults_Hits") ?>
 	</p>
 </div>
@@ -49,7 +49,7 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
 		<div class="hakemisto" id="hlista" 
 			onscroll="skrollaa(this, 
-			'<?= isset($keyword) ? htmlspecialchars($keyword, ENT_QUOTES) : null ?>', 
+			<?= isset($keyword) ? json_encode($keyword) : null ?>, 
 			'<?= isset($sessionid) ? $sessionid : null ?>', 
 			'<?= isset($list_id) ? $list_id : 1 ?>')" 
 			style=""></div>
