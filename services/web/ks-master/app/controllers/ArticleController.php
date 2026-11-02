@@ -125,8 +125,6 @@ class ArticleController extends Controller {
 			$viewtitle = _("Article_Viewtype_Full");
 		}
 		
-		// Set some scripts to be used within a page.
-		//$this->set("scripts", array("results.js", "showhiddenlist.js"));
 		// Sivupalkkien javascript samassa tiedostossa / 7.7.2020 OL
 		$this->set("scripts", array("leftbar.js"));
 		

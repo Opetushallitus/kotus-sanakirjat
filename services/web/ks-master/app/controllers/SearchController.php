@@ -269,8 +269,6 @@ class SearchController extends Controller {
 		// Set a page title.
 		$this->set("title", _("Advanced search results"));
 		
-		// Set some scripts being used on the page.
-		//$this->set("scripts", array("advresults.js"));
 		// Sivupalkkien javascript samassa tiedostossa / 7.7.2020 OL
 		$this->set("scripts", array("leftbar.js"));
 		
