@@ -805,11 +805,11 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	height: 1.5rem;
 }
 
-.hakuhaitari {
+.hakuhaitarilabel {
 	color: #05456D;
 	font-style: normal;
 	font-weight: bold;
-	/*font-variant: small-caps;*/
+	font-size: 1.125rem;
 	margin-bottom: 0.5rem;
 }
 

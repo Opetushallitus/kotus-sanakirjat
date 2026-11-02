@@ -19,7 +19,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <h1><?= _("AdvancedSearch_Page") ?></h1>
 
 <details open>
-	<summary class="haitarilabel">Pikaohje</summary>
+	<summary class="hakuhaitarilabel">Pikaohje</summary>
 	<div>
 	Tarkennetussa haussa voi käyttää niin sanottuja jokerimerkkejä eli kysymysmerkkiä ja tähtimerkkiä. 
 	Kysymysmerkki (?) korvaa minkä tahansa merkin. 
@@ -47,7 +47,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 ?>
 
 <details name="tabs" class="hakutab"<?php echo $searchmode == "advsearch" ? " open" : ""; ?>>
-    <summary class="haitarilabel"><?= _("AdvancedSearchForm_Keyword_Legend") ?></summary>
+    <summary class="hakuhaitarilabel"><?= _("AdvancedSearchForm_Keyword_Legend") ?></summary>
 
 	<!-- TARKENNETTU HAKU: ARTIKKELIHAKU -->
 	<form id="search-form" action="./?p=advsearchresults" method="post">
@@ -122,7 +122,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 
 <!-- TARKENNETTU HAKU: KWIC-HAKU -->
 <details name="tabs" class="hakutab"<?php echo $searchmode == "kwicsearch" ? " open" : ""; ?>>
-    <summary class="haitarilabel"><?= _("AdvancedSearchForm_FullText_Legend") ?></summary>
+    <summary class="hakuhaitarilabel"><?= _("AdvancedSearchForm_FullText_Legend") ?></summary>
 
 	<form id="search-form2" action="./?p=advkwicresults" method="post">
 
