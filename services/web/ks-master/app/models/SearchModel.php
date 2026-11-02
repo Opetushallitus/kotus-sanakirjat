@@ -566,6 +566,16 @@ class SearchModel extends Model {
 			$_SESSION['query']['keyword'] = "[@freeType='monoWord'][ft:query(.//SearchForm,<query><regex>$keyword</regex></query>)]";
 			$query .= $_SESSION['query']['keyword'];
 
+		} elseif ($from == 3 and !$keyword) {
+			// Search for compound headword, but no keyword given
+			$_SESSION['query']['keyword'] = "[@freeType='compound']";
+			$query .= $_SESSION['query']['keyword'];
+
+		} elseif ($from == 4 and !$keyword) {
+			// Search for non-compound headword, but no keyword given
+			$_SESSION['query']['keyword'] = "[@freeType='monoWord']";
+			$query .= $_SESSION['query']['keyword'];
+
 		} else {
 			// TODO: do something if $from wasn't set at all.
 		}
