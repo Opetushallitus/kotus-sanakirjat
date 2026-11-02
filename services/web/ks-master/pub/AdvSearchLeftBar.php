@@ -28,14 +28,6 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 </div>
 </form>
 
-<!-- Siirretty hakutuloslistan sisältä tähän / 12.6.2020 OL 
-<div class="hakuinfo">
-	<p>
-	<?= _("AdvancedSearchResults_Caption") . ": " . $keyword " ?><br>
-	<span id="advcount"><?= $count ?></span><?= " " . _("AdvancedSearchResults_Hits") ?>
-	</p>
-</div>
--->
 
 <!-- 2.6.2020 OL -->
 <details id="hakutuloslista">
