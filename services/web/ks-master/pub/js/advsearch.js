@@ -53,7 +53,7 @@ document.addEventListener("submit", function(event) {
 		// hakuehdon tulee sisältää vähintään yksi muu merkki kuin whitespace, * tai ?
 		if (!/[^\*\?\s]/.test(value)) {
         	event.preventDefault();
-			fieldError.textContent = "Hakuehdon tulee sisältää vähintään yksi muu merkki kuin * tai ?.";
+			//fieldError.textContent = "Hakuehdon tulee sisältää vähintään yksi muu merkki kuin * tai ?.";
 			fieldError.style.display = "block";
 			field.setAttribute("aria-invalid", "true");
 			field.focus();
@@ -83,7 +83,7 @@ document.addEventListener("submit", function(event) {
 		});
 		if (isAnyFieldFilled === false) {
 			event.preventDefault();
-			fieldError.textContent = "Täytä ainakin yksi hakukenttä.";
+			//fieldError.textContent = "Täytä ainakin yksi hakukenttä.";
 			fieldError.style.display = "block";
 			return false;
 		}

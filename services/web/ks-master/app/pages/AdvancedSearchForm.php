@@ -33,7 +33,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 </details>
 
 <!-- pois 1.11.2026 JV
-<h2><?= _("AdvancedSearchForm_Caption") ?></h2>
+<h2>< ?= _("AdvancedSearchForm_Caption") ? ></h2>
 -->
 
 
@@ -112,7 +112,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 			</select>
 		</div>
 	</div>
-	<span id="search-form-error"></span>
+	<span id="search-form-error" style=""><?= _("Fill in at least one search field.") ?></span>
 	<div>&nbsp;</div>
 	<div class="search-form-buttons">
 		<input type="submit" value="<?= _("AdvancedSearchForm_SearchButton") ?>" />
@@ -141,7 +141,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 				title="<?= _("AdvancedSearchForm_Help") ?> <?= _("Link_OpenNewWin") ?>">
 				<img src="./pub/img/common/ohjeet.png" alt="<?= _("AdvancedSearchForm_Help") ?>" class="iconimg" />
 			</a>
-			<span id="search-form-fulltext-error"></span>
+			<span id="search-form-fulltext-error"><?= _("The search term must contain at least one character other than * or ?.") ?></span>
 	</div>
 				
 	<div class="search-form-checkbox">
