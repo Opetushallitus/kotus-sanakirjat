@@ -43,7 +43,7 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 			onscroll="skrollaa(this, 
 			<?= isset($keyword) ? json_encode($keyword) : null ?>, 
 			'<?= isset($sessionid) ? $sessionid : null ?>', 
-			'<?= isset($list_id) ? $list_id : 1 ?>')" 
+			<?= isset($list_id) ? $list_id : 1 ?>)" 
 			style=""></div>
 	</div>
 </details>
