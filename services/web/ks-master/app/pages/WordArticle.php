@@ -71,6 +71,19 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <?= $articlehtml; ?>
 
 <div class="jaalinkit">
+	
+	<?php if ($viewtype === 'inflection'):
+    	$taivutuslyhenteet = _('Inflection abbreviations');
+	?>
+    	<span class="jakolinkki">
+        	<a href="/?p=abbreviations#taivutuslyhenteet"
+        		title="<?= $taivutuslyhenteet ?>"
+           		aria-label="<?= $taivutuslyhenteet ?>">
+            	<?= $taivutuslyhenteet ?>
+        	</a>
+    	</span>
+	<?php endif; ?>
+
 <span class="jakolinkki">
 	<!-- palaute artikkelista sähköpostilla / 30.2.2026 OL -->
 	<span aria-hidden="true"><?= _("Feedback") ?>:</span>

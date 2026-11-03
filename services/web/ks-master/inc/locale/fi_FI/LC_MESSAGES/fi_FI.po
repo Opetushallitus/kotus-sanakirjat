@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 10:38+0200\n"
-"PO-Revision-Date: 2026-11-03 10:38+0200\n"
+"POT-Creation-Date: 2026-11-03 16:18+0200\n"
+"PO-Revision-Date: 2026-11-03 16:21+0200\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -313,21 +313,26 @@ msgstr "Näytä artikkeli oikeassa aakkoskohdassa"
 msgid "Article_Viewtype_DictionaryOrder"
 msgstr "Aakkosellinen selaus"
 
-#: app/pages/WordArticle.php:76 app/pages/WordArticle.php:78
-#: app/pages/WordArticle.php:79
-msgid "Feedback"
-msgstr "Anna palautetta"
+#: app/pages/WordArticle.php:76 app/pages/WordArticle.php:77
+#: app/pages/WordArticle.php:78
+msgid "Inflection abbreviations"
+msgstr "Taivutuslyhenteet avattuna"
 
 #: app/pages/WordArticle.php:83 app/pages/WordArticle.php:85
 #: app/pages/WordArticle.php:86
-msgid "Share this entry"
-msgstr "Jaa linkki"
+msgid "Feedback"
+msgstr "Anna palautetta"
 
-#: app/pages/WordArticle.php:106
+#: app/pages/WordArticle.php:90 app/pages/WordArticle.php:92
+#: app/pages/WordArticle.php:93
+msgid "Share this entry"
+msgstr "Kopioi linkki artikkeliin"
+
+#: app/pages/WordArticle.php:113
 msgid "Link copied to clipboard"
 msgstr "Kopioitu leikepöydälle."
 
-#: app/pages/WordArticle.php:110
+#: app/pages/WordArticle.php:117
 msgid "Failed to copy link to clipboard"
 msgstr "Kopiointi epäonnistui."
 
