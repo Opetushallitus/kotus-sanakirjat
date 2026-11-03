@@ -39,10 +39,10 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 	<div class="hakuosa">
 
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
-		<div class="hakemisto" id="hlista" 
-			onscroll="skrollaa(this, <?= isset($keyword) ? json_encode($keyword) : null ?>, false, 
-			<?= isset($list_id) ? $list_id : 1 ?>)" style=""></div>
-
+		<div class='hakemisto' id='hlista' 
+			onscroll='skrollaa(this, <?= isset($keyword) ? json_encode($keyword) : null ?>, false, 
+			<?= isset($list_id) ? $list_id : 1 ?>)' style=''></div>
+			
 	</div>
 </details>
 
