@@ -41,8 +41,8 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
 		<div class='hakemisto' id='hlista' 
 			onscroll='skrollaa(this, 
-			<?= isset($keyword) ? json_encode($keyword) : null ?>, 
-			<?= isset($sessionid) ? $sessionid : null ?>, 
+			<?= json_encode($keyword ?? null, JSON_UNESCAPED_UNICODE) ?>, 
+            <?= json_encode($sessionid ?? null) ?>, 
 			<?= isset($list_id) ? $list_id : 1 ?>)' 
 			style=''></div>
 	</div>
