@@ -641,7 +641,8 @@ class SearchModel extends Model {
 		if ($fulltext and $fullfrom == 1) {
 			// Haku koko artikkelista
 			if ($lemma) {
-				$_SESSION['query']['fulltext'] = "//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				//$_SESSION['query']['fulltext'] = "//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				$_SESSION['query']['fulltext'] = "//w[ft:query(./@lemma,<query><regex>$fulltext</regex></query>)]";
 			} else {
 				$_SESSION['query']['fulltext'] = "//w[ft:query(.,<query><regex>$fulltext</regex></query>)]";
 			}
@@ -650,7 +651,8 @@ class SearchModel extends Model {
 		} elseif ($fulltext and $fullfrom == 2) {
 			// Haku selitteistä
 			if ($lemma) {
-				$_SESSION['query']['fulltext'] = "//Definition//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				//$_SESSION['query']['fulltext'] = "//Definition//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				$_SESSION['query']['fulltext'] = "//Definition//w[ft:query(./@lemma,<query><regex>$fulltext</regex></query>)]";
 			} else {
 				$_SESSION['query']['fulltext'] = "//Definition//w[ft:query(.,<query><regex>$fulltext</regex></query>)]";
 			}
@@ -659,7 +661,8 @@ class SearchModel extends Model {
 		} elseif ($fulltext and $fullfrom == 3) {
 			// Haku esimerkeistä
 			if ($lemma) {
-				$_SESSION['query']['fulltext'] = "//Example//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				//$_SESSION['query']['fulltext'] = "//Example//w[ft:query(. | ./@lemma,<query><regex>$fulltext</regex></query>)]";
+				$_SESSION['query']['fulltext'] = "//Example//w[ft:query(./@lemma,<query><regex>$fulltext</regex></query>)]";
 			} else {
 				$_SESSION['query']['fulltext'] = "//Example//w[ft:query(.,<query><regex>$fulltext</regex></query>)]";
 			}
