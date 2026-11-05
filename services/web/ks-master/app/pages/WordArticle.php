@@ -21,7 +21,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 			$req_uri = preg_replace("/p=searchresults/", $qs_link, $_SERVER['REQUEST_URI']);
 		} else if (preg_match("/p=advsearchresults/", $_SERVER['REQUEST_URI'])) {
 			$as_link = preg_replace("/p=article/", "p=as-article", $this->get("articlepath")) . "&keyword=" . $this->get("keyword");
-			$req_uri = preg_replace("/p=advsearchresults/", $qs_link, $_SERVER['REQUEST_URI']);
+			$req_uri = preg_replace("/p=advsearchresults/", $as_link, $_SERVER['REQUEST_URI']);
 		} else {
 			// poistetaan edellinen näkymäparametri
 			$req_uri = preg_replace("/&view=(full|inflection|examples)/", "", $_SERVER['REQUEST_URI']);
@@ -115,12 +115,22 @@ if (!constant("IN_KS")) die("General error, exiting.");
 		const url = new URL(button.dataset.url, window.location.origin);
 		navigator.clipboard.writeText(url.href)
     	.then(() => {
-      			document.getElementById('copy-status').textContent =
-        		'<?= _("Link copied to clipboard") ?>';
-    		})
+   			const status = document.getElementById('copy-status');
+			status.textContent = '<?= _("Link copied to clipboard") ?>';
+			status.className = 'success-message';
+			status.style.display = 'inline';
+			setTimeout(() => {
+   				status.style.display = 'none';
+			}, 10000);
+   		})
     	.catch(() => {
-      		document.getElementById('copy-status').textContent =
-        	'<?= _("Failed to copy link to clipboard") ?>';
+			const status = document.getElementById('copy-status');
+			status.textContent = '<?= _("Failed to copy link to clipboard") ?>';
+			status.className = 'error-message';
+			status.style.display = 'inline';
+			setTimeout(() => {
+   				status.style.display = 'none';
+			}, 10000);
     	});
 	}
 	// Show the hash target if it exists
