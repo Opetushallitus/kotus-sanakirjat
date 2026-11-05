@@ -10,7 +10,7 @@ function lomakekuuntelija(form) {
 		// Resetoitaessa fokus siirretään lomakkeen ensimmäiseen input-elementtiin.
         form.addEventListener('reset', function(e) {
 
-			var elements = ['search-form-keyword', 'search-form-from', 'search-form-word-group',
+			let elements = ['search-form-keyword', 'search-form-from', 'search-form-word-group',
 							'search-form-usage-scope', 'search-form-fulltext'];
 
 			elements.forEach(function(item){
@@ -26,9 +26,9 @@ function lomakekuuntelija(form) {
         });
 
 		// Kokotekstihakua käytettäessä disabloidaan muut kentät
-		var fulltext = document.getElementById('search-form-fulltext');
+		let fulltext = document.getElementById('search-form-fulltext');
 		fulltext.addEventListener('input', (event) => {
-			var elements = ['search-form-keyword', 'search-form-from', 'search-form-word-group',
+			let elements = ['search-form-keyword', 'search-form-from', 'search-form-word-group',
 							'search-form-usage-scope'];
 			elements.forEach(function(item){
 				if (fulltext.value != '') {

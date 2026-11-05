@@ -16,23 +16,23 @@ function haeViitekohdePrefix(prefix) {
 	var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			var obj = JSON.parse(xhttp.responseText);
+			let obj = JSON.parse(xhttp.responseText);
 			console.log(obj);
-            var parentElem = document.getElementById("hlista");
+            let parentElem = document.getElementById("hlista");
             parentElem.innerHTML = '';
-            var id1 = obj.record[0].id;
-            var size = obj.record.length;
-            for (var i = 0; i < size; i++) {
-				var item = document.createElement("div");
+            let id1 = obj.record[0].id;
+            let size = obj.record.length;
+            for (let i = 0; i < size; i++) {
+				let item = document.createElement("div");
                 item.setAttribute("id", obj.record[i].id);
 
 				// koostetaan linkki artikkeliin
-				var link = koostaHakusanaLinkki(obj.record[i], id1, false, false);
+				let link = koostaHakusanaLinkki(obj.record[i], id1, false, false);
 
                 item.appendChild(link);
                 parentElem.appendChild(item);
             }
-            var target = document.getElementById(id1);
+            let target = document.getElementById(id1);
             target.parentNode.scrollTop = target.offsetTop - target.parentNode.offsetTop;
          }
   	}
@@ -49,24 +49,24 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			var obj = JSON.parse(xhttp.responseText);
-			var parentElem = document.getElementById("hlista");
+			let obj = JSON.parse(xhttp.responseText);
+			let parentElem = document.getElementById("hlista");
 			parentElem.innerHTML = '';
 			if (isKwic) { // 14.9.2026 JV sivutusnapit KWIC-haulle
-				var sivutusnapitHtml = sivutusNapit(list_id, existSession);
-				var kwicsivutus1 = document.getElementById("kwicsivutus1");
-				var kwicsivutus2 = document.getElementById("kwicsivutus2");
+				let sivutusnapitHtml = sivutusNapit(list_id, existSession);
+				let kwicsivutus1 = document.getElementById("kwicsivutus1");
+				let kwicsivutus2 = document.getElementById("kwicsivutus2");
 				kwicsivutus1.innerHTML = sivutusnapitHtml; // napit ennen hakutuloksia
 				kwicsivutus2.innerHTML = sivutusnapitHtml; // napit hakutulosten jälkeen
 			}
-			var size = obj.record.length;
-			for (var i = 0; i < size; i++) {
+			let size = obj.record.length;
+			for (let i = 0; i < size; i++) {
 				// KWIC-haku
 				if (isKwic) {
-					var item = document.createElement("div");
+					let item = document.createElement("div");
 					item.setAttribute("id", obj.record[i].id);
 					// koostetaan linkki artikkeliin
-					var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
+					let link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
 					// lisätään myös konteksti
 					// hakutulos ensiksi div-elementin sisään
 					item.innerHTML = obj.record[i].kwic;
@@ -86,15 +86,15 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else {
 					// muut kuin kwic-tulokset
-					var item = document.createElement("div");
+					let item = document.createElement("div");
 					item.setAttribute("id", obj.record[i].id);
 					// koostetaan linkki artikkeliin
-					var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
+					let link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
 					item.appendChild(link);
 				}
 				parentElem.appendChild(item);
 			}
-			var target = document.getElementById(list_id);
+			let target = document.getElementById(list_id);
 			if (target) {
 				target.parentNode.scrollTop = target.offsetTop - target.parentNode.offsetTop;
 			}
@@ -103,9 +103,9 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 			parentElem.addEventListener("keydown", function(e) {
 				if (e.key == "ArrowDown") {
 					if (this.contains(document.activeElement)) {
-						var currenta = document.activeElement;
+						let currenta = document.activeElement;
 						if (currenta.parentElement.nextSibling && currenta.parentElement.nextSibling.firstElementChild) { // testataan näin perusteellisesti niin ei tule turhia virheilmoituksia
-							var next = currenta.parentElement.nextSibling.firstElementChild;
+							let next = currenta.parentElement.nextSibling.firstElementChild;
 							e.preventDefault();
 							next.setAttribute("tabindex", "0");
 							next.focus();
@@ -115,9 +115,9 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else if (e.key == "ArrowUp") {
 					if (this.contains(document.activeElement)) {					
-						var currenta = document.activeElement;
+						let currenta = document.activeElement;
 						if (currenta.parentElement.previousSibling && currenta.parentElement.previousSibling.firstElementChild) {
-							var previous = currenta.parentElement.previousSibling.firstElementChild;
+							let previous = currenta.parentElement.previousSibling.firstElementChild;
 							e.preventDefault();
 							previous.setAttribute("tabindex", "0");
 							previous.focus();
@@ -127,12 +127,12 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else if (e.key == "PageDown") {
 					if (this.contains(document.activeElement)) {
-						var currenta = document.activeElement;
-						var previous = currenta;
-						var i;
+						let currenta = document.activeElement;
+						let previous = currenta;
+						let i;
 						for (i = 0; i < 17; i++) {
 							if (previous.parentElement.nextSibling && previous.parentElement.nextSibling.firstElementChild) {
-								var next = previous.parentElement.nextSibling.firstElementChild;
+								let next = previous.parentElement.nextSibling.firstElementChild;
 								e.preventDefault();
 								next.setAttribute("tabindex", "0");
 								next.focus();
@@ -147,12 +147,12 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else if (e.key == "PageUp") {
 					if (this.contains(document.activeElement)) {					
-						var currenta = document.activeElement;
-						var next = currenta;
-						var i;
+						let currenta = document.activeElement;
+						let next = currenta;
+						let i;
 						for (i = 0; i < 17; i++) {
 						if (next.parentElement.previousSibling && next.parentElement.previousSibling.firstElementChild) {
-							var previous = next.parentElement.previousSibling.firstElementChild;
+							let previous = next.parentElement.previousSibling.firstElementChild;
 								e.preventDefault();
 								previous.setAttribute("tabindex", "0");
 								previous.focus();
@@ -176,30 +176,30 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 
 function haeLisaa(keyword, list_id, up_or_down, existSession, isKwic = false) {
 	if (scrollAjax) {
-		var parentElem = document.getElementById("hlista");
-		var inFocus = parentElem.contains(document.activeElement);
-		var firstId = parseInt(parentElem.firstElementChild.getAttribute("id"));
+		let parentElem = document.getElementById("hlista");
+		let inFocus = parentElem.contains(document.activeElement);
+		let firstId = parseInt(parentElem.firstElementChild.getAttribute("id"));
 		if (firstId <= 1 && up_or_down < 0) {
 			return;
 		}
-		var lastId = parseInt(parentElem.lastElementChild.getAttribute("id"));
-		var xhttp = new XMLHttpRequest();
+		let lastId = parseInt(parentElem.lastElementChild.getAttribute("id"));
+		let xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			scrollAjax = false;
 			if (this.readyState == 4 && this.status == 200) {
 				//console.log(xhttp.responseText);
-				var obj = JSON.parse(xhttp.responseText);
-				var size = obj.record.length;
+				let obj = JSON.parse(xhttp.responseText);
+				let size = obj.record.length;
 				if (parseInt(obj.record[0].id) < firstId || parseInt(obj.record[size - 1].id) > lastId) {
 					// tyhjennetään koko lista
 					while (parentElem.firstChild) {
 						parentElem.removeChild(parentElem.firstChild);
 					}
-					for (var i = 0; i < size; i++) {
-						var item = document.createElement("div");
+					for (let i = 0; i < size; i++) {
+						let item = document.createElement("div");
 						item.setAttribute("id", obj.record[i].id);
 						// koostetaan linkki artikkeliin
-						var link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
+						let link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
 						// KWIC-haku: lisätään myös konteksti
 						if (isKwic) {
 							// hakutulos ensiksi div-elementin sisään
@@ -224,8 +224,8 @@ function haeLisaa(keyword, list_id, up_or_down, existSession, isKwic = false) {
 						}
 						parentElem.appendChild(item);
 					}
-					var target;
-					var focusable;
+					let target;
+					let focusable;
 					if (up_or_down < 0) {
 						target = document.getElementById(firstId);
 						focusable = target;
@@ -233,7 +233,7 @@ function haeLisaa(keyword, list_id, up_or_down, existSession, isKwic = false) {
 					else {
 						target = document.getElementById(lastId - 17);
 						focusable = document.getElementById(lastId);
-						var newlastid = parseInt(lastId) + 1;
+						let newlastid = parseInt(lastId) + 1;
 						if (document.getElementById(newlastid)) {
 							focusable = document.getElementById(newlastid);
 						}
@@ -439,7 +439,7 @@ function sivutusNapit(list_id, existSession) {
 		}
 	
 		// kaksi aikaisempaa sivua
-		for (var i = rangestart; i < thissivu; i++) {
+		for (let i = rangestart; i < thissivu; i++) {
 			sivunro = i + 1;
 			sivustart = i * max + 1;
 			html += ' <a href="javascript:null" class="kwicsivutusnappi" onclick="';
@@ -452,7 +452,7 @@ function sivutusNapit(list_id, existSession) {
 		html += ' <b style="color:#c33d00;" class="kwicsivutusnappi">' + sivunro + '</b> ';
 
 		// kaksi seuraavaa sivua
-		for (var i = thissivu + 1; i <= rangeend; i++) {
+		for (let i = thissivu + 1; i <= rangeend; i++) {
 			sivunro = i + 1;
 			sivustart = i * max + 1;
 			html += ' <a href="javascript:null" class="kwicsivutusnappi" onclick="';
@@ -478,6 +478,6 @@ function sivutusNapit(list_id, existSession) {
 }
 
 function teeSivutusNapitOnClick(list_id, existSession) {
-	var command = "haeKwicSivu(" + list_id + ", false, '" + existSession + "'); return false;";
+	let command = "haeKwicSivu(" + list_id + ", false, '" + existSession + "'); return false;";
 	return command;
 }

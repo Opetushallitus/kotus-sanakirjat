@@ -576,8 +576,12 @@ form.hakuruutu input[type=text] {
 	border-right: none;
 	border-bottom: 1px solid #000000;
 	border-left: 1px solid #000000;
+	/* testataan eri pyöristystä väliaikaisesti 5.11.2026
 	border-top-left-radius: 1rem;
 	border-bottom-left-radius: 1rem;
+	*/
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 	margin: 0;
 	text-align: left;
 }
@@ -599,8 +603,12 @@ form.hakuruutu input[type=submit], form.hakuruutu button[type=submit] {
 	border-right: 1px solid #000000;
 	border-bottom: 1px solid #000000;
 	border-left: none;
+	/* testataan eri pyöristystä väliaikaisesti 5.11.2026
 	border-top-right-radius: 1rem;
 	border-bottom-right-radius: 1rem;
+	*/
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
 	margin: 0;
 	text-align: left;
 	cursor:pointer;
@@ -781,6 +789,8 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	border-width: thin;
 	padding: 1rem;
   	margin-bottom: 1rem;
+	/* testataan eri pyöristystä väliaikaisesti 5.11.2026 */
+	border-radius: 4px;
 }
 
 #search-form-fulltext:invalid, input[aria-invalid="true"] {
