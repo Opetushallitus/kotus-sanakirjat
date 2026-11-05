@@ -805,6 +805,23 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	margin: 4px 0px;
 }
 
+.error-message {
+	display:none;
+	color: #cc3300;
+	font-family: Open Sans, sans-serif;
+	font-size: 0.813rem;
+	line-height: 1rem;
+	margin: 4px 0px;
+}
+.success-message {
+	display:none;
+	color: #378703;
+	font-family: Open Sans, sans-serif;
+	font-size: 0.813rem;
+	line-height: 1rem;
+	margin: 4px 0px;
+}
+
 .search-form-checkbox {
 	margin-top: 0.8rem;
 }
