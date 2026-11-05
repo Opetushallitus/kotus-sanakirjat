@@ -48,8 +48,9 @@ function haeViitekohdePrefix(prefix) {
 function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
+		var item = null;
 		if (this.readyState == 4 && this.status == 200) {
-			let obj = JSON.parse(xhttp.responseText);
+			var obj = JSON.parse(xhttp.responseText);
 			let parentElem = document.getElementById("hlista");
 			parentElem.innerHTML = '';
 			if (isKwic) { // 14.9.2026 JV sivutusnapit KWIC-haulle
@@ -63,7 +64,7 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 			for (let i = 0; i < size; i++) {
 				// KWIC-haku
 				if (isKwic) {
-					let item = document.createElement("div");
+					item = document.createElement("div");
 					item.setAttribute("id", obj.record[i].id);
 					// koostetaan linkki artikkeliin
 					let link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
@@ -86,7 +87,7 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 				}
 				else {
 					// muut kuin kwic-tulokset
-					let item = document.createElement("div");
+					item = document.createElement("div");
 					item.setAttribute("id", obj.record[i].id);
 					// koostetaan linkki artikkeliin
 					let link = koostaHakusanaLinkki(obj.record[i], list_id, keyword, existSession, isKwic);
@@ -176,20 +177,20 @@ function haeHakusanatListaan(list_id, keyword, existSession, isKwic = false) {
 
 function haeLisaa(keyword, list_id, up_or_down, existSession, isKwic = false) {
 	if (scrollAjax) {
-		let parentElem = document.getElementById("hlista");
-		let inFocus = parentElem.contains(document.activeElement);
-		let firstId = parseInt(parentElem.firstElementChild.getAttribute("id"));
+		var parentElem = document.getElementById("hlista");
+		var inFocus = parentElem.contains(document.activeElement);
+		var firstId = parseInt(parentElem.firstElementChild.getAttribute("id"));
 		if (firstId <= 1 && up_or_down < 0) {
 			return;
 		}
-		let lastId = parseInt(parentElem.lastElementChild.getAttribute("id"));
-		let xhttp = new XMLHttpRequest();
+		var lastId = parseInt(parentElem.lastElementChild.getAttribute("id"));
+		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			scrollAjax = false;
 			if (this.readyState == 4 && this.status == 200) {
 				//console.log(xhttp.responseText);
-				let obj = JSON.parse(xhttp.responseText);
-				let size = obj.record.length;
+				var obj = JSON.parse(xhttp.responseText);
+				var size = obj.record.length;
 				if (parseInt(obj.record[0].id) < firstId || parseInt(obj.record[size - 1].id) > lastId) {
 					// tyhjennetään koko lista
 					while (parentElem.firstChild) {

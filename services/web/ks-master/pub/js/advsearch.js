@@ -26,7 +26,7 @@ function lomakekuuntelija(form) {
         });
 
 		// Kokotekstihakua käytettäessä disabloidaan muut kentät
-		let fulltext = document.getElementById('search-form-fulltext');
+		var fulltext = document.getElementById('search-form-fulltext');
 		fulltext.addEventListener('input', (event) => {
 			let elements = ['search-form-keyword', 'search-form-from', 'search-form-word-group',
 							'search-form-usage-scope'];
