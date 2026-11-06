@@ -1049,7 +1049,8 @@ div.kwic {
 	overflow: visible !important;
 	/*border-bottom: #007faa 1px solid !important;*/
 	background-color: #ffffff !important;
-	padding: 1px 3px !important;
+	padding: 1px 8px !important;
+	border-radius: 0.25rem;
 }
 
 
