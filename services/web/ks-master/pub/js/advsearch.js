@@ -97,8 +97,8 @@ document.addEventListener("submit", function(event) {
 // Add Event Listener to document
 document.addEventListener("DOMContentLoaded", function () {
 	const inputField = document.getElementById("search-form-fulltext");
-	const checkbox = document.getElementById("search-form-lemma");
-	const checkboxLabel = document.getElementById("search-form-lemma-label");
+	//const checkbox = document.getElementById("search-form-lemma");
+	//const checkboxLabel = document.getElementById("search-form-lemma-label");
 	inputField.addEventListener("input", (event) => {
 		const value = inputField.value.trim();
 		if (!/[^\*\?\s]/.test(value)) {
@@ -107,15 +107,16 @@ document.addEventListener("DOMContentLoaded", function () {
 		else {
 			inputField.removeAttribute("aria-invalid");
 		}
-		if (/[\*\?]/.test(value)) {
-			// if wildcards are used, disable search-form-lemma checkbox
-			checkbox.setAttribute("disabled", true);
-			checkboxLabel.style.setProperty("text-decoration", "line-through");
-		}
-		else {
-			checkbox.removeAttribute("disabled");
-			checkboxLabel.style.removeProperty("text-decoration");
-		}
+		//
+		//if (/[\*\?]/.test(value)) {
+		//	// if wildcards are used, disable search-form-lemma checkbox
+		//	checkbox.setAttribute("disabled", true);
+		//	checkboxLabel.style.setProperty("text-decoration", "line-through");
+		//}
+		//else {
+			//checkbox.removeAttribute("disabled");
+			//checkboxLabel.style.removeProperty("text-decoration");
+		//}
 	});
 });
 
