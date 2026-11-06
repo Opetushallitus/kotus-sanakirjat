@@ -79,43 +79,6 @@
 	cursor: pointer;
 }
 
-/* Kwic-haun tarvitsemat muutokset */
-div.kwiccontainer {
-	flex-direction: column !important;
-}
-div.kwiccontainer aside {
-	max-width: 80rem !important;
-}
-div.kwiccontext + div.kwicfirst {
-	margin-top: 3px !important;
-}
-.kwiccontext p {
-	margin: 0;
-	padding: 0 0 0 1rem;
-	display: inline-block;
-}
-/*
-.kwiccontext a:after {
-	content: "\00a0";
-}
-*/
-.kwiccontext .hi {
-	font-weight: bold;
-	color: #000000;
-}
-.kwiccontext ul { /* ei tarvetta enää 16.7.2026 jv */
-	list-style: none;
-	margin: 0;
-	padding-left: 1rem;
-}
-div.kwic {
-	height: auto !important;
-	white-space: normal !important;
-	overflow: visible !important;
-	/*border-bottom: #007faa 1px solid !important;*/
-	background-color: #ffffff !important;
-	padding: 1px 3px !important;
-}
 /* === LYHENNE- JA LÄHDETAULUKOIDEN PERUSSÄÄDÖT === */
 .teksti td {
 	text-align: left;

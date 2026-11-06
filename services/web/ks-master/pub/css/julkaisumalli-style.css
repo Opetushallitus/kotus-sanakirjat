@@ -729,7 +729,7 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	font-size: 1rem;
 	line-height: 1.4375rem;
 	border: 1px solid #454545;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	box-sizing: border-box;
 	padding-left: 0.58rem;
 	padding-right: 0.58rem;
@@ -740,7 +740,7 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	text-overflow: ellipsis;
 	overflow: hidden;
 	cursor: pointer;
-	border-radius: 4px;
+	border-radius: 0.25rem;
 	border: 1px solid #454545;
 	box-sizing: border-box;
 	background: #fff;
@@ -790,7 +790,7 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	padding: 1rem;
   	margin-bottom: 1rem;
 	/* testataan eri pyöristystä väliaikaisesti 5.11.2026 */
-	border-radius: 4px;
+	border-radius: 0.25rem;
 }
 
 #search-form-fulltext:invalid, input[aria-invalid="true"] {
@@ -900,23 +900,7 @@ div#search-form-charlist button:hover, div.merkkipaletti button:hover {
 	white-space: nowrap;
 }
 
-/* Kwic-hakutulkset */
-.kwiccontainer #hlista {
-	max-height: 100%;
-	overflow-y: visible;
-}
-.kwicsivutusnappi {
-	border: 1px solid #007faa;
-	display: inline-block;
-	padding: 0.2rem 0.2rem;
-	min-width: 1.5rem;
-	vertical-align: middle;
-	overflow: hidden;
-	color: inherit;
-	background-color: #ffffff;
-	text-align: center;
-	cursor: pointer;
-}
+
 
 /* Hakusanalistan aakkoslinkit */
 .aakkoslinkit {
@@ -999,7 +983,6 @@ div#search-form-charlist button:hover, div.merkkipaletti button:hover {
 	margin-bottom: 1rem;
 }
 
-
 /* Details-summary */
 
 summary {
@@ -1009,6 +992,65 @@ summary:hover {
 	outline: 2px dotted rgba(0, 122, 124, 1);
 }
 
+/* Kwic-hakutulokset */
+
+.kwiccontainer #hlista {
+	max-height: 100%;
+	overflow-y: visible;
+	box-sizing: border-box;
+	border: 1px solid #AAA;
+	border-radius: 0.25rem;
+}
+.kwicsivutusnappi {
+	border: 1px solid #007faa;
+	display: inline-block;
+	padding: 0.2rem 0.2rem;
+	min-width: 1.5rem;
+	vertical-align: middle;
+	overflow: hidden;
+	color: inherit;
+	background-color: #ffffff;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 0.25rem;
+}
+/* kwic-haun tarvitsemat (yliajavat) muutokset hakusanalistan toimintaan */
+div.kwiccontainer {
+	flex-direction: column !important;
+}
+div.kwiccontainer aside {
+	max-width: 80rem !important;
+}
+div.kwiccontext + div.kwicfirst {
+	margin-top: 3px !important;
+}
+.kwiccontext p {
+	margin: 0;
+	padding: 0 0 0 1rem;
+	display: inline-block;
+}
+/*
+.kwiccontext a:after {
+	content: "\00a0";
+}
+*/
+.kwiccontext .hi {
+	font-weight: bold;
+	color: #000000;
+}
+.kwiccontext ul { /* ei tarvetta enää 16.7.2026 jv */
+	list-style: none;
+	margin: 0;
+	padding-left: 1rem;
+}
+div.kwic {
+	height: auto !important;
+	white-space: normal !important;
+	overflow: visible !important;
+	/*border-bottom: #007faa 1px solid !important;*/
+	background-color: #ffffff !important;
+	padding: 1px 3px !important;
+}
 
 
 
