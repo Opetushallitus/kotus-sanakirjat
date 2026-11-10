@@ -493,7 +493,7 @@ class SearchModel extends Model {
 					 map{'id' : \$nro,
 						'ks_id' : \$a/xs:string(@id), 
 						'tyyppi' : \$a/xs:string(@style),
-						'hakusana' : \$a//SearchForm[1]/text(),
+						'hakusana' : string(\$a//Headword),
 						'homonyyminro' : \$a/xs:string(@homographNumber),
 						'sanaluokka' : string-join(\$a//HeadwordCtn/PartOfSpeech, ', ')}, 
 						<output:serialization-parameters>
@@ -532,8 +532,8 @@ class SearchModel extends Model {
 
 		$query = "";
 		
-		// poistetaan muut erikoismerkit, koska niitä ei voi hakea / 27.10.2026 OL
-		$keyword = preg_replace('/[^\p{L}\p{N}*?]/u', '', $keyword);
+		// poistetaan muut erikoismerkit kuin viiva ja heittomerkki / 27.10.2026 OL
+		$keyword = preg_replace('/[^\p{L}\p{N}*?\'\-]/u', '', $keyword);
 		// tarkistetaan, ettei hakuun jäänyt pelkkiä jokerimerkkejä (* ja ?)
 		if (preg_match('/^[\*\?]+$/', $keyword)) { $keyword = ''; }
 		// Replace * => .* and ? => . for regular expression search.
