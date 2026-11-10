@@ -24,9 +24,9 @@ if (!constant("IN_KS")) die("General error, exiting.");
 	<div class="hakuehdotus" aria-live="polite">
 		<input type="text" name="keyword" onfocus="this.select();" placeholder="<?= _("search headword") ?>"
 <?php
-	if (isset($keyword)) {
-		echo ' value="' . htmlspecialchars($keyword) . '"';
-	}
+if (isset($keyword)) {
+	echo ' value="' . htmlspecialchars($keyword) . '"';
+}
 ?>
 id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><button type="submit" aria-label="Hae">&nbsp;</button>
 </div>

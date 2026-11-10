@@ -2,7 +2,7 @@
 if (!constant("IN_KS")) die("General error, exiting.");
 
 /**
- * pub/LeftBar.php
+ * pub/SearchLeftBar.php
  * 
  * Copyright: 	Institute for the Languages of Finland
  * Author: 		Teemu Ikonen <teemu.ikonen@kotus.fi>, 2013

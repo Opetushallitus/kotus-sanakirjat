@@ -75,7 +75,13 @@ class SearchController extends Controller {
 		// POST-data on tallennettu suoraan sessioon, siksi sanitoidaan
 		// myös SESSION-muuttujat ennen käyttöä / 6.10.2026 JV	
 		// Set POST-parameter 'keyword'.
-		$this->set("keyword", sanitize_input($_SESSION['search']['keyword'], 'string'));
+		if (isset($_SESSION['search']['keyword'])) {
+			$this->set("keyword", sanitize_input($_SESSION['search']['keyword'], 'string'));
+		} else {
+			if (isset($_GET['keyword'])) {
+				$this->set("keyword", sanitize_input($_GET['keyword'], 'string'));
+			}
+		}
 
 		// Set a page title - lisätään haettu termi otsikkoon / 11.6.2020 OL
 		$this->set("title", _("Search results") . ": " . $this->get("keyword"));
