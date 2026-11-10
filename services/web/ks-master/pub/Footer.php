@@ -52,13 +52,14 @@ ISSN 2323-3370</p>
    toimii myös IE:llä (mutta ei muinaisilla versioilla)  */
 window.addEventListener("load", function() {
     navimenu("paanavi");
-// Ei sittenkään piiloteta kwictuloksia leveällä, pois: piilodetails("hakutuloslista"<?php
+// Ei sittenkään piiloteta kwictuloksia leveällä, pois: piilodetails("hakutuloslista"< ?php
 //// true if the page is kwic-article
 //if (isset($_GET['p']) && $_GET['p'] == "kwic-article") {
 //    echo ', true';
 //}
-//?>);
+//? >);
 	piilodetails("hakutuloslista");
+    console_log("DEBUG" + <?php echo isset($_SESSION['search']['keyword']) ? $_SESSION['search']['keyword'] : '[empty]'; ?>);
 });
 
 /* Valikon sulkeminen. Käytetään linkitettäessä uudelle välilehdelle avautuvaan sivuun. / 8.12.2020 OL */
