@@ -59,8 +59,9 @@ window.addEventListener("load", function() {
 //}
 //? >);
 	piilodetails("hakutuloslista");
-    console_log("DEBUG" + "<?php echo isset($_SESSION['search']['keyword']) ? $_SESSION['search']['keyword'] : '[empty]'; ?>");
 });
+/* DEBUG */
+console_log("DEBUG" + "<?php echo isset($_SESSION['search']['keyword']) ? $_SESSION['search']['keyword'] : '[empty]'; ?>");
 
 /* Valikon sulkeminen. Käytetään linkitettäessä uudelle välilehdelle avautuvaan sivuun. / 8.12.2020 OL */
 function closeThisToo(divId) {
