@@ -52,7 +52,6 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 		":" ?>	</summary>
 	<div class="hakuosa">
 		<div class="kwicsivutus" id="kwicsivutus1">
-			VIRHE
 		</div>
 
 		<!-- uusi listatoteutus / 7.7.2020 OL-->
@@ -64,7 +63,6 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 			'true')"></div>
 
 		<div class="kwicsivutus" id="kwicsivutus2">
-			VIRHE
 		</div>
 	</div>
 </details>
