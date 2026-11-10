@@ -748,7 +748,7 @@ form.hakuruutu input[type=reset], form.hakuruutu button[type=reset]:focus {
 	line-height: 1.4375rem;
 	min-height: 2.5rem;	
 }
-#search-form2, search-form2 select {
+#search-form select, #search-form2 select {
 	background: linear-gradient(180deg, #F3F3F3, #E3E3E3);
 }
 #search-form option {
