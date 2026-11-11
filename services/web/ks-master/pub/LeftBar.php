@@ -27,6 +27,9 @@ if (!constant("IN_KS")) die("General error, exiting.");
 if (isset($keyword)) {
 	echo ' value="' . htmlspecialchars($keyword) . '"';
 }
+else if (isset($_SESSION['search']['keyword'])) { // DEBUG 11.11.2026 JV
+	echo ' value="' . sanitize_input($_SESSION['search']['keyword'], 'string') . '"';
+}
 ?>
 id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><button type="submit" aria-label="Hae">&nbsp;</button>
 </div>
