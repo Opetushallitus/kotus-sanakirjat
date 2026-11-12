@@ -1062,6 +1062,9 @@ div.kwic {
 	margin: 0 auto;
 	padding: 1.5rem 1.5rem;
 	text-align: left; /* täytyy yliajaa pääsisällön keskitys etusivulla */
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: 1fr
 }
 .jaalinkit a:hover {
 	text-decoration: none;

@@ -43,6 +43,8 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 <!-- id-lisätty / 5.3.2020 OL -->
 <div class="hakuosa">
 
+<?php
+/*
 <!-- Kokeillaan aakkoslinkkejä nappien sijaan 25.5.2026 JV 
 <div class="aakkoslinkit">
 	<button class="aakkonen" onclick="haeViitekohdePrefix('0')">0–9</button>
@@ -76,7 +78,8 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 	<button class="aakkonen" onclick="haeViitekohdePrefix('ö')">Ö</button>
 </div>
 -->
-
+*/
+?>
 <div class="aakkoslinkit" id="aakkoslinkit_div">
 <?php
 // Poistetaan käytöstä php-versio aakkoslinkkien tuottamisesta varten, tuotetaan sen sijaan javascriptillä (4.6.2026 jv)
