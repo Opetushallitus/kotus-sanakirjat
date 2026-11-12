@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-03 16:18+0200\n"
-"PO-Revision-Date: 2026-11-03 16:21+0200\n"
+"POT-Creation-Date: 2026-11-12 14:45+0200\n"
+"PO-Revision-Date: 2026-11-12 14:46+0200\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -313,26 +313,25 @@ msgstr "Näytä artikkeli oikeassa aakkoskohdassa"
 msgid "Article_Viewtype_DictionaryOrder"
 msgstr "Aakkosellinen selaus"
 
-#: app/pages/WordArticle.php:76 app/pages/WordArticle.php:77
-#: app/pages/WordArticle.php:78
+#: app/pages/WordArticle.php:76
 msgid "Inflection abbreviations"
 msgstr "Taivutuslyhenteet avattuna"
 
-#: app/pages/WordArticle.php:83 app/pages/WordArticle.php:85
-#: app/pages/WordArticle.php:86
+#: app/pages/WordArticle.php:89 app/pages/WordArticle.php:91
+#: app/pages/WordArticle.php:92
 msgid "Feedback"
 msgstr "Anna palautetta"
 
-#: app/pages/WordArticle.php:90 app/pages/WordArticle.php:92
-#: app/pages/WordArticle.php:93
+#: app/pages/WordArticle.php:96 app/pages/WordArticle.php:98
+#: app/pages/WordArticle.php:99
 msgid "Share this entry"
 msgstr "Kopioi linkki artikkeliin"
 
-#: app/pages/WordArticle.php:113
+#: app/pages/WordArticle.php:119
 msgid "Link copied to clipboard"
 msgstr "Kopioitu leikepöydälle."
 
-#: app/pages/WordArticle.php:117
+#: app/pages/WordArticle.php:128
 msgid "Failed to copy link to clipboard"
 msgstr "Kopiointi epäonnistui."
 
@@ -398,7 +397,7 @@ msgstr "Kotimaisten kielten keskus"
 
 #: pub/Footer.php:20 pub/Footer.php:21
 msgid "Footer_Kotus_www"
-msgstr "https://www.kotus.fi/"
+msgstr "https://kotus.fi/"
 
 #: pub/Footer.php:25 pub/Footer.php:26
 msgid "Footer_Cookies"
@@ -424,7 +423,7 @@ msgstr "Käyttöehdot"
 msgid "KwicSearchResults_Caption"
 msgstr "Hakutulokset"
 
-#: pub/LeftBar.php:37
+#: pub/LeftBar.php:41
 msgid "Headwords"
 msgstr "Hakusanat"
 
