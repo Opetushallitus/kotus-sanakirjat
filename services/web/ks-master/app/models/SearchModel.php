@@ -493,7 +493,7 @@ class SearchModel extends Model {
 					 map{'id' : \$nro,
 						'ks_id' : \$a/xs:string(@id), 
 						'tyyppi' : \$a/xs:string(@style),
-						'hakusana' : string(\$a//Headword[1]),
+						'hakusana' : string(\$a/HeadwordCtn/Headword[1]),
 						'homonyyminro' : \$a/xs:string(@homographNumber),
 						'sanaluokka' : string-join(\$a//HeadwordCtn/PartOfSpeech, ', ')}, 
 						<output:serialization-parameters>
