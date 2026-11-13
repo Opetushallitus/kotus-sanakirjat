@@ -103,23 +103,24 @@ div.artikkeli + div.artikkeli {
 	@rakenne: sl
 	@tyyli: .sanaluokka
 	@kuvaus: Sanaluokka
-	@ulkoasu: inline, kursiivi
+	@ulkoasu: inline, sininen
 */
 .sanaluokka {
-	font-style: italic;
+	font-style: normal;
   	font-weight: normal;
   	display: inline;
+	color: #00416f;
 }
 /* 
 	@rakenne: sltark
 	@tyyli: .tarkenne
 	@kuvaus: Sanaluokkatarkenne
-	@ulkoasu: inline, kursiivi, vihreä (tilapäinen väri)
+	@ulkoasu: inline, sininen
 */
 .tarkenne {
-	font-style: italic;
+	font-style: normal;
 	font-weight: normal;
-	color: green;
+	color: #00416f;
 	display: inline;
 }
 
