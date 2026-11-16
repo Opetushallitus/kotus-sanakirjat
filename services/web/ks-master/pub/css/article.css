@@ -107,7 +107,7 @@ div.artikkeli + div.artikkeli {
 */
 .sanaluokka {
 	font-style: normal;
-  	font-weight: normal;
+  	font-weight: bold;
   	display: inline;
 	color: #00416f;
 }
@@ -119,7 +119,7 @@ div.artikkeli + div.artikkeli {
 */
 .tarkenne {
 	font-style: normal;
-	font-weight: normal;
+	font-weight: bold;
 	color: #00416f;
 	display: inline;
 }
