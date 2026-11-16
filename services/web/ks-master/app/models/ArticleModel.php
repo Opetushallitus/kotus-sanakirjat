@@ -41,34 +41,30 @@ class ArticleModel extends Model {
 			
 			// käyttöala
 			if (isset($_SESSION['query']['usage_scope']) and isset($_GET['hilight'])) {
-				$query .= "let \$ka := for \$s in \$a//" . $_SESSION['query']['usage_scope'] . " return util:node-id(\$s) ";
+				$query .= "let \$ka := for \$k in \$a//" . $_SESSION['query']['usage_scope'] . " return util:node-id(\$k) ";
 				$korostettavat[] = "\$ka";
 			}
-			// selite
-			if (isset($_SESSION['query']['meaning']) and isset($_GET['hilight'])) {
-				$query .= "let \$sel := for \$s in \$a//" . $_SESSION['query']['meaning'] . " return util:node-id(\$s) ";
-				$korostettavat[] = "\$sel";
+			// sanaluokka
+			if (isset($_SESSION['query']['word_group']) and isset($_GET['hilight'])) {
+				$query .= "let \$sl := for \$s in \$a//" . $_SESSION['query']['word_group'] . " return util:node-id(\$s) ";
+				$korostettavat[] = "\$sl";
 			}
-			// esimerkki
-			if (isset($_SESSION['query']['example']) and isset($_GET['hilight'])) {
-				//$query .= $_SESSION['query']['example'];
-				$query .= "let \$esim := for \$e in \$a//" . $_SESSION['query']['example'] . " return util:node-id(\$e) ";
-				$korostettavat[] = "\$esim";
+			// taivutusindeksi
+			if (isset($_SESSION['query']['tindex']) and isset($_GET['hilight'])) {
+				$query .= "let \$ti := for \$t in \$a//" . $_SESSION['query']['tindex'] . " return util:node-id(\$t) ";
+				$korostettavat[] = "\$ti";
+			}
+			// astevaihtelu
+			if (isset($_SESSION['query']['avindex']) and isset($_GET['hilight'])) {
+				$query .= "let \$avi := for \$av in \$a//" . $_SESSION['query']['avindex'] . " return util:node-id(\$av) ";
+				$korostettavat[] = "\$avi";
 			}
 			
-			// kokotektihaussa voidaan korostaa normaalisti?
-/*			if (isset($_SESSION['query']['fulltext']) and isset($_GET['hilight'])) {
-				$query = "//DictionaryEntry[@id='" . $id . "']" . $_SESSION['query']['fulltext'];
-				$result = $xml->queryRESTXQarticle($query, $viewtype);
-			}
-			// muuten korostetaan elementti, josta sana löytyi
-			else {
-*/
-				$query .= " return (" . implode(",", $korostettavat) . ")";
-				//var_dump($query);
-				$result = $xml->queryRESTXQarticleMatches($id, $query, $viewtype);
-/*			}*/
-
+			// korostetaan elementti, josta sana löytyi
+			$query .= " return (" . implode(",", $korostettavat) . ")";
+			
+			//var_dump($query);
+			$result = $xml->queryRESTXQarticleMatches($id, $query, $viewtype);
 			//var_dump($result);
 
 			// Check wheter a query has failed or returned no results.
