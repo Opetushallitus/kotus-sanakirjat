@@ -582,8 +582,8 @@ class SearchModel extends Model {
 
 		if ($word_group) {
 
-			$_SESSION['query']['word_group'] = "[ft:query(.//PartOfSpeech,<query><regex>$word_group</regex></query>)]";
-			$query .= $_SESSION['query']['word_group'];
+			$_SESSION['query']['word_group'] = "PartOfSpeech[ft:query(.,<query><regex>$word_group</regex></query>)]";
+			$query .= "[.//" . $_SESSION['query']['word_group'] . "]";
 			
 		}
 			
@@ -596,15 +596,15 @@ class SearchModel extends Model {
 
 		if ($tindex) {
 
-			$_SESSION['query']['tindex'] = "[ft:query(.//InflectionScheme,<query><regex>$tindex</regex></query>)]";
-			$query .= $_SESSION['query']['tindex'];
+			$_SESSION['query']['tindex'] = "InflectionScheme[ft:query(.,<query><regex>$tindex</regex></query>)]";
+			$query .= "[.//" . $_SESSION['query']['tindex'] . "]";
 
 		}
 
 		if ($avindex) {
 
-			$_SESSION['query']['avindex'] = "[ft:query(.//InflectionScheme,<query><regex>$avindex</regex></query>)]";
-			$query .= $_SESSION['query']['avindex'];
+			$_SESSION['query']['avindex'] = "InflectionScheme[ft:query(.,<query><regex>$avindex</regex></query>)]";
+			$query .= "[.//" . $_SESSION['query']['avindex'] . "]";
 
 		}
 
