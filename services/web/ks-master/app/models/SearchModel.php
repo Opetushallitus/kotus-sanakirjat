@@ -544,26 +544,24 @@ class SearchModel extends Model {
 			$_SESSION['query']['keyword'] = "[.//HeadwordCtn[ft:query(./SearchForm,<query><regex>$keyword</regex></query>)]]";
 			$query .= $_SESSION['query']['keyword'];
 
-/* Poistettu osahaku käytöstä, ainakin toistaiseksi / 21.9.2026 OL
 		} elseif ($keyword and $from == 2) {
 			// Search for compound parts of headword
-			$_SESSION['query']['keyword'] = "[.//Word[ft:query(.,<query><regex>$keyword</regex></query>)]]";			
+			$_SESSION['query']['keyword'] = "[@freeType='compound'][ft:query(.//Prefix | .//Stem | .//Word, <query><regex>$keyword</regex></query>)]";			
 			$query .= $_SESSION['query']['keyword'];
-*/
-/* Muukattu yhdyssanahaku samanlaiseksi (epäloogiseksi) kuin aiemmassa versiossa / 21.9.2026 OL
+
 		} elseif ($keyword and $from == 3) {
 			// Search for compound headword
 			$_SESSION['query']['keyword'] = "[@freeType='compound'][ft:query(.//SearchForm,<query><regex>$keyword</regex></query>)]";
-			$query .= $_SESSION['query']['keyword'];
-*/
-		} elseif ($keyword and $from == 3) {
-			// Search for compound headword
-			$_SESSION['query']['keyword'] = "[@freeType='compound'][ft:query(.//Prefix | .//Stem | .//Word, <query><regex>$keyword</regex></query>)]";
 			$query .= $_SESSION['query']['keyword'];
 
 		} elseif ($keyword and $from == 4) {
 			// Search for non-compound headword
 			$_SESSION['query']['keyword'] = "[@freeType='monoWord'][ft:query(.//SearchForm,<query><regex>$keyword</regex></query>)]";
+			$query .= $_SESSION['query']['keyword'];
+
+		} elseif ($from == 2 and !$keyword) {
+			// Search for compound headword, but no keyword given
+			$_SESSION['query']['keyword'] = "[@freeType='compound']";
 			$query .= $_SESSION['query']['keyword'];
 
 		} elseif ($from == 3 and !$keyword) {

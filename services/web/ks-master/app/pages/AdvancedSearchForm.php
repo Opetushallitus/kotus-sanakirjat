@@ -66,9 +66,7 @@ if (isset($_SESSION['advsearchtype']) && $_SESSION['advsearchtype'] == "kwicsear
 				
 			<select id="search-form-hwfrom" name="hwfrom">
 				<option value="1"><?= _("AdvancedSearchForm_FromAllWords") ?></option>
-				<!-- Poistettu osahaku käytöstä, ainakin toistaiseksi / 21.9.2026 OL
 				<option value="2"><?= _("AdvancedSearchForm_FromCompoundParts") ?></option>
-				-->
 				<option value="3"><?= _("AdvancedSearchForm_FromCompounds") ?></option>
 				<option value="4"><?= _("AdvancedSearchForm_FromNotCompounds") ?></option>
 			</select>
