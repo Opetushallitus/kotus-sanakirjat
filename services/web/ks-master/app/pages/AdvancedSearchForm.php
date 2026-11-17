@@ -18,7 +18,7 @@ if (!constant("IN_KS")) die("General error, exiting.");
 <div class="teksti">
 <h1><?= _("AdvancedSearch_Page") ?></h1>
 
-<details open>
+<details>
 	<summary class="hakuhaitarilabel">Pikaohje</summary>
 	<div>
 	Tarkennetussa haussa voi käyttää niin sanottuja jokerimerkkejä eli kysymysmerkkiä ja tähtimerkkiä. 

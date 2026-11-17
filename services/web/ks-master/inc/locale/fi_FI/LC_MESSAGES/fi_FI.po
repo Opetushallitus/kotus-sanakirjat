@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-12 14:45+0200\n"
-"PO-Revision-Date: 2026-11-12 14:46+0200\n"
+"POT-Creation-Date: 2026-11-17 14:47+0200\n"
+"PO-Revision-Date: 2026-11-17 14:54+0200\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -48,8 +48,7 @@ msgstr "Haettua toimintoa ei ole vielä toteutettu."
 
 #: app/controllers/Controller.php:58
 msgid "Cannot use set(), view must be initialized first."
-msgstr ""
-"Sisäinen virhe. Ei voida käyttää set():iä, näkymä tulee olla alustettu ensin."
+msgstr "Sisäinen virhe."
 
 #: app/controllers/Controller.php:109
 msgid "Requested model class could not found."
@@ -94,12 +93,12 @@ msgstr "Hakutulos"
 #: app/controllers/SearchController.php:92
 #: app/controllers/SearchController.php:128
 msgid "QuickSearchResults_NoResults_Caption"
-msgstr "Haku ei tuottanut tuloksia"
+msgstr "Ei osumia"
 
 #: app/controllers/SearchController.php:93
 #: app/controllers/SearchController.php:129
 msgid "QuickSearchResults_NoResults_Message_Begin"
-msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
+msgstr ""
 
 #: app/controllers/SearchController.php:152
 msgid "Advanced search and browse"
@@ -110,14 +109,14 @@ msgstr "Haku ja selaus"
 #: app/controllers/SearchController.php:334
 #: app/controllers/SearchController.php:357
 msgid "AdvancedSearchResults_NoResults_Caption"
-msgstr "Haku ei tuottanut tuloksia"
+msgstr "Ei osumia"
 
 #: app/controllers/SearchController.php:239
 #: app/controllers/SearchController.php:258
 #: app/controllers/SearchController.php:334
 #: app/controllers/SearchController.php:358
 msgid "AdvancedSearchResults_NoResults_Message_Begin"
-msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
+msgstr ""
 
 #: app/controllers/SearchController.php:240
 #: app/controllers/SearchController.php:259
@@ -125,9 +124,6 @@ msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit vain aakkosväliltä"
 #: app/controllers/SearchController.php:359
 msgid "AdvancedSearchResults_NoResults_Message_End"
 msgstr ""
-"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
-"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
-"-hakua. Lisäksi kannattaa tutustua"
 
 #: app/controllers/SearchController.php:270
 #: app/controllers/SearchController.php:373
@@ -138,20 +134,17 @@ msgstr "Tarkennetun haun tulokset"
 msgid "FAQ"
 msgstr "usein kysyttyihin kysymyksiin"
 
-#: app/models/ArticleModel.php:76 app/models/ArticleModel.php:142
+#: app/models/ArticleModel.php:72 app/models/ArticleModel.php:138
 msgid "ArticleNotFound_Caption"
 msgstr "Sana-artikkelia ei löytynyt"
 
-#: app/models/ArticleModel.php:77 app/models/ArticleModel.php:143
+#: app/models/ArticleModel.php:73 app/models/ArticleModel.php:139
 msgid "ArticleNotFound_Message_Begin"
-msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit aakkosväliltä"
+msgstr ""
 
-#: app/models/ArticleModel.php:78 app/models/ArticleModel.php:144
+#: app/models/ArticleModel.php:74 app/models/ArticleModel.php:140
 msgid "ArticleNotFound_Message_End"
 msgstr ""
-"Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
-"jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
-"-hakua. Lisäksi kannattaa tutustua "
 
 #: app/pages/Abbreviations.php:16
 msgid "Abbreviations_Caption"
@@ -176,7 +169,7 @@ msgstr "Hakusanat"
 
 #: app/pages/AdvancedSearchForm.php:58
 msgid "AdvancedSearchForm_Keyword"
-msgstr "Hae hakusanoista"
+msgstr "Hae"
 
 #: app/pages/AdvancedSearchForm.php:64
 msgid "AdvancedSearchForm_Keyword_Required"
@@ -184,7 +177,7 @@ msgstr "Kenttää ei voi jättää tyhjäksi."
 
 #: app/pages/AdvancedSearchForm.php:68
 msgid "AdvancedSearchForm_FromAllWords"
-msgstr "kaikista"
+msgstr "kaikista hakusanoista"
 
 #: app/pages/AdvancedSearchForm.php:70
 msgid "AdvancedSearchForm_FromCompoundParts"
@@ -241,7 +234,7 @@ msgstr "Koko teksti"
 
 #: app/pages/AdvancedSearchForm.php:132
 msgid "AdvancedSearchForm_FullText"
-msgstr "Hae koko tekstistä"
+msgstr "Hae"
 
 #: app/pages/AdvancedSearchForm.php:135
 msgid "AdvancedSearchForm_FullFromAll"
@@ -315,7 +308,7 @@ msgstr "Aakkosellinen selaus"
 
 #: app/pages/WordArticle.php:76
 msgid "Inflection abbreviations"
-msgstr "Taivutuslyhenteet avattuna"
+msgstr "Taivutuslyhenteet avattuina"
 
 #: app/pages/WordArticle.php:89 app/pages/WordArticle.php:91
 #: app/pages/WordArticle.php:92
@@ -329,7 +322,7 @@ msgstr "Kopioi linkki artikkeliin"
 
 #: app/pages/WordArticle.php:119
 msgid "Link copied to clipboard"
-msgstr "Kopioitu leikepöydälle."
+msgstr "Linkki kopioitu!"
 
 #: app/pages/WordArticle.php:128
 msgid "Failed to copy link to clipboard"
