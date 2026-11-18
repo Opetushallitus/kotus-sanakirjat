@@ -35,7 +35,7 @@ div.artikkeli + div.artikkeli {
 }
 /* Viiva hakusanan tietojen alla */
 .display-para {
-	border: 0.031rem solid #cccccc;
+	border: 0.031rem solid #CCCCCC;
 }
 
 /*
@@ -109,7 +109,7 @@ div.artikkeli + div.artikkeli {
 	font-style: normal;
   	font-weight: bold;
   	display: inline;
-	color: #00416f;
+	color: #00416F;
 }
 /* 
 	@rakenne: sltark
@@ -120,7 +120,7 @@ div.artikkeli + div.artikkeli {
 .tarkenne {
 	font-style: normal;
 	font-weight: bold;
-	color: #00416f;
+	color: #00416F;
 	display: inline;
 }
 

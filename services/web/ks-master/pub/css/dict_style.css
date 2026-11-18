@@ -26,10 +26,10 @@
 	padding-bottom: 1rem;
 	border-top-style: solid;
 	border-top-width: thin;
-	border-top-color: #007faa;
+	border-top-color: #007FAA;
 	border-bottom-style: solid;
 	border-bottom-width: thin;
-	border-bottom-color: #007faa;
+	border-bottom-color: #007FAA;
 }
 #wordofday-title {
 	font-size: 1rem;
@@ -47,7 +47,7 @@
 	font-weight: normal;
 	font-size: 1rem;
 	margin-bottom: 1.5rem;
-	color: #cccccc;
+	color: #CCCCCC;
 	display: block;
 }
 .article-viewtype-caption {
