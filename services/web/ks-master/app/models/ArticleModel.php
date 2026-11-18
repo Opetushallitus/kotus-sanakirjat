@@ -70,8 +70,7 @@ class ArticleModel extends Model {
 			// Check wheter a query has failed or returned no results.
 			if (!$result) {
 				throw new DICTException(_("ArticleNotFound_Caption"), 
-					_("ArticleNotFound_Message_Begin") .
-					_("ArticleNotFound_Message_End")
+					_("ArticleNotFound_Message")
 				);				
 			}
 			
@@ -136,8 +135,7 @@ class ArticleModel extends Model {
 			// Check wheter a query has failed or returned no results.
 			if (!$result) {
 				throw new DICTException(_("ArticleNotFound_Caption"), 
-					_("ArticleNotFound_Message_Begin") .
-					_("ArticleNotFound_Message_End")
+					_("ArticleNotFound_Message")
 				);				
 			}
 			

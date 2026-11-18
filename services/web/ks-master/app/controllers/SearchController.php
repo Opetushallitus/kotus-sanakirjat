@@ -90,7 +90,7 @@ class SearchController extends Controller {
 		// Ilmoitus, jos hakusanaa ei löydy
 		if ($count == 0) {
 			throw new DICTException(_("QuickSearchResults_NoResults_Caption"), 
-				_("QuickSearchResults_NoResults_Message_Begin")
+				_("QuickSearchResults_NoResults_Message")
 			);
 		}
 		
@@ -125,8 +125,8 @@ class SearchController extends Controller {
 
 		// Ilmoitus, jos hakusanaa ei löydy
 		if ($firstWord === false) {
-			throw new DICTException(_("QuickSearchResults_NoResults_Caption"), 
-				_("QuickSearchResults_NoResults_Message_Begin")
+			throw new DICTException(_("LinkedArticleNotFound_Caption"), 
+				_("LinkedArticleNotFound_Message")
 			);
 		}
 
@@ -236,9 +236,7 @@ class SearchController extends Controller {
 		//var_dump($query);
 		// Hakuehdoissa jotain vikaa, jos $query on tyhjä / 27.10.2026 OL
 		if (!$query) {
-			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
-				_("AdvancedSearchResults_NoResults_Message_End") . "."
-			);
+			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message"));
 		}
 
 		$firstquery = $model->getRestWrappedQuery($query, 1, 0);
@@ -255,10 +253,8 @@ class SearchController extends Controller {
 		// Check if there's something to show.
 		if ($this->get("count") == 0) {
 
-			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
-				_("AdvancedSearchResults_NoResults_Message_End") . "."
-			);
-			
+			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message"));
+
 		}
 		// Make the query
 		$fullquery = $model->getRestWrappedQuery($query, 1, $this->get("sessionid"));
@@ -331,9 +327,7 @@ class SearchController extends Controller {
 		//var_dump($query);
 		// Hakuehdoissa jotain vikaa, jos $query on tyhjä / 27.10.2026 OL
 		if (!$query) {
-			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), _("AdvancedSearchResults_NoResults_Message_Begin") .
-				_("AdvancedSearchResults_NoResults_Message_End") . "."
-			);
+			throw new DICTException(_("AdvancedKwicResults_NoResults_Caption"), _("AdvancedKwicResults_NoResults_Message"));
 		}
 		
 		// ensimmäinen kysely, ei sessionid:tä / 17.7.2026 OL
@@ -354,10 +348,8 @@ class SearchController extends Controller {
 		// Check if there's something to show.
 		if ($this->get("count") == 0) {
 
-			throw new DICTException(_("AdvancedSearchResults_NoResults_Caption"), 
-									_("AdvancedSearchResults_NoResults_Message_Begin") .
-									_("AdvancedSearchResults_NoResults_Message_End") . 
-				" <a target='_ukk' href='" . $cfg['KS']['UKK_URL'] . "'>" . _("FAQ") . "</a>" . "."
+			throw new DICTException(_("AdvancedKwicResults_NoResults_Caption"), 
+									_("AdvancedKwicResults_NoResults_Message")
 			);
 			
 		}

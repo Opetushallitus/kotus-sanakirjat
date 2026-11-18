@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Verkkosanakirja\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-17 14:47+0200\n"
-"PO-Revision-Date: 2026-11-17 14:54+0200\n"
+"POT-Creation-Date: 2026-11-18 14:41+0200\n"
+"PO-Revision-Date: 2026-11-18 14:41+0200\n"
 "Last-Translator: Outi Lehtinen <outi.lehtinen@kotus.fi>\n"
 "Language-Team: \n"
 "Language: fi_FI\n"
@@ -91,60 +91,57 @@ msgid "Search results"
 msgstr "Hakutulos"
 
 #: app/controllers/SearchController.php:92
-#: app/controllers/SearchController.php:128
 msgid "QuickSearchResults_NoResults_Caption"
 msgstr "Ei osumia"
 
 #: app/controllers/SearchController.php:93
+msgid "QuickSearchResults_NoResults_Message"
+msgstr "[Haettua hakusanaa ei löytynyt.]"
+
+#: app/controllers/SearchController.php:128
+msgid "LinkedArticleNotFound_Caption"
+msgstr "Sana-artikkelia ei löytynyt"
+
 #: app/controllers/SearchController.php:129
-msgid "QuickSearchResults_NoResults_Message_Begin"
-msgstr ""
+msgid "LinkedArticleNotFound_Message"
+msgstr "[Linkissä on jotain vikaa?]"
 
 #: app/controllers/SearchController.php:152
 msgid "Advanced search and browse"
 msgstr "Haku ja selaus"
 
 #: app/controllers/SearchController.php:239
-#: app/controllers/SearchController.php:258
-#: app/controllers/SearchController.php:334
-#: app/controllers/SearchController.php:357
+#: app/controllers/SearchController.php:256
 msgid "AdvancedSearchResults_NoResults_Caption"
 msgstr "Ei osumia"
 
 #: app/controllers/SearchController.php:239
-#: app/controllers/SearchController.php:258
-#: app/controllers/SearchController.php:334
-#: app/controllers/SearchController.php:358
-msgid "AdvancedSearchResults_NoResults_Message_Begin"
-msgstr ""
+#: app/controllers/SearchController.php:256
+msgid "AdvancedSearchResults_NoResults_Message"
+msgstr "[Hakuehtoihin sopivaa hakusanaa ei löytynyt.]"
 
-#: app/controllers/SearchController.php:240
-#: app/controllers/SearchController.php:259
-#: app/controllers/SearchController.php:335
-#: app/controllers/SearchController.php:359
-msgid "AdvancedSearchResults_NoResults_Message_End"
-msgstr ""
-
-#: app/controllers/SearchController.php:270
-#: app/controllers/SearchController.php:373
+#: app/controllers/SearchController.php:266
+#: app/controllers/SearchController.php:365
 msgid "Advanced search results"
 msgstr "Tarkennetun haun tulokset"
 
-#: app/controllers/SearchController.php:360
-msgid "FAQ"
-msgstr "usein kysyttyihin kysymyksiin"
+#: app/controllers/SearchController.php:330
+#: app/controllers/SearchController.php:351
+msgid "AdvancedKwicResults_NoResults_Caption"
+msgstr "Ei osumia"
 
-#: app/models/ArticleModel.php:72 app/models/ArticleModel.php:138
+#: app/controllers/SearchController.php:330
+#: app/controllers/SearchController.php:352
+msgid "AdvancedKwicResults_NoResults_Message"
+msgstr "[Haettua sanaa ei löytynyt.]"
+
+#: app/models/ArticleModel.php:72 app/models/ArticleModel.php:137
 msgid "ArticleNotFound_Caption"
 msgstr "Sana-artikkelia ei löytynyt"
 
-#: app/models/ArticleModel.php:73 app/models/ArticleModel.php:139
-msgid "ArticleNotFound_Message_Begin"
-msgstr ""
-
-#: app/models/ArticleModel.php:74 app/models/ArticleModel.php:140
-msgid "ArticleNotFound_Message_End"
-msgstr ""
+#: app/models/ArticleModel.php:73 app/models/ArticleModel.php:138
+msgid "ArticleNotFound_Message"
+msgstr "[Tietokantavirhe]"
 
 #: app/pages/Abbreviations.php:16
 msgid "Abbreviations_Caption"
@@ -154,10 +151,10 @@ msgstr "Lyhenteet"
 msgid "AdvancedSearch_Page"
 msgstr "Tarkennettu haku Kielitoimiston sanakirjasta"
 
-#: app/pages/AdvancedSearchForm.php:30 app/pages/AdvancedSearchForm.php:76
-#: app/pages/AdvancedSearchForm.php:77 app/pages/AdvancedSearchForm.php:140
-#: app/pages/AdvancedSearchForm.php:141 app/pages/AdvancedSearchForm.php:150
-#: app/pages/AdvancedSearchForm.php:151 app/pages/Background.php:25
+#: app/pages/AdvancedSearchForm.php:30 app/pages/AdvancedSearchForm.php:74
+#: app/pages/AdvancedSearchForm.php:75 app/pages/AdvancedSearchForm.php:138
+#: app/pages/AdvancedSearchForm.php:139 app/pages/AdvancedSearchForm.php:148
+#: app/pages/AdvancedSearchForm.php:149 app/pages/Background.php:25
 #: pub/Footer.php:21 pub/Footer.php:25 pub/Footer.php:26 pub/Footer.php:28
 #: pub/Footer.php:29 pub/Footer.php:42 pub/Footer.php:43 pub/Navi.php:62
 msgid "Link_OpenNewWin"
@@ -179,80 +176,80 @@ msgstr "Kenttää ei voi jättää tyhjäksi."
 msgid "AdvancedSearchForm_FromAllWords"
 msgstr "kaikista hakusanoista"
 
-#: app/pages/AdvancedSearchForm.php:70
+#: app/pages/AdvancedSearchForm.php:69
 msgid "AdvancedSearchForm_FromCompoundParts"
 msgstr "vain yhdyssanojen osista"
 
-#: app/pages/AdvancedSearchForm.php:72
+#: app/pages/AdvancedSearchForm.php:70
 msgid "AdvancedSearchForm_FromCompounds"
 msgstr "vain yhdyssanoista"
 
-#: app/pages/AdvancedSearchForm.php:73
+#: app/pages/AdvancedSearchForm.php:71
 msgid "AdvancedSearchForm_FromNotCompounds"
 msgstr "vain ei-yhdyssanoista"
 
-#: app/pages/AdvancedSearchForm.php:76 app/pages/AdvancedSearchForm.php:77
-#: app/pages/AdvancedSearchForm.php:78 app/pages/AdvancedSearchForm.php:140
-#: app/pages/AdvancedSearchForm.php:141 app/pages/AdvancedSearchForm.php:142
-#: app/pages/AdvancedSearchForm.php:150 app/pages/AdvancedSearchForm.php:151
+#: app/pages/AdvancedSearchForm.php:74 app/pages/AdvancedSearchForm.php:75
+#: app/pages/AdvancedSearchForm.php:76 app/pages/AdvancedSearchForm.php:138
+#: app/pages/AdvancedSearchForm.php:139 app/pages/AdvancedSearchForm.php:140
+#: app/pages/AdvancedSearchForm.php:148 app/pages/AdvancedSearchForm.php:149
 msgid "AdvancedSearchForm_Help"
 msgstr "Ohje"
 
-#: app/pages/AdvancedSearchForm.php:81
+#: app/pages/AdvancedSearchForm.php:79
 msgid "AdvancedSearchForm_TIndex"
 msgstr "Valitse taivutusindeksi"
 
-#: app/pages/AdvancedSearchForm.php:89
+#: app/pages/AdvancedSearchForm.php:87
 msgid "AdvancedSearchForm_AVIndex"
 msgstr "Valitse astevaihtelu"
 
-#: app/pages/AdvancedSearchForm.php:97
+#: app/pages/AdvancedSearchForm.php:95
 msgid "AdvancedSearchForm_WordGroup"
 msgstr "Valitse sanaluokka"
 
-#: app/pages/AdvancedSearchForm.php:106
+#: app/pages/AdvancedSearchForm.php:104
 msgid "AdvancedSearchForm_UsageScope"
 msgstr "Valitse käyttöala"
 
-#: app/pages/AdvancedSearchForm.php:115
+#: app/pages/AdvancedSearchForm.php:113
 msgid "Fill in at least one search field."
 msgstr "Täytä ainakin yksi hakukenttä."
 
-#: app/pages/AdvancedSearchForm.php:118 app/pages/AdvancedSearchForm.php:157
-#: app/pages/AdvancedSearchForm.php:166
+#: app/pages/AdvancedSearchForm.php:116 app/pages/AdvancedSearchForm.php:155
+#: app/pages/AdvancedSearchForm.php:164
 msgid "AdvancedSearchForm_SearchButton"
 msgstr "Hae"
 
-#: app/pages/AdvancedSearchForm.php:119 app/pages/AdvancedSearchForm.php:158
-#: app/pages/AdvancedSearchForm.php:167
+#: app/pages/AdvancedSearchForm.php:117 app/pages/AdvancedSearchForm.php:156
+#: app/pages/AdvancedSearchForm.php:165
 msgid "AdvancedSearchForm_ResetButton"
 msgstr "Tyhjennä"
 
-#: app/pages/AdvancedSearchForm.php:127
+#: app/pages/AdvancedSearchForm.php:125
 msgid "AdvancedSearchForm_FullText_Legend"
 msgstr "Koko teksti"
 
-#: app/pages/AdvancedSearchForm.php:132
+#: app/pages/AdvancedSearchForm.php:130
 msgid "AdvancedSearchForm_FullText"
 msgstr "Hae"
 
-#: app/pages/AdvancedSearchForm.php:135
+#: app/pages/AdvancedSearchForm.php:133
 msgid "AdvancedSearchForm_FullFromAll"
 msgstr "koko tekstistä"
 
-#: app/pages/AdvancedSearchForm.php:136
+#: app/pages/AdvancedSearchForm.php:134
 msgid "AdvancedSearchForm_FullFromDefinitions"
 msgstr "vain selitteistä"
 
-#: app/pages/AdvancedSearchForm.php:137
+#: app/pages/AdvancedSearchForm.php:135
 msgid "AdvancedSearchForm_FullFromExamples"
 msgstr "vain esimerkeistä"
 
-#: app/pages/AdvancedSearchForm.php:144
+#: app/pages/AdvancedSearchForm.php:142
 msgid "The search term must contain at least one character other than * or ?."
 msgstr "Hakuehdon tulee sisältää vähintään yksi muu merkki kuin * tai ?."
 
-#: app/pages/AdvancedSearchForm.php:149
+#: app/pages/AdvancedSearchForm.php:147
 msgid "AdvancedSearchForm_Lemma"
 msgstr "Hae myös taipuneita muotoja"
 
@@ -464,6 +461,9 @@ msgstr "Hakutulokset"
 msgid "QuickSearchResults_Hits"
 msgstr "kpl"
 
+#~ msgid "FAQ"
+#~ msgstr "usein kysyttyihin kysymyksiin"
+
 #~ msgid "AdvancedSearchForm_Caption"
 #~ msgstr "Tarkennettu haku"
 
@@ -485,12 +485,6 @@ msgstr "kpl"
 #~ msgid "Navi_Browse"
 #~ msgstr "Selaus"
 
-#~ msgid "QuickSearchResults_NoResults_Message_End"
-#~ msgstr ""
-#~ "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
-#~ "jotain tietoa käyttämällä Tarkennettu haku -lomakkeen koko artikkelista "
-#~ "-hakua. Lisäksi kannattaa tutustua"
-
 #~ msgid "Article_Viewtype_Parsing"
 #~ msgstr "Jäsennys"
 
@@ -498,8 +492,7 @@ msgstr "kpl"
 #~ msgstr "Virhe"
 
 #~ msgid "Example's time span and source cannot be filled simultaneously."
-#~ msgstr ""
-#~ "Esimerkin ajanjaksolla ja lähdekoodilla ei voi hakea samanaikaisesti."
+#~ msgstr "Esimerkin ajanjaksolla ja lähdekoodilla ei voi hakea samanaikaisesti."
 
 #~ msgid "AdvancedSearchForm_SubKeyword"
 #~ msgstr "Hae alihakusanoista"
@@ -642,14 +635,8 @@ msgstr "kpl"
 #~ msgid "Unable to send feedback"
 #~ msgstr "Palautteen lähettäminen ei onnistu"
 
-#~ msgid ""
-#~ "SMS was unable to deliver your feedback towards. Possible reason could be "
-#~ "a temporary problem in host's email system. Please retry or try again "
-#~ "later."
-#~ msgstr ""
-#~ "SMS ei onnistunut välittämään palautettasi eteenpäin. Mahdollinen syy "
-#~ "saattaa olla tilapäinen häiriö isäntäkoneen e-mail -järjestelmässä. Ole "
-#~ "hyvä ja yritä nyt tai myöhemmin uudelleen. "
+#~ msgid "SMS was unable to deliver your feedback towards. Possible reason could be a temporary problem in host's email system. Please retry or try again later."
+#~ msgstr "SMS ei onnistunut välittämään palautettasi eteenpäin. Mahdollinen syy saattaa olla tilapäinen häiriö isäntäkoneen e-mail -järjestelmässä. Ole hyvä ja yritä nyt tai myöhemmin uudelleen. "
 
 #~ msgid "Given page number is invalid."
 #~ msgstr "Annettua sivunumeroa ei löydy."
@@ -664,10 +651,7 @@ msgstr "kpl"
 #~ msgstr "Palaute"
 
 #~ msgid "FeedBackForm_Text"
-#~ msgstr ""
-#~ "Oheisella lomakkeella voit antaa kaikenlaista Vanhan kirjasuomen "
-#~ "sanakirjaan liittyvää palautetta. Käytämme ajatuksiasi ja mielipiteitäsi "
-#~ "sanakirjan sisällön parantamiseen ja käyttöliittymän kehittämiseen."
+#~ msgstr "Oheisella lomakkeella voit antaa kaikenlaista Vanhan kirjasuomen sanakirjaan liittyvää palautetta. Käytämme ajatuksiasi ja mielipiteitäsi sanakirjan sisällön parantamiseen ja käyttöliittymän kehittämiseen."
 
 #~ msgid "FeedBackForm_Errors"
 #~ msgstr "Lomakkeessa havaittiin seuraavat virheet"
@@ -924,20 +908,11 @@ msgstr "kpl"
 #~ msgid "Matching search results were not found"
 #~ msgstr "Hakua vastaavia artikkeleita ei löytynyt"
 
-#~ msgid ""
-#~ "The dictionary contains so far word articles and it's related forms only "
-#~ "between alphabets"
-#~ msgstr ""
-#~ "Sanakirja sisältää toistaiseksi sana-artikkelit ja niihin liittyvät asut "
-#~ "vain aakkosväliltä"
+#~ msgid "The dictionary contains so far word articles and it's related forms only between alphabets"
+#~ msgstr "Sanakirja sisältää toistaiseksi sana-artikkelit ja niihin liittyvät asut vain aakkosväliltä"
 
-#~ msgid ""
-#~ "If no headword article is found you can search meanings and examples "
-#~ "using Advanced Search."
-#~ msgstr ""
-#~ "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää "
-#~ "tietoa merkityksenselitteistä ja esimerkeistä käyttämällä Tarkennettu "
-#~ "haku -lomaketta."
+#~ msgid "If no headword article is found you can search meanings and examples using Advanced Search."
+#~ msgstr "Jos haetusta sanasta ei ole sana-artikkelia, voi sanasta kuitenkin löytää tietoa merkityksenselitteistä ja esimerkeistä käyttämällä Tarkennettu haku -lomaketta."
 
 #~ msgid "Institute for the Languages of Finland"
 #~ msgstr "Kotimaisten kielten keskus"
