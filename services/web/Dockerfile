@@ -5,9 +5,12 @@
 # config (this app ships no .htaccess of its own), and the health/robots
 # endpoints that aren't part of the app.
 # Pinned to an exact patch release so a rebuild can't silently pick up an
-# older cached base. 8.3.36 fixes CVE-2026-109618 / CVE-2026-109619 (remote
-# code execution via multipart request parsing) - don't go below it.
-FROM php:8.3.36-apache
+# older cached base. 8.3.36 fixed CVE-2026-109618 / CVE-2026-109619 (remote
+# code execution via multipart request parsing); 8.3.37 adds fixes for the
+# session RCEs CVE-2026-126714 / CVE-2026-115560 (the app uses sessions), the
+# SOAP flaws CVE-2026-15353 / CVE-2026-129506 and the date use-after-free
+# CVE-2026-129496 - don't go below it.
+FROM php:8.3.37-apache
 
 # ECS's containerPort for this service is fixed at 8080 (see infra/bin/infra.ts,
 # WebEcsService) - the image's default of 80 needs to move to match.
