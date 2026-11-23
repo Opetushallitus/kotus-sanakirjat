@@ -54,6 +54,7 @@ id="hakuinput" /><button type="reset" aria-label="Tyhjennä">&nbsp;</button><but
 		var inputElem = document.getElementById("hakuinput");
 		if (inputElem) {
 			inputElem.value = <?= isset($keyword) ? json_encode($keyword) : "" ?>;
+			inputElem.focus();
 		}
 	});
 	
