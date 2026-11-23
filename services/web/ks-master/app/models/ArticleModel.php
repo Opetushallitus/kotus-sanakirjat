@@ -114,7 +114,7 @@ class ArticleModel extends Model {
 			$hakusana = "nolemma";
 			$query_fulltext = isset($_SESSION['query']['fulltext']) ? $_SESSION['query']['fulltext'] : ''; // sessiomuuttuja muuttujaan, jos sessiomuuttujaa ei olekaan 18.9.2026 JV
 			preg_match('/<regex>(.*?)<\/regex>/', $query_fulltext, $match);
-			$hakusana = $match[1];
+			$hakusana = isset($match[1]) ? $match[1] : '';
 
 			// Artikkelihaku ja osumien korostus / 18.9.2026 OL
 			$korostettavat = array();
