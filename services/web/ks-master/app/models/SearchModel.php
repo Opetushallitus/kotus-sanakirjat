@@ -545,8 +545,8 @@ class SearchModel extends Model {
 			$query .= $_SESSION['query']['keyword'];
 
 		} elseif ($keyword and $from == 2) {
-			// Search for compound parts of headword
-			$_SESSION['query']['keyword'] = "[@freeType='compound'][ft:query(.//Prefix | .//Stem | .//Word, <query><regex>$keyword</regex></query>)]";			
+			// Search for parts of compound headword
+			$_SESSION['query']['keyword'] = "[@freeType='compound'][ft:query(.//Word, <query><regex>$keyword</regex></query>)]";			
 			$query .= $_SESSION['query']['keyword'];
 
 		} elseif ($keyword and $from == 3) {
